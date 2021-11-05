@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "noEmit": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "outDir": "dist",
+        "target": "ES2016",
+        "module": "CommonJS",
+        "removeComments": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true
+    },
+    "exclude": ["node_modules", "dist"]
+}

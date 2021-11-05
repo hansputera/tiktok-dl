@@ -1,0 +1,17 @@
+{
+  "name": "tktk",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "got": "^11.8.2",
+    "ow": "^0.28.1"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.12.1",
+    "typescript": "^4.4.4"
+  },
+  "scripts": {
+    "build": "echo build"
+  }
+}
