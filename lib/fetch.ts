@@ -11,4 +11,7 @@ export const fetch = got.extend({
     dnsCache: true,
 });
 
-export const Got = got;
+export const snaptikFetch = got.extend({
+    prefixUrl: 'https://snaptik.app/en',
+    dnsCache: true,
+});

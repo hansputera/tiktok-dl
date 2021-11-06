@@ -1,8 +1,6 @@
-import { fetch, TFetch } from '.';
+import { fetch, TFetch, tiktokBase, Transformer } from '.';
 
 import { ItemEnums, SearchFullResult, SearchPreviewTypeResult } from '../types';
-import { tiktokBase } from './config';
-import { Transformer } from './transformer';
 
 class TikTok {
     async searchPreview(query: string) {

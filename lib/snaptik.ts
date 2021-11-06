@@ -1,15 +1,16 @@
-import { Got } from '.';
+import { snaptikFetch } from '.';
 
 interface Extracted {
     error?: string;
+    result?: {
+        thumb: string;
+        urls: string[];
+    }
 }
-class Snaptik {
-    private client = Got.extend({
-        prefixUrl: 'https://snaptik.app/en',
-    });
 
+class Snaptik {
     async fetchDownloadPage(url: string) {
-        const response = await this.client.get('./abc.php', {
+        const response = await snaptikFetch('./abc.php', {
             searchParams: {
                 'url': url,
             }
@@ -28,10 +29,14 @@ class Snaptik {
             const obfuscatedScripts = html.match(/<script[\s\S]*?>[\s\S]*?<\/script>/gi);
             if (!obfuscatedScripts?.length) return { error: 'Cannot download the video!' };
             else {
-                // remove script tag and trim it
-                const cleanedScript = obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim();
-                console.log(cleanedScript);
-                return { 'error': 'asw' };
+                const results = eval(obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', '')).match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi);
+                return {
+                    'error': undefined,
+                    'result': {
+                        'thumb': results.shift(),
+                        'urls': [...new Set(results)] as string[],
+                    }
+                };
             }
         }
     }

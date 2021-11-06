@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import ow from 'ow';
 
-import { tiktok } from '../lib/tiktok';
+import { tiktok } from '../lib';
 
 const SearchType = ['trend', 'cards'];
 

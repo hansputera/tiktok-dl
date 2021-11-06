@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import ow from 'ow';
 
-import { snaptik } from '../lib/snaptik';
+import { snaptik } from '../lib';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
     try {
@@ -9,8 +9,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
             'url': ow.string.url,
         }));
 
-        await snaptik.fetchDownloadPage(req.query.url);
-        return res.status(200).json({ 'error': null });
+        const result = await snaptik.fetchDownloadPage(req.query.url);
+        return res.status(200).json(result);
     } catch(e) {
         return res.status(400).json({
             'error': (e as Error).message,
