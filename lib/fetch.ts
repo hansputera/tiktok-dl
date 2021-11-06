@@ -10,3 +10,5 @@ export const fetch = got.extend({
     prefixUrl: tiktokBase,
     dnsCache: true,
 });
+
+export const Got = got;

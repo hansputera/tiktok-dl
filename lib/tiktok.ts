@@ -6,7 +6,11 @@ import { Transformer } from './transformer';
 
 class TikTok {
     async searchPreview(query: string) {
-        const response = await fetch('./api/search/general/preview/' + this.buildParam(query));
+        const response = await fetch('./api/search/general/preview/' + this.buildParam(query), {
+            'headers': {
+                'Cookie': 'sessionid=' + process.env.SESSION,
+            }
+        });
         const d = JSON.parse(response.body) as SearchPreviewTypeResult;
 
         return {
@@ -19,19 +23,20 @@ class TikTok {
     }
 
     async searchFull(query: string) {
-        const response = await TFetch('./api/search/general/full/' + this.buildParam(query));
+        const response = await TFetch('./api/search/general/full/' + this.buildParam(query), {
+            'headers': {
+                'Cookie': 'sessionid=' + process.env.SESSION,
+            }
+        });
         const d = JSON.parse(response.body) as SearchFullResult;
+        if (!d.data) throw new TypeError('Seems your session id is wrong!');
 
         const userIndex = d.data.findIndex(x => x.user_list);
         if (userIndex >= 0) {
-            d.data[userIndex].user_list?.forEach(uList => {
-                (d.data as unknown[]).push({
-                    type: ItemEnums.User,
-                    ...Transformer.transformUser(uList),
-                });
-            });
-
-            delete d.data[userIndex]; // remove user list item
+            (d.data[userIndex] as unknown) = {
+                card: 'users',
+                data: d.data[userIndex].user_list?.map(u => ({ type: ItemEnums.User, ...Transformer.transformUser(u) }))
+            };
         }
 
         return {
@@ -44,7 +49,11 @@ class TikTok {
     }
 
     private buildParam(q: string, region = 'ID'): string {
-        return `?aid=${Math.floor(Math.random() * 5000)}&app_language=en&app_name=tiktok_web&browser_language=en-US&browser_name=Mozilla&browser_online=true&browser_platform=Linux x86_64&browser_version=5.0 (X11)&channel=tiktok_web&cookie_enabled=true&device_id=7015806844518483457&device_platform=web_pc&focus_state=true&from_page=search&history_len=5&is_fullscreen=false&is_page_visible=true&keyword=${encodeURIComponent(q)}&os=linux&priority_region=&referer=&region=${region.toUpperCase()}&screen_height=768&screen_width=1364&tz_name=Asia/Jakarta`;
+        return `?aid=1988&app_language=en&app_name=tiktok_web&battery_info=1&browser_language=en-US&browser_name=Mozilla&browser_online=true&browser_platform=Linux%20x86_64&browser_version=5.0%20%28X11%3B%20Linux%20x86_64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F94.0.4606.71%20Safari%2F537.36&channel=tiktok_web&cookie_enabled=true&device_id=7027325519520253442&device_platform=web_pc&focus_state=true&from_page=search&history_len=4&is_fullscreen=false&is_page_visible=true&keyword=${encodeURIComponent(q)}&offset=0&os=linux&priority_region=&referer=https%3A%2F%2Fwww.tiktok.com%2F&region=${region}&root_referer=https%3A%2F%2Fwww.tiktok.com%2F&screen_height=768&screen_width=1364&tz_name=Asia%2FJakarta&verifyFp=verify_d6e5614446bdc1c596e499a4900879f2&msToken=&X-Bogus=DFSzswVL0JiAN9l0SNBf-ryECY7I&_signature=_02B4Z6wo000016Gb.WQAAIDAI2u1tUBg2Muhm.nAAInpbc`;
+    }
+
+    public isReady(): boolean {
+        return !!process.env.SESSION;
     }
 }
 

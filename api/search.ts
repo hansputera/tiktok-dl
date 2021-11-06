@@ -3,15 +3,18 @@ import ow from 'ow';
 
 import { tiktok } from '../lib/tiktok';
 
-const SearchType = ['trend', 'videos'];
+const SearchType = ['trend', 'cards'];
 
 export default async (req: VercelRequest, res: VercelResponse) => {
+    if (!tiktok.isReady()) return res.status(500).json({
+        'error': 'Missing SESSION'
+    });
     try {
         ow(req.query, ow.object.exactShape({
             q: ow.string.minLength(3).maxLength(50),
             t: ow.string.validate((v) => ({
                 validator: typeof v === 'string' && SearchType.includes(v.toLowerCase()),
-                message: 'Expected \'t\' is \'trend\' or \'videos\''
+                message: 'Expected \'t\' is \'trend\' or \'cards\''
             }))
         }));
 

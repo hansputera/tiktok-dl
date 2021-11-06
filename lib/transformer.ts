@@ -1,4 +1,5 @@
 import { UserResult, VideoItemResult } from '../types';
+import { tiktokBase } from './config';
 
 export class Transformer {
     static transformUser(u: UserResult) {
@@ -40,10 +41,8 @@ export class Transformer {
     static transformVideo(v: VideoItemResult) {
         return {
             'id': v.id,
-            'createdAt': {
-                'iso': new Date(v.createTime),
-                'date': v.createTime
-            },
+            'url': tiktokBase + '/video/@' + v.author.uniqueId + '/' + v.id,
+            'createdAt': v.createTime,
             'description': v.desc,
             'properties': {
                 'video': {
