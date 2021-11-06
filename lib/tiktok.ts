@@ -27,7 +27,7 @@ class TikTok {
             }
         });
         const d = JSON.parse(response.body) as SearchFullResult;
-        if (!d.data) throw new TypeError('Seems your session id is wrong!');
+        if (!d.data) throw new TypeError('Seems my session id is wrong or get ratelimit from tiktok! Try again!');
 
         const userIndex = d.data.findIndex(x => x.user_list);
         if (userIndex >= 0) {
