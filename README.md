@@ -32,6 +32,32 @@ This config is required if you want use `/api/search`.
 2. Find `Environment Variables` button and click it.
 3. Add environment variable with `SESSION` as the name, and your `sessionid` as a value.
 
+## Endpoints
+- **/api/ping:**
+
+Send ping request to [TikTok](https://tiktok.com)
+
+**Query requirements:** -
+
+- **/api/search:**
+> `SESSION` needed.
+
+Search trending topic and videos about `x`
+
+**Query requirements:**
+- `q`: Keyword you want to search. (eg. `Naruto`)
+- `t`: Searching type (`trend` for trending topic or `cards` for videos and user(s) information)
+
+**Example:** `/api/search?q=Boruto&t=cards`
+
+- **/api/download:**
+
+Get tiktok video without watermark!
+
+**Query requirements:**
+- `url`: TikTok Video URL. (eg. `https://www.tiktok.com/@vanessaangelnih/video/7006671762352016666`)
+
+
 ## Credits
 
 - [SnapTik](https://snaptik.app) `Non-Watermark Video Source`

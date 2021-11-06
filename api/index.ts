@@ -6,6 +6,7 @@ export default async (_: VercelRequest, res: VercelResponse) => {
     'endpoints': {
       'ping': '/api/ping',
       'search': '/api/search',
+      'download': '/api/download',
     },
   });
 };
