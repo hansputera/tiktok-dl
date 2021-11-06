@@ -33,13 +33,14 @@ This config is required if you want use `/api/search`.
 3. Add environment variable with `SESSION` as the name, and your `sessionid` as a value.
 
 ## Endpoints
-- **/api/ping:**
+- `/api/ping:`
 
 Send ping request to [TikTok](https://tiktok.com)
 
 **Query requirements:** -
 
-- **/api/search:**
+- `/api/search:`
+
 > `SESSION` needed.
 
 Search trending topic and videos about `x`
@@ -50,7 +51,7 @@ Search trending topic and videos about `x`
 
 **Example:** `/api/search?q=Boruto&t=cards`
 
-- **/api/download:**
+- `/api/download:`
 
 Get tiktok video without watermark!
 
