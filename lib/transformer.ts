@@ -41,7 +41,7 @@ export class Transformer {
     static transformVideo(v: VideoItemResult) {
         return {
             'id': v.id,
-            'url': tiktokBase + '/video/@' + v.author.uniqueId + '/' + v.id,
+            'url': tiktokBase + '/@' + v.author.uniqueId + '/video/' + v.id,
             'createdAt': v.createTime,
             'description': v.desc,
             'properties': {
