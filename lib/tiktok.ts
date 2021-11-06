@@ -1,6 +1,8 @@
-import { fetch } from '.';
-import type { SearchPreviewTypeResult } from '../types';
+import { fetch, TFetch } from '.';
+
+import { ItemEnums, SearchFullResult, SearchPreviewTypeResult } from '../types';
 import { tiktokBase } from './config';
+import { Transformer } from './transformer';
 
 class TikTok {
     async searchPreview(query: string) {
@@ -13,6 +15,31 @@ class TikTok {
                 'content': sug.content,
                 'url': tiktokBase + '/search?q=' + encodeURIComponent(sug.word_record.words_content) + '&t=' + sug.word_record.group_id,
             })),
+        }
+    }
+
+    async searchFull(query: string) {
+        const response = await TFetch('./api/search/general/full/' + this.buildParam(query));
+        const d = JSON.parse(response.body) as SearchFullResult;
+
+        const userIndex = d.data.findIndex(x => x.user_list);
+        if (userIndex >= 0) {
+            d.data[userIndex].user_list?.forEach(uList => {
+                (d.data as unknown[]).push({
+                    type: ItemEnums.User,
+                    ...Transformer.transformUser(uList),
+                });
+            });
+
+            delete d.data[userIndex]; // remove user list item
+        }
+
+        return {
+            'q': encodeURIComponent(query),
+            'data': d.data.map(x => {
+                if (x.item) return { ...Transformer.transformVideo(x.item), type: ItemEnums.Video };
+                else return x;
+            })
         }
     }
 
