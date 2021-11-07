@@ -1,5 +1,5 @@
 import {snaptikFetch} from '..';
-import {handleException} from '../decorators/handleException';
+import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 
 /**

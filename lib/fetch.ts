@@ -15,3 +15,8 @@ export const snaptikFetch = got.extend({
   prefixUrl: 'https://snaptik.app/en',
   dnsCache: true,
 });
+
+export const tikmateFetch = got.extend({
+  prefixUrl: 'https://tikmate.online',
+  dnsCache: true,
+});
