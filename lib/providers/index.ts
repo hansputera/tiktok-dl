@@ -7,3 +7,5 @@ export const Providers = [
 export const getRandomProvider = () => Providers[
     Math.floor(Math.random() * Providers.length)
 ];
+
+export * from './prepare';

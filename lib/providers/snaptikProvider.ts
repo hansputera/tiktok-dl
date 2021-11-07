@@ -16,6 +16,14 @@ export class SnaptikProvider extends BaseProvider {
 
   /**
    *
+   * @return {string}
+   */
+  public getURI(): string {
+    return snaptikFetch.defaults.options.prefixUrl;
+  }
+
+  /**
+   *
    * @param {string} url - TikTok Video URL
    * @return {Promise<ExtractedInfo>}
    */
