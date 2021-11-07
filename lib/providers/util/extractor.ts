@@ -16,7 +16,6 @@ export const deObfuscate = (html: string): string => {
     } else {
       // eslint-disable-next-line max-len
       const deObfuscated = eval(obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', ''));
-      console.log(deObfuscated);
       return deObfuscated;
     }
   }
@@ -30,8 +29,9 @@ export const matchLink = (raw: string): string[] | null => {
 
 export const matchTikmateDownload = (raw: string): string[] => {
   const links = matchLink(raw) as string[];
-  const urls = raw.match(/"\/download.php\?token=(.*?)"/gi)
-      ?.map((url) => tikmateFetch.defaults.options.prefixUrl + url);
+  const urls = raw.match(/\/download.php\?token=(.*?)"/gi)
+      ?.map((url) => tikmateFetch.defaults.options.prefixUrl.slice(0, -1)+
+      url.slice(0, -3));
 
   return [links[0]].concat(urls as string[]);
 };
