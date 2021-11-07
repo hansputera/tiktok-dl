@@ -1,7 +1,7 @@
 import type {VercelRequest, VercelResponse} from '@vercel/node';
 import ow from 'ow';
 
-import {prepareChromium, tiktok} from '../lib';
+import {tiktok} from '../lib';
 
 const SearchType = ['trend', 'cards'];
 
@@ -9,11 +9,6 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   if (!tiktok.isReady()) {
     return res.status(500).json({
       'error': 'Missing SESSION',
-    });
-  } else if (!prepareChromium.isReady) {
-    if (!prepareChromium.isRun) prepareChromium.exec();
-    return res.status(410).json({
-      'error': 'Please wait, we\'re preparing our environments',
     });
   }
   try {
