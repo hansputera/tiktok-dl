@@ -1,7 +1,6 @@
 import type {VercelRequest, VercelResponse} from '@vercel/node';
 import ow from 'ow';
-
-import {snaptik} from '../lib';
+import {getRandomProvider} from '../lib/providers';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
   try {
@@ -9,7 +8,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       'url': ow.string.url,
     }));
 
-    const result = await snaptik.fetchDownloadPage(req.query.url);
+    const result = await getRandomProvider().fetch(req.query.url);
     return res.status(200).json(result);
   } catch (e) {
     return res.status(400).json({

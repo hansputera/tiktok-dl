@@ -1,41 +1,46 @@
-import {snaptikFetch} from '.';
-
-interface Extracted {
-    error?: string;
-    result?: {
-        thumb: string;
-        urls: string[];
-    }
-}
+import {snaptikFetch} from '..';
+import {handleException} from '../decorators/handleException';
+import {BaseProvider, ExtractedInfo} from './baseProvider';
 
 /**
- * @class Snaptik
+ * @class SnaptikProvider
  */
-class Snaptik {
+export class SnaptikProvider extends BaseProvider {
+  /**
+     *
+     * @return {string}
+     */
+  public resourceName(): string {
+    return 'snaptik';
+  }
+
   /**
    *
-   * @param {string} url - TikTok URL
-   * @return {Extracted}
+   * @param {string} url - TikTok Video URL
+   * @return {Promise<ExtractedInfo>}
    */
-  async fetchDownloadPage(url: string) {
+  @handleException()
+  public async fetch(url: string): Promise<ExtractedInfo> {
     const response = await snaptikFetch('./abc.php', {
       searchParams: {
         'url': url,
       },
     });
 
-    return this.extractInfo(response.body);
+    return this.extract(response.body);
   }
+
+
   /**
-   *
-   * @param {string} html - HTML Raw
-   * @return {Extracted}
+   * Extract information from raw html
+   * @param {string} html - Raw HTML
+   * @return {ExtractedInfo}
    */
-  private extractInfo(html: string): Extracted {
+  extract(html: string): ExtractedInfo {
     if (/error/gi.test(html)) {
       return {
         'error': html.split('\'')
-            .find((x) => /(((url)? error))|could)/gi.test(x)),
+            .find((x) => /(((url)? error)|could)/gi.test(x)),
       };
     } else {
       // only match script tag
@@ -58,6 +63,4 @@ class Snaptik {
       }
     }
   }
-}
-
-export const snaptik = new Snaptik();
+};
