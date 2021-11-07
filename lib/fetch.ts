@@ -20,3 +20,8 @@ export const tikmateFetch = got.extend({
   prefixUrl: 'https://tikmate.online',
   dnsCache: true,
 });
+
+export const musicalyFetch = got.extend({
+  prefixUrl: 'https://musicaldown.com/id',
+  dnsCache: true,
+});
