@@ -1,6 +1,7 @@
-import {Providers, tikmateFetch} from '..';
+import {tikmateFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
+import {basicExtractor} from './util';
 
 /**
  * @class TikmateProvider
@@ -49,6 +50,5 @@ export class TikmateProvider extends BaseProvider {
     return this.extract(abcResponse.body);
   }
 
-  public extract = (Providers.find(
-      (p) => p.resourceName() === 'snaptik') as BaseProvider).extract;
+  public extract = basicExtractor;
 };
