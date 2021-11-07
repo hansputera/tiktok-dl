@@ -4,7 +4,7 @@ Lightweight TikTok Downloader using NodeJS.
 
 ## Technology
 - [Got](https://npmjs.com/got)
-- [Ow](https://npmjs.com/ow) `validation`
+- [Ow](https://npmjs.com/ow) 
 
 ## Develop
 - Clone/fork into a directory you want.

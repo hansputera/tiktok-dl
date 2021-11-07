@@ -16,7 +16,7 @@
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "build": "echo build",
+    "build": "npm run lint && echo build",
     "lint": "eslint \"./lib/**/*.ts\" \"./types/*.ts\" \"./api/**/*.ts\" --fix"
   }
 }

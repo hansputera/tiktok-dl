@@ -1,7 +1,7 @@
 import {tikmateFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {basicExtractor} from './util';
+import {deObfuscate, matchTikmateDownload} from './util';
 
 /**
  * @class TikmateProvider
@@ -35,8 +35,9 @@ export class TikmateProvider extends BaseProvider {
     const response = await tikmateFetch('./');
     const token =
     (response.body.match(/id="token" value="(.*)?"/) as string[])[1];
+    const cookies = response.headers['cookie'];
 
-    const abcResponse = await tikmateFetch('./abc.php', {
+    const abcResponse = await tikmateFetch.post('./abc.php', {
       form: {
         'url': url,
         'token': token,
@@ -44,11 +45,27 @@ export class TikmateProvider extends BaseProvider {
       headers: {
         'Origin': tikmateFetch.defaults.options.prefixUrl,
         'Referer': tikmateFetch.defaults.options.prefixUrl + '/',
+        'Cookie': cookies,
       },
     });
 
     return this.extract(abcResponse.body);
   }
 
-  public extract = basicExtractor;
+
+  /**
+   * Extract information from raw html
+   * @param {string} html - Raw HTML
+   * @return {ExtractedInfo}
+   */
+  extract(html: string): ExtractedInfo {
+    const matchs = matchTikmateDownload(deObfuscate(html));
+    return {
+      'error': undefined,
+      'result': {
+        'thumb': matchs.shift(),
+        'urls': matchs,
+      },
+    };
+  }
 };

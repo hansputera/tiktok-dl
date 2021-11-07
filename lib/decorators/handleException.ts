@@ -12,7 +12,10 @@ export const handleException = (): Function => {
       try {
         return oldValue.apply(target, args);
       } catch (err) {
-        return {'error': (err as Error).message};
+        return {
+          'error': (err as Error).message,
+          'error.stack': (err as Error).stack as string,
+        };
       }
     };
   };

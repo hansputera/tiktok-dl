@@ -1,7 +1,7 @@
 import {snaptikFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {basicExtractor} from './util';
+import {deObfuscate, matchLink} from './util';
 
 /**
  * @class SnaptikProvider
@@ -39,5 +39,23 @@ export class SnaptikProvider extends BaseProvider {
     return this.extract(response.body);
   }
 
-  public extract = basicExtractor;
+
+  /**
+   * Extract information from raw html
+   * @param {string} html - Raw HTML
+   * @return {ExtractedInfo}
+   */
+  @handleException()
+  extract(html: string): ExtractedInfo {
+    const results = matchLink(deObfuscate(html));
+    if (!results || !results.length) throw new Error('Broken');
+
+    return {
+      'error': undefined,
+      'result': {
+        'thumb': results?.shift(),
+        'urls': [...new Set(results)],
+      },
+    };
+  };
 };

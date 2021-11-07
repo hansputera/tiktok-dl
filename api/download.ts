@@ -23,7 +23,10 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       });
     }
     const result = await provider.fetch(req.query.url);
-    return res.status(200).json(result);
+    return res.status(200).json({
+      ...result,
+      provider: provider.resourceName,
+    });
   } catch (e) {
     return res.status(400).json({
       'error': (e as Error).message,
