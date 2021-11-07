@@ -1,4 +1,5 @@
 import type {BaseProvider} from './baseProvider';
+import {MusicalyDown} from './musicalyDown';
 
 import {SnaptikProvider} from './snaptikProvider';
 import {TikmateProvider} from './tikmateProvider';
@@ -6,6 +7,7 @@ import {TikmateProvider} from './tikmateProvider';
 export const Providers: BaseProvider[] = [
   new SnaptikProvider(),
   new TikmateProvider(),
+  new MusicalyDown(),
 ];
 
 export const getRandomProvider = () => Providers[
