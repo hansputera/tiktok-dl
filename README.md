@@ -37,7 +37,8 @@ Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
 
 ## Credits
 
-- [SnapTik](https://snaptik.app) `Non-Watermark Video Source`
+- [SnapTik](https://snaptik.app)
+- [Tikmate](https://tikmate.online)
 - [TikTok](https://tiktok.com) 
 
 Contribution(s) are welcome!
