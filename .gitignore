@@ -1,3 +1,4 @@
 .vercel
 node_modules/
 .env.local
+package-lock.json
