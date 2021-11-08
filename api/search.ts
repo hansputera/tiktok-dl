@@ -2,6 +2,7 @@ import type {VercelRequest, VercelResponse} from '@vercel/node';
 import ow from 'ow';
 
 import {tiktok} from '../lib';
+import {ratelimitMiddleware} from '../middleware/ratelimit';
 
 const SearchType = ['trend', 'cards'];
 
@@ -21,6 +22,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       })),
     }));
 
+    await ratelimitMiddleware(req);
     switch (req.query.t) {
       case SearchType[0]:
         const preview = await tiktok.searchPreview(req.query.q);
