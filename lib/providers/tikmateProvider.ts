@@ -34,14 +34,17 @@ export class TikmateProvider extends BaseProvider {
     // we need to get the token
 
     const response = await this.client('./');
-    const token =
-    (response.body.match(/id="token" value="(.*)?"/) as string[])[1];
+    const matchs = (
+      response.body.match(/id="token" value="(.*)?"/) as string[]);
+
     const cookies = response.headers['cookie'];
 
     const abcResponse = await this.client.post('./abc.php', {
-      form: {
+      form: matchs ? {
         'url': url,
-        'token': token,
+        'token': matchs[1],
+      } : {
+        'url': url,
       },
       headers: {
         'Origin': this.client.defaults.options.prefixUrl,

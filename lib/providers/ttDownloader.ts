@@ -50,7 +50,7 @@ export class TTDownloader extends BaseProvider {
    */
   extract(html: string): ExtractedInfo {
     const urls = matchLink(html);
-    urls?.pop();
+    urls?.pop(); // remove 'https://snaptik.fans'
     return {
       'error': undefined,
       'result': {

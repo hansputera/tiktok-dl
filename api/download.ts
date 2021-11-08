@@ -1,6 +1,8 @@
 import type {VercelRequest, VercelResponse} from '@vercel/node';
 import ow from 'ow';
 import {getProvider, Providers} from '../lib/providers';
+import {BaseProvider} from '../lib/providers/baseProvider';
+import {rotateProvider} from '../lib/rotator';
 
 const providersType = Providers.map((p) => p.resourceName());
 
@@ -23,11 +25,9 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         'providers': providersType,
       });
     }
-    const result = await provider.fetch(req.query.url);
-    return res.status(200).json({
-      ...result,
-      provider: provider.resourceName,
-    });
+    const result = await rotateProvider(
+      provider as BaseProvider, req.query.url);
+    return res.status(200).json(result);
   } catch (e) {
     return res.status(400).json({
       'error': (e as Error).message,
