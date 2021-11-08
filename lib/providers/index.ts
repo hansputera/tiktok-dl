@@ -5,6 +5,7 @@ import {SnaptikProvider} from './snaptikProvider';
 import {TikmateProvider} from './tikmateProvider';
 import {TTDownloader} from './ttDownloaderProvider';
 import {TTSave} from './ttSaveProvider';
+import {DLTikProvider} from './DLTikProvider';
 
 export const Providers: BaseProvider[] = [
   new SnaptikProvider(),
@@ -12,6 +13,7 @@ export const Providers: BaseProvider[] = [
   new MusicalyDown(),
   new TTDownloader(),
   new TTSave(),
+  new DLTikProvider(),
 ];
 
 export const getRandomProvider = () => Providers[
