@@ -1,7 +1,6 @@
 import {getFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
-import bind from 'bind-decorator';
 
 /**
  * @class TTDownloader
@@ -22,7 +21,6 @@ export class TTDownloader extends BaseProvider {
    * @return {Promise<ExtractedInfo>}
    */
   @handleException
-  @bind
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting token and cookies
     const firstResponse = await this.client('./');
