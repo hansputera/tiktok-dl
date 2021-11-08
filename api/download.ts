@@ -11,7 +11,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       'type': ow.optional.string.validate((v) => ({
         'validator': typeof v === 'string' &&
          providersType.includes(v.toLowerCase()),
-        'message': 'Invalid Provider',
+        'message': 'Invalid Provider, available provider is: ' +
+          Providers.map((x) => x.resourceName()).join(', '),
       })),
     }));
 

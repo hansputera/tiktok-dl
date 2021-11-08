@@ -1,4 +1,4 @@
-import {musicalyFetch} from '..';
+import {getFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 
@@ -6,6 +6,7 @@ import {BaseProvider, ExtractedInfo} from './baseProvider';
  * @class MusicalyDown
  */
 export class MusicalyDown extends BaseProvider {
+  public client = getFetch('https://musicaldown.com/id');
   /**
      *
      * @return {string}
@@ -14,47 +15,40 @@ export class MusicalyDown extends BaseProvider {
     return 'musicalydown';
   }
 
-  /**
-     * @return {string}
-     */
-  public getURI(): string {
-    return musicalyFetch.defaults.options.prefixUrl;
-  }
-
     /**
      *
      * @param {string} url - Video Tiktok URL
      * @return {string}
      */
-    @handleException()
+    @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     const headers = {
       'Accept': '*/*',
+      'Referer': this.client.defaults.options.prefixUrl,
+      'Origin': this.client.defaults.options.prefixUrl,
     };
-    const res = await musicalyFetch('./', {
+    const res = await this.client('./', {
       headers,
     });
-    const form = {} as Record<string, string>;
-    const tokens = (res.body.match(/input name="([^"]+)/gi) as string[])
-        .map((x) => x.split('"').pop() as string);
-    const token = (
-        res.body.match(/type="hidden" value="(.*?)"/gi) as string[])[0]
-        .split(/=/g).pop()?.replace(/\"/g, '');
-    const value = [url, token as string, '1'];
-    // eslint-disable-next-line guard-for-in
-    for (const tok in tokens) {
-      form[tokens[tok]] = value[tok];
-    }
-    const cookie = res.headers['set-cookie']?.toString();
-    const response = await musicalyFetch.post('./download', {
-      form,
+    const tokens = (
+      res.body.match(
+          /input name="([^""]+)" type="hidden" value="([^""]+)"/) as string[]
+    );
+    const response = await this.client.post('./download', {
+      form: {
+        [(
+          res.body.match(/input name="([^"]+)/) as string[]
+        )[1]]: url,
+        [tokens[1]]: tokens[2],
+        'verify': 1,
+      },
       headers: {
-        cookie,
+        'Cookie': res.headers['set-cookie']?.toString(),
         ...headers,
       },
-      method: 'POST',
-    }).text();
-    return this.extract(response);
+    });
+
+    return this.extract(response.body);
   }
 
     /**

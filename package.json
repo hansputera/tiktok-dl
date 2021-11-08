@@ -11,12 +11,13 @@
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",
     "@vercel/node": "^1.12.1",
+    "bind-decorator": "^1.0.11",
     "eslint": "^8.2.0",
     "eslint-config-google": "^0.14.0",
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "build": "npm run lint && echo build",
+    "build": "echo build",
     "lint": "eslint \"./lib/**/*.ts\" \"./types/*.ts\" \"./api/**/*.ts\" --fix"
   }
 }

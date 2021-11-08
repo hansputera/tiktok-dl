@@ -1,4 +1,4 @@
-import {tikmateFetch} from '..';
+import {getFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {deObfuscate, matchTikmateDownload} from './util';
@@ -7,6 +7,7 @@ import {deObfuscate, matchTikmateDownload} from './util';
  * @class TikmateProvider
  */
 export class TikmateProvider extends BaseProvider {
+  public client = getFetch('https://tikmate.online');
   /**
      *
      * @return {string}
@@ -20,7 +21,7 @@ export class TikmateProvider extends BaseProvider {
    * @return {string}
    */
   public getURI(): string {
-    return tikmateFetch.defaults.options.prefixUrl;
+    return this.client.defaults.options.prefixUrl;
   }
 
 
@@ -28,23 +29,23 @@ export class TikmateProvider extends BaseProvider {
    *
    * @param {string} url - Video TikTok URL
    */
-  @handleException()
+  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     // we need to get the token
 
-    const response = await tikmateFetch('./');
+    const response = await this.client('./');
     const token =
     (response.body.match(/id="token" value="(.*)?"/) as string[])[1];
     const cookies = response.headers['cookie'];
 
-    const abcResponse = await tikmateFetch.post('./abc.php', {
+    const abcResponse = await this.client.post('./abc.php', {
       form: {
         'url': url,
         'token': token,
       },
       headers: {
-        'Origin': tikmateFetch.defaults.options.prefixUrl,
-        'Referer': tikmateFetch.defaults.options.prefixUrl + '/',
+        'Origin': this.client.defaults.options.prefixUrl,
+        'Referer': this.client.defaults.options.prefixUrl + '/',
         'Cookie': cookies,
       },
     });

@@ -1,4 +1,4 @@
-import {snaptikFetch} from '..';
+import {getFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {deObfuscate, matchLink} from './util';
@@ -7,6 +7,7 @@ import {deObfuscate, matchLink} from './util';
  * @class SnaptikProvider
  */
 export class SnaptikProvider extends BaseProvider {
+  public client = getFetch('https://snaptik.app/en');
   /**
      *
      * @return {string}
@@ -17,20 +18,12 @@ export class SnaptikProvider extends BaseProvider {
 
   /**
    *
-   * @return {string}
-   */
-  public getURI(): string {
-    return snaptikFetch.defaults.options.prefixUrl;
-  }
-
-  /**
-   *
    * @param {string} url - TikTok Video URL
    * @return {Promise<ExtractedInfo>}
    */
-  @handleException()
+  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
-    const response = await snaptikFetch('./abc.php', {
+    const response = await this.client('./abc.php', {
       searchParams: {
         'url': url,
       },
@@ -45,7 +38,7 @@ export class SnaptikProvider extends BaseProvider {
    * @param {string} html - Raw HTML
    * @return {ExtractedInfo}
    */
-  @handleException()
+  @handleException
   extract(html: string): ExtractedInfo {
     const results = matchLink(deObfuscate(html));
     if (!results || !results.length) throw new Error('Broken');

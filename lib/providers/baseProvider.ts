@@ -1,3 +1,5 @@
+import {Got} from 'got';
+
 export interface ExtractedInfo {
     error?: string;
     result?: {
@@ -10,8 +12,8 @@ export interface ExtractedInfo {
  * @class BaseProvider
  */
 export abstract class BaseProvider {
+    abstract client: Got;
     abstract resourceName(): string;
     abstract fetch(url: string): Promise<ExtractedInfo>;
     abstract extract(html: string): ExtractedInfo;
-    abstract getURI(): string;
 };

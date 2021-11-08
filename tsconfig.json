@@ -14,7 +14,6 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "noImplicitAny": true,
         "experimentalDecorators": true
     },
     "exclude": ["node_modules", "dist"]

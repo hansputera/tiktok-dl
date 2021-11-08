@@ -3,11 +3,13 @@ import {MusicalyDown} from './musicalyDown';
 
 import {SnaptikProvider} from './snaptikProvider';
 import {TikmateProvider} from './tikmateProvider';
+import {TTDownloader} from './ttDownloader';
 
 export const Providers: BaseProvider[] = [
   new SnaptikProvider(),
   new TikmateProvider(),
   new MusicalyDown(),
+  new TTDownloader(),
 ];
 
 export const getRandomProvider = () => Providers[

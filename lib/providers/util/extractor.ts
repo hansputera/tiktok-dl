@@ -1,4 +1,5 @@
-import {tikmateFetch} from '../..';
+import {getProvider} from '..';
+import type {BaseProvider} from '../baseProvider';
 
 export const deObfuscate = (html: string): string => {
   if (/error/gi.test(html)) {
@@ -30,7 +31,8 @@ export const matchLink = (raw: string): string[] | null => {
 export const matchTikmateDownload = (raw: string): string[] => {
   const links = matchLink(raw) as string[];
   const urls = raw.match(/\/download.php\?token=(.*?)"/gi)
-      ?.map((url) => tikmateFetch.defaults.options.prefixUrl.slice(0, -1)+
+      ?.map((url) => (getProvider('tikmate') as BaseProvider).client.
+          defaults.options.prefixUrl.slice(0, -1)+
       url.slice(0, -3));
 
   return [links[0]].concat(urls as string[]);

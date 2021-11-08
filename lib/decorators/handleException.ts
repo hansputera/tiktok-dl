@@ -1,22 +1,30 @@
 /**
  * Decorator to handle exception.
- * @return {Function}
+ * @param {any} target
+ * @param {string} _
+ * @param {PropertyDescriptor} descriptor
+ * @return {void}
  */
-export const handleException = (): Function => {
-  return function(
-      target: any,
-      _: string,
-      descriptor: PropertyDescriptor) {
-    const oldValue = descriptor.value;
-    descriptor.value = (...args: any) => {
+export const handleException = <T extends Function>
+  (target: object, _: string, descriptor: TypedPropertyDescriptor<T>):
+TypedPropertyDescriptor<T> | void => {
+  return {
+    configurable: true,
+    get(this: T): T {
       try {
-        return oldValue.apply(target, args);
+        const bound: T = descriptor.value?.bind(this);
+        Object.defineProperty(this, _, {
+          value: bound,
+          configurable: true,
+          writable: true,
+        });
+
+        return bound;
       } catch (err) {
         return {
           'error': (err as Error).message,
-          'error.stack': (err as Error).stack as string,
-        };
+        } as unknown as T;
       }
-    };
+    },
   };
 };
