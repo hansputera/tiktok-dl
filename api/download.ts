@@ -2,7 +2,6 @@ import type {VercelRequest, VercelResponse} from '@vercel/node';
 import ow from 'ow';
 import {getProvider, Providers} from '../lib/providers';
 import {BaseProvider} from '../lib/providers/baseProvider';
-import {client} from '../lib/redis';
 import {rotateProvider} from '../lib/rotator';
 
 const providersType = Providers.map((p) => p.resourceName());
@@ -19,7 +18,6 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       })),
     }));
 
-    client.del(req.query.url);
     const provider = getProvider(req.query.type ?? 'random');
     if (!provider) {
       return res.status(400).json({

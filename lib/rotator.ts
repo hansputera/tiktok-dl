@@ -16,7 +16,7 @@ export const rotateProvider = async (
     } else {
       redisClient.set(url,
           JSON.stringify(
-              {...data, provider: provider.resourceName()}), 'ex', 60);
+              {...data, provider: provider.resourceName()}), 'ex', 30);
       redisClient.disconnect(false);
       return {...data, provider: provider.resourceName()};
     }
