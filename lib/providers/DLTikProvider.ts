@@ -1,4 +1,5 @@
 import {getFetch} from '..';
+import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 
 /**
@@ -18,6 +19,7 @@ export class DLTikProvider extends BaseProvider {
    *
    * @param {string} url - Video TikTok URL
    */
+  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting verification token
     const response = await this.client('./');

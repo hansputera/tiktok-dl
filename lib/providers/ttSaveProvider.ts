@@ -1,4 +1,5 @@
 import {getFetch} from '..';
+import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {keyGeneratorTTSave, matchLink} from './util';
 
@@ -20,6 +21,7 @@ export class TTSave extends BaseProvider {
    * @param {string} url - TikTok Video URL
    * @return {Promise<ExtractedInfo>}
    */
+  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting token
     const response = await this.client('./');
