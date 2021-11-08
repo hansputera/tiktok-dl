@@ -4,6 +4,7 @@ export interface ExtractedInfo {
     error?: string;
     result?: {
         thumb?: string;
+        advanced?: Record<string, unknown>;
         urls: string[];
     }
 };

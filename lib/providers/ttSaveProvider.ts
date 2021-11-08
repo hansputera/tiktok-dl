@@ -1,6 +1,6 @@
 import {getFetch} from '..';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {keyGeneratorTTSave} from './util';
+import {keyGeneratorTTSave, matchLink} from './util';
 
 /**
  * @class TTSave
@@ -49,9 +49,20 @@ export class TTSave extends BaseProvider {
    * @return {ExtractedInfo}
    */
   extract(html: string): ExtractedInfo {
-    console.log(html);
+    const tiktokCDNs = (matchLink(html) as string[]).filter(
+        (x) => /http(s)?:\/\/(.*)?.tiktokcdn.com/gi.test(x),
+    );
+    const videoCDNs = tiktokCDNs.filter((x) => !/jpeg/gi.test(x));
+
     return {
       'error': '',
+      'result': {
+        'thumb': tiktokCDNs.find((x) => /jpeg/gi.test(x)),
+        'urls': videoCDNs.filter((x) => !/music/gi.test(x)),
+        'advanced': {
+          'musicUrl': videoCDNs.find((x) => /music/gi.test(x)),
+        },
+      },
     };
   }
 };
