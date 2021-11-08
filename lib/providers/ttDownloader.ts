@@ -1,6 +1,7 @@
 import {getFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
+import {matchLink} from './util';
 
 /**
  * @class TTDownloader
@@ -10,7 +11,7 @@ export class TTDownloader extends BaseProvider {
      * @return {string}
      */
   public resourceName(): string {
-    return 'tt';
+    return 'ttdownloader';
   }
 
   public client = getFetch('https://ttdownloader.com');
@@ -35,7 +36,7 @@ export class TTDownloader extends BaseProvider {
       headers: {
         'Origin': 'https://ttdownloader.com',
         'Referer': 'https://ttdownloader.com',
-        'Cookie': firstResponse.headers['cookie'],
+        'Cookie': firstResponse.headers['set-cookie']?.toString(),
       },
     });
 
@@ -48,9 +49,14 @@ export class TTDownloader extends BaseProvider {
    * @return {ExtractedInfo}
    */
   extract(html: string): ExtractedInfo {
-    console.log(html);
+    const urls = matchLink(html);
+    urls?.pop();
     return {
-      'error': '',
+      'error': undefined,
+      'result': {
+        'thumb': undefined,
+        'urls': urls as string[],
+      },
     };
   }
 };
