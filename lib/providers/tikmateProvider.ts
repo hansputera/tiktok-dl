@@ -62,6 +62,7 @@ export class TikmateProvider extends BaseProvider {
    * @param {string} html - Raw HTML
    * @return {ExtractedInfo}
    */
+  @handleException
   extract(html: string): ExtractedInfo {
     const matchs = matchTikmateDownload(deObfuscate(html));
     return {

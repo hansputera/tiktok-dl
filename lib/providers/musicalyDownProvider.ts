@@ -22,13 +22,12 @@ export class MusicalyDown extends BaseProvider {
      */
     @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
-    const headers = {
-      'Accept': '*/*',
-      'Referer': this.client.defaults.options.prefixUrl,
-      'Origin': this.client.defaults.options.prefixUrl,
-    };
     const res = await this.client('./', {
-      headers,
+      'headers': {
+        'Accept': '*/*',
+        'Referer': this.client.defaults.options.prefixUrl,
+        'Origin': this.client.defaults.options.prefixUrl,
+      },
     });
     const tokens = (
       res.body.match(
@@ -44,7 +43,9 @@ export class MusicalyDown extends BaseProvider {
       },
       headers: {
         'Cookie': res.headers['set-cookie']?.toString(),
-        ...headers,
+        'Accept': '*/*',
+        'Referer': this.client.defaults.options.prefixUrl,
+        'Origin': this.client.defaults.options.prefixUrl,
       },
     });
 
@@ -57,16 +58,15 @@ export class MusicalyDown extends BaseProvider {
      * @return {ExtractedInfo}
      */
     public extract(html: string): ExtractedInfo {
-      const thumb = /img class="responsive-img" src="(.*?)"/gi.exec(html)?.[1];
       const matchUrls = (html
           .match(/<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi) as string[]);
       const urls = matchUrls.map((url) =>
       /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi.exec(url)?.[1] as string);
       return {
-        error: undefined,
-        result: {
+        'error': undefined,
+        'result': {
           urls,
-          thumb,
+          'thumb': /img class="responsive-img" src="(.*?)"/gi.exec(html)?.[1],
         },
       };
     }
