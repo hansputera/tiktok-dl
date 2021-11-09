@@ -40,14 +40,12 @@ export const matchTikmateDownload = (raw: string): string[] => {
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
   const safeScript = 'let result;' +
-    scriptContent.replace(/eval\(a\)/gi, 'return a')
-        .replace('[]["filter"]["constructor"](b).call(a);', `
-    if (b.includes("showResult")) {
-      result = b;
-      return;
-    } else []["filter"]["constructor"](b).call(a);
-    `) + 'result';
+    scriptContent.replace(/\/\*js\-response\*\//gi, '')
+        .replace(/eval\(a\)/gi, 'return a')
+        // eslint-disable-next-line max-len
+        .replace('[]["filter"]["constructor"](b).call(a);', `console.log(b);if (b.includes("showResult")){result = b;return;} else []["filter"]["constructor"](b).call(a);`) + 'result';
 
+        console.log(safeScript);
   const result = eval(safeScript);
   return result;
 };
