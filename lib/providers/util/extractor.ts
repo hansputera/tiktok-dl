@@ -1,7 +1,6 @@
 import {getProvider} from '..';
 import type {BaseProvider} from '../baseProvider';
 
-import Prettier from 'prettier';
 import {NodeVM} from 'vm2';
 
 export const deObfuscate = (html: string): string => {
@@ -18,14 +17,8 @@ export const deObfuscate = (html: string): string => {
           'Cannot download the video!',
       );
     } else {
-      const transformed = Prettier.format(
-        obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', ''), {
-          'semi': true,
-          'trailingComma': 'es5',
-          'parser': 'babel',
-          'endOfLine': 'lf',
-          'singleQuote': true,
-        }).replace(/\(function \(h/gi, 'module.exports = (function (h');
+      const transformed = obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', '')
+      .replace(/\(function \(h/gi, 'module.exports = (function (h');
       const deObfuscated = new NodeVM({
         'compiler': 'javascript',
         'console': 'inherit',
@@ -33,7 +26,7 @@ export const deObfuscate = (html: string): string => {
           'external': true,
           'root': './'
         },
-      }).run(transformed);
+      }).run(transformed, 'deobfuscate.js');
       return deObfuscated;
     }
   }
@@ -57,16 +50,9 @@ export const matchTikmateDownload = (raw: string): string[] => {
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
   const safeScript = 'let result;' +
-  Prettier.format(scriptContent, {
-    'parser': 'babel',
-    'semi': true,
-    'useTabs': true,
-    'singleQuote': true,
-    'endOfLine': 'lf',
-    'trailingComma': 'es5',
-  }).replace(/\/\*js\-response\*\//gi, '')
+  scriptContent.replace(/\/\*js\-response\*\//gi, '')
         .replace(/eval\(a\)/gi, 'return a')
-        .replace(/\[\]\['filter'\]\['constructor'\]\(b\)\.call\(a\);/gi,`
+        .replace(/\[\]\["filter"\]\["constructor"\]\(b\)\.call\(a\);/gi,`
         if (b.includes('showResult')) {
           result = b;
           return;

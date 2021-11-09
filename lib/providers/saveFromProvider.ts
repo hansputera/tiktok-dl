@@ -64,7 +64,11 @@ export class SaveFromProvider extends BaseProvider {
           'videoId': json.id,
           'videoTitle': json.meta.title,
           'videoDuration': json.meta.duration,
-          'urls': json.url
+          'urls': json.url.map((x: { type: string; subname: string; }, index: number) => ({
+            'pos': index,
+            'type': x.type,
+            'resolution': x.subname,
+          }))
         },
         'urls': json.url.map((x: { url: string; }) => x.url),
       }
