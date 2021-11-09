@@ -16,4 +16,4 @@ export const rateLimitConfig = {
 /**
  * Provider response data will stored on redis.
  */
-export const providerCache = 300;
+export const providerCache = 600;
