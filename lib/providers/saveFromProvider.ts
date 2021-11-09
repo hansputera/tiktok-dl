@@ -53,8 +53,8 @@ export class SaveFromProvider extends BaseProvider {
   extract(html: string): ExtractedInfo {
     const deobfuscated = deObfuscateSaveFromScript(html);
     const json = JSON.parse(
-      (deobfuscated.match(/\({(.*)}\)/) as string[])[0]
-      .replace(/(\(|\))/g, '')
+        (deobfuscated.match(/\({(.*)}\)/) as string[])[0]
+            .replace(/(\(|\))/g, ''),
     );
     return {
       'error': undefined,
@@ -64,14 +64,15 @@ export class SaveFromProvider extends BaseProvider {
           'videoId': json.id,
           'videoTitle': json.meta.title,
           'videoDuration': json.meta.duration,
-          'urls': json.url.map((x: { type: string; subname: string; }, index: number) => ({
+          'urls': json.url.map((x:
+            { type: string; subname: string; }, index: number) => ({
             'pos': index,
             'type': x.type,
             'resolution': x.subname,
-          }))
+          })),
         },
         'urls': json.url.map((x: { url: string; }) => x.url),
-      }
+      },
     };
   }
 }

@@ -17,14 +17,15 @@ export const deObfuscate = (html: string): string => {
           'Cannot download the video!',
       );
     } else {
-      const transformed = obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', '')
-      .replace(/\(function \(h/gi, 'module.exports = (function (h');
+      const transformed = obfuscatedScripts[0]
+          .replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', '')
+          .replace(/\(function \(h/gi, 'module.exports = (function (h');
       const deObfuscated = new NodeVM({
         'compiler': 'javascript',
         'console': 'inherit',
         'require': {
           'external': true,
-          'root': './'
+          'root': './',
         },
       }).run(transformed, 'deobfuscate.js');
       return deObfuscated;
@@ -51,19 +52,20 @@ export const matchTikmateDownload = (raw: string): string[] => {
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
   const safeScript = 'let result;' +
   scriptContent.replace(/\/\*js\-response\*\//gi, '')
-        .replace(/eval\(a\)/gi, 'return a')
-        .replace(/\[\]\["filter"\]\["constructor"\]\(b\)\.call\(a\);/gi,`
+      .replace(/eval\(a\)/gi, 'return a')
+      .replace(/\[\]\["filter"\]\["constructor"\]\(b\)\.call\(a\);/gi, `
         if (b.includes('showResult')) {
           result = b;
           return;
-        } else []['filter']['constructor'](b).call(a);`) + 'module.exports = result;';
+        } else []['filter']['constructor'](b).call(a);`) +
+         'module.exports = result;';
   const vm = new NodeVM({
     'compiler': 'javascript',
     'console': 'inherit',
     'require': {
       'external': true,
       'root': './',
-    }
+    },
   });
   const result = vm.run(safeScript, 'savefrom.js');
   return result;

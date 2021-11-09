@@ -4,8 +4,7 @@
         "node": true
     },
     "extends": [
-        "google",
-        "prettier"
+        "google"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {

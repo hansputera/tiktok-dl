@@ -59,7 +59,7 @@ export class TikmateProvider extends BaseProvider {
 
   /**
    * Extract information from raw html
-   * @param {string} html - Raw HTML 
+   * @param {string} html - Raw HTML
    * @return {ExtractedInfo}
    */
   @handleException
