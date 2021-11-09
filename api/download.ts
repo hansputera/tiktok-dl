@@ -27,7 +27,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       });
     }
     const result = await rotateProvider(
-      provider as BaseProvider, req.query.url);
+      provider as BaseProvider, req.query.url, !!req.query.noCache);
     await ratelimitMiddleware(req);
     return res.status(200).json(result);
   } catch (e) {

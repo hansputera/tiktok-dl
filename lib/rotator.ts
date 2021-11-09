@@ -6,7 +6,8 @@ import {client} from './redis';
 const redisClient = client;
 
 export const rotateProvider = async (
-    provider: BaseProvider, url: string):
+    provider: BaseProvider, url: string,
+    noCache: boolean = false):
     Promise<ExtractedInfo & { provider: string; }> => {
   const cachedData = await redisClient.get(url);
   if (!cachedData) {
@@ -14,11 +15,15 @@ export const rotateProvider = async (
     if (data.error) {
       // switching to other provider
       return await rotateProvider(getRandomProvider(), url);
+    } else if (data.result && !data.result.urls.length) {
+      return await rotateProvider(getRandomProvider(), url);
     } else {
-      redisClient.set(url,
-          JSON.stringify(
-              {...data, provider: provider.resourceName()}), 'ex',
-          providerCache);
+      if (!noCache) {
+        redisClient.set(url,
+            JSON.stringify(
+                {...data, provider: provider.resourceName()}), 'ex',
+            providerCache);
+      }
       return {...data, provider: provider.resourceName()};
     }
   } else {
