@@ -1,6 +1,6 @@
 # TikTok Downloader
 
-Lightweight TikTok Downloader using NodeJS.
+Video TikTok Downloader using NodeJS with Watermark and Non-Watermark.
 
 ## Technology
 - [Got](https://npmjs.com/got)
@@ -35,10 +35,15 @@ This config is required if you want use `/api/search`.
 ## Endpoints
 Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
 
-## Credits
+## Credits + Source
 
+- [TikTok](https://tiktok.com) 
 - [SnapTik](https://snaptik.app)
 - [Tikmate](https://tikmate.online)
-- [TikTok](https://tiktok.com) 
+- [SaveFrom](https://id.savefrom.net)
+- [TTDownloader](https://ttdownloader.com)
+- [Musically Down](https://musicaldown.com)
+- [DLTik](https://dltik.com/)
+- [TTSave](https://ttsave.app)
 
 Contribution(s) are welcome!
