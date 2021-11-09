@@ -2,6 +2,7 @@ import {getProvider} from '..';
 import type {BaseProvider} from '../baseProvider';
 
 import Prettier from 'prettier';
+import {NodeVM} from 'vm2';
 
 export const deObfuscate = (html: string): string => {
   if (/error/gi.test(html)) {
@@ -17,8 +18,22 @@ export const deObfuscate = (html: string): string => {
           'Cannot download the video!',
       );
     } else {
-      // eslint-disable-next-line max-len
-      const deObfuscated = eval(obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', ''));
+      const transformed = Prettier.format(
+        obfuscatedScripts[0].replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', ''), {
+          'semi': true,
+          'trailingComma': 'es5',
+          'parser': 'babel',
+          'endOfLine': 'lf',
+          'singleQuote': true,
+        }).replace(/\(function \(h/gi, 'module.exports = (function (h');
+      const deObfuscated = new NodeVM({
+        'compiler': 'javascript',
+        'console': 'inherit',
+        'require': {
+          'external': true,
+          'root': './'
+        },
+      }).run(transformed);
       return deObfuscated;
     }
   }
@@ -41,23 +56,29 @@ export const matchTikmateDownload = (raw: string): string[] => {
 };
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
-  const prettifyScript = Prettier.format(scriptContent, {
+  const safeScript = 'let result;' +
+  Prettier.format(scriptContent, {
     'parser': 'babel',
     'semi': true,
     'useTabs': true,
     'singleQuote': true,
     'endOfLine': 'lf',
-  });
-  // TODO: Finishing
-  const safeScript = 'let result;' +
-    prettifyScript.replace(/\/\*js\-response\*\//gi, '')
+    'trailingComma': 'es5',
+  }).replace(/\/\*js\-response\*\//gi, '')
         .replace(/eval\(a\)/gi, 'return a')
-        .replace(/\[\]\["filter"\]\["constructor"\]\(b\)\.call\(a\);/gi,`
-        if (b.includes("showResult")) {
+        .replace(/\[\]\['filter'\]\['constructor'\]\(b\)\.call\(a\);/gi,`
+        if (b.includes('showResult')) {
           result = b;
           return;
-        } else []["filter"]["constructor"](b).call(a);`) + 'result';
-  console.log(safeScript);
-  const result = eval(safeScript);
+        } else []['filter']['constructor'](b).call(a);`) + 'module.exports = result;';
+  const vm = new NodeVM({
+    'compiler': 'javascript',
+    'console': 'inherit',
+    'require': {
+      'external': true,
+      'root': './',
+    }
+  });
+  const result = vm.run(safeScript, 'savefrom.js');
   return result;
 };

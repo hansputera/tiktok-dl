@@ -51,9 +51,23 @@ export class SaveFromProvider extends BaseProvider {
      */
   @handleException
   extract(html: string): ExtractedInfo {
-    deObfuscateSaveFromScript(html);
+    const deobfuscated = deObfuscateSaveFromScript(html);
+    const json = JSON.parse(
+      (deobfuscated.match(/\({(.*)}\)/) as string[])[0]
+      .replace(/(\(|\))/g, '')
+    );
     return {
       'error': undefined,
+      'result': {
+        'thumb': json.thumb,
+        'advanced': {
+          'videoId': json.id,
+          'videoTitle': json.meta.title,
+          'videoDuration': json.meta.duration,
+          'urls': json.url
+        },
+        'urls': json.url.map((x: { url: string; }) => x.url),
+      }
     };
   }
 }
