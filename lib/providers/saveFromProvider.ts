@@ -3,8 +3,6 @@ import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {deObfuscateSaveFromScript} from './util';
 
-import Prettier from 'prettier';
-
 /**
  * @class saveFromProvider
  */
@@ -53,8 +51,7 @@ export class SaveFromProvider extends BaseProvider {
      */
   @handleException
   extract(html: string): ExtractedInfo {
-    console.log(Prettier.format(
-        deObfuscateSaveFromScript(html)));
+    deObfuscateSaveFromScript(html);
     return {
       'error': undefined,
     };

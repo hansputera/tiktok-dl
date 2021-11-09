@@ -1,6 +1,8 @@
 import {getProvider} from '..';
 import type {BaseProvider} from '../baseProvider';
 
+import Prettier from 'prettier';
+
 export const deObfuscate = (html: string): string => {
   if (/error/gi.test(html)) {
     throw new Error(html.split('\'')
@@ -39,13 +41,22 @@ export const matchTikmateDownload = (raw: string): string[] => {
 };
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
+  const prettifyScript = Prettier.format(scriptContent, {
+    'parser': 'babel',
+    'semi': true,
+    'useTabs': true,
+    'singleQuote': true,
+    'endOfLine': 'lf',
+  });
   const safeScript = 'let result;' +
-    scriptContent.replace(/\/\*js\-response\*\//gi, '')
+    prettifyScript.replace(/\/\*js\-response\*\//gi, '')
         .replace(/eval\(a\)/gi, 'return a')
-        // eslint-disable-next-line max-len
-        .replace('[]["filter"]["constructor"](b).call(a);', `console.log(b);if (b.includes("showResult")){result = b;return;} else []["filter"]["constructor"](b).call(a);`) + 'result';
-
-        console.log(safeScript);
+        .replace(/\[\]\["filter"\]\["constructor"\]\(b\)\.call\(a\);/gi,`
+        if (b.includes("showResult")) {
+          result = b;
+          return;
+        } else []["filter"]["constructor"](b).call(a);`) + 'result';
+  console.log(safeScript);
   const result = eval(safeScript);
   return result;
 };
