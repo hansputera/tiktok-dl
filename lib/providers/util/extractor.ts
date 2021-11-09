@@ -48,6 +48,7 @@ export const deObfuscateSaveFromScript = (scriptContent: string): string => {
     'singleQuote': true,
     'endOfLine': 'lf',
   });
+  // TODO: Finishing
   const safeScript = 'let result;' +
     prettifyScript.replace(/\/\*js\-response\*\//gi, '')
         .replace(/eval\(a\)/gi, 'return a')
