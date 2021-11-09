@@ -37,3 +37,17 @@ export const matchTikmateDownload = (raw: string): string[] => {
 
   return [links[0]].concat(urls as string[]);
 };
+
+export const deObfuscateSaveFromScript = (scriptContent: string): string => {
+  const safeScript = 'let result;' +
+    scriptContent.replace(/eval\(a\)/gi, 'return a')
+        .replace('[]["filter"]["constructor"](b).call(a);', `
+    if (b.includes("showResult")) {
+      result = b;
+      return;
+    } else []["filter"]["constructor"](b).call(a);
+    `) + 'result';
+
+  const result = eval(safeScript);
+  return result;
+};

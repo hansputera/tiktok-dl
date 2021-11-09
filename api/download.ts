@@ -17,6 +17,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         'message': 'Invalid Provider, available provider is: ' +
           Providers.map((x) => x.resourceName()).join(', '),
       })),
+      'nocache': ow.optional.string,
     }));
 
     const provider = getProvider(req.query.type ?? 'random');
@@ -27,7 +28,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       });
     }
     const result = await rotateProvider(
-      provider as BaseProvider, req.query.url, !!req.query.noCache);
+      provider as BaseProvider, req.query.url, !!req.query.nocache);
     await ratelimitMiddleware(req);
     return res.status(200).json(result);
   } catch (e) {
