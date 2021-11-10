@@ -22,15 +22,17 @@ This config is required if you want use `/api/search`.
 3. Click `Cookies` and find `sessionid`.
 4. Copy `sessionid` value to your clipboard.
 
+
 **Environment Setup:**
 1. Rename `.env.example` to `.env`
-2. Fill `SESSION` value with your `sessionid`.
+2. Fill `REDIS_URL` value with your redis database url.
+3. Fill `SESSIONS` value with your sessionid, also it support multiple session. So, if you want use multiple session split it using `,`
 
 **Environment Setup on Hosting:**
-> Tested on [Vercel](https://vercel.com)
 1. Go to your project settings.
 2. Find `Environment Variables` button and click it.
-3. Add environment variable with `SESSION` as the name, and your `sessionid` as a value.
+3. Add environment variable with `REDIS_URL` as the name, and fill the value using your redis url.
+4. Same like above, add environment variable with `SESSIONS` as the name, and fill the value using your `sessionid`. 
 
 ## Endpoints
 Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)

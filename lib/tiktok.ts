@@ -17,6 +17,14 @@ interface ResultData {
         item?: VideoItemResult;
     }[];
 }
+
+
+const parseToken = (): string[] => {
+  const tokens = process.env.SESSIONS;
+  return tokens ? tokens.split(',').filter((t) => t.trim()
+      .replace(/\s/, '')) : [];
+};
+
 /**
  * @class TikTok
  */
@@ -27,10 +35,13 @@ class TikTok {
      * @return {Promise<ResultData>}
      */
   async searchPreview(query: string): Promise<ResultData> {
+    const tokens = parseToken();
     const response = await fetch('./api/search/general/preview/' +
     this.buildParam(query), {
       'headers': {
-        'Cookie': 'sessionid=' + process.env.SESSION,
+        'Cookie': 'sessionid=' + tokens[
+            Math.floor(Math.random() * tokens.length)
+        ],
       },
     });
     const d = JSON.parse(response.body) as SearchPreviewTypeResult;
@@ -51,15 +62,20 @@ class TikTok {
    * @param {string} query - Keyword
    * @return {Promise<ResultData>}
    */
-  async searchFull(query: string) {
+  async searchFull(query: string): Promise<ResultData> {
+    const tokens = parseToken();
     const response = await tFetch('./api/search/general/full/' +
      this.buildParam(query), {
       'headers': {
-        'Cookie': 'sessionid=' + process.env.SESSION,
+        'Cookie': 'sessionid=' + tokens[
+            Math.floor(Math.random() * tokens.length)
+        ],
       },
     });
     const d = JSON.parse(response.body) as SearchFullResult;
-    if (!d.data) throw new Error('Ratelimited tiktok or invalid session');
+    if (!d.data) {
+      throw new Error((d as unknown as { status_msg: string;}).status_msg);
+    }
 
     const userIndex = d.data.findIndex((x) => x.user_list);
     if (userIndex >= 0) {
@@ -101,7 +117,7 @@ class TikTok {
    * @return {boolean}
    */
   public isReady(): boolean {
-    return !!process.env.SESSION;
+    return !!process.env.SESSIONS;
   }
 }
 

@@ -18,3 +18,8 @@ export const getFetch = (baseUrl: string, options?: ExtendOptions) =>
     dnsCache: true,
     ...options,
   });
+
+export const gimmeProxyFetch = got.extend({
+  prefixUrl: 'https://gimmeproxy.com',
+  dnsCache: true,
+});
