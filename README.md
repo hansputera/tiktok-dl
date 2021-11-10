@@ -2,9 +2,10 @@
 
 Video TikTok Downloader using NodeJS with Watermark and Non-Watermark.
 
-## Technology
+## Technology/Dependencies
 - [Got](https://npmjs.com/got)
 - [Ow](https://npmjs.com/ow) 
+- [VM2](https://npmjs.com/vm2)
 
 ## Develop
 - Clone/fork into a directory you want.
