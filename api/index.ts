@@ -5,7 +5,6 @@ export default async (_: VercelRequest, res: VercelResponse) => {
     'index': 'Hello world!',
     'endpoints': {
       'ping': '/api/ping',
-      'search': '/api/search',
       'download': '/api/download',
     },
   });
