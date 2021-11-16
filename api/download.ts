@@ -9,8 +9,11 @@ const providersType = Providers.map((p) => p.resourceName());
 
 export default async (req: VercelRequest, res: VercelResponse) => {
   try {
-    ow(req.query, ow.object.exactShape({
-      'url': ow.string.url,
+    ow(req.query, ow.object.partialShape({
+      'url': ow.string.url.validate((v) => ({
+        'validator': /(http|https):\/\/(.*)\.tiktok\.com\/(.*)/gi.test(v),
+        'message': 'Expected (.*).tiktok.com',
+      })),
       'type': ow.optional.string.validate((v) => ({
         'validator': typeof v === 'string' &&
          providersType.includes(v.toLowerCase()),
