@@ -68,8 +68,6 @@ export class DLTikProvider extends BaseProvider {
           'advanced': {
             'musicUrl': json.data.musicUrl,
             'videoId': json.data.videoId,
-            'authorUsername': json.data.authorId,
-            'authorNickname': json.data.authorNickname,
             'description': json.data.desc,
           },
         },
