@@ -55,11 +55,11 @@ export class DLTikProvider extends BaseProvider {
         'error': json.message,
       };
     } else {
-      if (json.data.videoId === '7013188037203070234') {
-        return {
-          'error': 'Invalid url',
-        };
-      }
+    //   if (json.data.videoId === '7013188037203070234') {
+    //     return {
+    //       'error': 'Invalid url',
+    //     };
+    //   }
       return {
         'error': undefined,
         'result': {
