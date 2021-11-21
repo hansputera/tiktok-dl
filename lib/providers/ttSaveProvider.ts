@@ -27,7 +27,7 @@ export class TTSave extends BaseProvider {
     const response = await this.client('./');
     const token = (
           response.body.match(/m\(e,(.)?"(.*)"\)/) as string[]
-    ).filter(x => x)[1].split(/"\)}/)[0];
+    ).filter((x) => x)[1].split(/"\)}/)[0];
 
     const dlResponse = await this.client.post('./download.php', {
       'json': {
