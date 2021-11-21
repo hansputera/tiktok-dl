@@ -26,8 +26,8 @@ export class TTSave extends BaseProvider {
     // getting token
     const response = await this.client('./');
     const token = (
-          response.body.match(/doDownload\(id, '([^']+)'\)/) as string[]
-    )[0].split('\'')[1];
+          response.body.match(/m\(e,(.)?"(.*)"\)/) as string[]
+    ).filter(x => x)[1].split(/"\)}/)[0];
 
     const dlResponse = await this.client.post('./download.php', {
       'json': {
@@ -41,6 +41,8 @@ export class TTSave extends BaseProvider {
         'Cookie': response.headers['set-cookie']?.toString(),
       },
     });
+
+    console.log(dlResponse.body);
 
     return this.extract(dlResponse.body);
   }
