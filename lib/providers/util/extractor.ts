@@ -18,8 +18,8 @@ export const deObfuscate = (html: string): string => {
       );
     } else {
       const transformed = obfuscatedScripts[0]
-          .replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', '')
-          .replace(/\(function \(h/gi, 'module.exports = (function (h');
+        .replace(/<(\/)?script( type=".+")?>/g, '').trim().replace('eval', '')
+        .replace(/\(function(.)?\(h/gi, 'module.exports = (function (h');
       const deObfuscated = new NodeVM({
         'compiler': 'javascript',
         'console': 'inherit',
