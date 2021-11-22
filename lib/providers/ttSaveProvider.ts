@@ -42,8 +42,6 @@ export class TTSave extends BaseProvider {
       },
     });
 
-    console.log(dlResponse.body);
-
     return this.extract(dlResponse.body);
   }
 

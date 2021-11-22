@@ -1,3 +1,7 @@
+import { NodeVM } from 'vm2';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 /**
  * Generate key for ttsave.app
  *
@@ -5,7 +9,18 @@
  * @return {string}
  */
 export const keyGeneratorTTSave = (token: string): string => {
-  // the key must have 550 character length. ~ hansputera
-  const tokenReversed = token.split('').reverse().join('');
-  return tokenReversed.slice(-550);
-};
+    const vm = new NodeVM({
+        'compiler': 'javascript',
+        'console': 'inherit',
+        'require': {
+        'external': true,
+        'root': './',
+        },
+    });
+
+
+    return vm.run(readFileSync(
+        resolve(__dirname, 'tools', 'ttsave.js'), 'utf8'
+    ) +
+        'module.exports = key(`' + token + '`);', 'generator-ttsave.js')
+}; 
