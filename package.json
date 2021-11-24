@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "echo build",
-    "lint": "eslint \"+(lib|api|middleware)/**/*\" --ext .ts --fix",
+    "lint": "eslint \"+(lib|api|middleware)/**/*.ts\" --fix",
     "prepare": "husky install"
   }
 }
