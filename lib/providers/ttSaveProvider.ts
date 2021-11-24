@@ -33,7 +33,7 @@ export class TTSave extends BaseProvider {
       'json': {
         'id': url,
         'token': token,
-        'key': keyGeneratorTTSave(token),
+        'key': await keyGeneratorTTSave(token),
       },
       'headers': {
         'Origin': this.client.defaults.options.prefixUrl,
