@@ -39,10 +39,13 @@ export class FireTikProvider extends BaseProvider {
      */
     extract(html: string): ExtractedInfo {
       const urls = matchLink(html) as string[];
-      console.log(urls);
+      urls.pop();
+
+      const t = urls[1];
       return {
         'result': {
-          'urls': urls,
+          'urls': urls.filter((u) => u !== t),
+          'thumb': t,
         },
       };
     }
