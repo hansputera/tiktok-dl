@@ -16,7 +16,12 @@ export class SaveTikProvider extends BaseProvider {
     return 'savetik';
   }
 
-  public client = getFetch('https://savetik.net');
+  public client = getFetch('https://savetik.net', {
+    'headers': {
+      'Referer': 'https://savetik.net/',
+      'Origin': 'https://savetik.net',
+    },
+  });
 
     /**
      * @param {string} url
