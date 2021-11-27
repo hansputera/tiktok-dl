@@ -1,7 +1,7 @@
 import {getFetch} from '..';
 import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {deObfuscate, matchTikmateDownload} from './util';
+import {deObfuscate, matchCustomDownload} from './util';
 
 /**
  * @class TikmateProvider
@@ -64,7 +64,7 @@ export class TikmateProvider extends BaseProvider {
    */
   @handleException
   extract(html: string): ExtractedInfo {
-    const matchs = matchTikmateDownload(deObfuscate(html));
+    const matchs = matchCustomDownload('tikmate', deObfuscate(html));
     return {
       'error': undefined,
       'result': {
