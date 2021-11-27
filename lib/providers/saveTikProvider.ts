@@ -51,8 +51,6 @@ export class SaveTikProvider extends BaseProvider {
       };
     };
 
-    console.log(responseAction.body);
-
     return this.extract(JSON.parse(responseAction.body).data);
   }
 
