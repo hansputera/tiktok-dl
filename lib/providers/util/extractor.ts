@@ -39,10 +39,11 @@ export const matchLink = (raw: string): string[] | null => {
   return raw.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi);
 };
 
-export const matchTikmateDownload = (raw: string): string[] => {
+export const matchCustomDownload =
+(provider: string, raw: string): string[] => {
   const links = matchLink(raw) as string[];
   const urls = raw.match(/\/download.php\?token=(.*?)"/gi)
-      ?.map((url) => (getProvider('tikmate') as BaseProvider).client.
+      ?.map((url) => (getProvider(provider) as BaseProvider).client.
           defaults.options.prefixUrl.slice(0, -1)+
       url.slice(0, -3));
 

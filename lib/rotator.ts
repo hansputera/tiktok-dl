@@ -10,7 +10,7 @@ export const rotateProvider = async (
     noCache: boolean = false):
     Promise<ExtractedInfo & { provider: string; }> => {
   const cachedData = await redisClient.get(url);
-  // await redisClient.del(url);
+  await redisClient.del(url);
   if (!cachedData) {
     const data = await provider.fetch(url);
     if (data.error) {

@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {getFetch} from '..';
 import {handleException} from '../decorators';
-import {matchLink} from './util';
+import {matchCustomDownload} from './util';
 
 /**
  * @class SaveTikProvider
@@ -16,12 +16,7 @@ export class SaveTikProvider extends BaseProvider {
     return 'savetik';
   }
 
-  public client = getFetch('https://savetik.net', {
-    'headers': {
-      'Referer': 'https://savetik.net/',
-      'Origin': 'https://savetik.net',
-    },
-  });
+  public client = getFetch('https://savetik.net');
 
     /**
      * @param {string} url
@@ -42,14 +37,21 @@ export class SaveTikProvider extends BaseProvider {
             'url': url,
             'token': token,
           },
+          'headers': {
+            'cookie': response.headers['set-cookie']?.toString(),
+            'Referer': 'https://savetik.net/',
+            'Origin': 'https://savetik.net',
+          },
         },
     );
 
-    if (JSON.parse(response.body).error) {
+    if (JSON.parse(responseAction.body).error) {
       return {
-        'error': JSON.parse(response.body).message,
+        'error': JSON.parse(responseAction.body).message,
       };
     };
+
+    console.log(responseAction.body);
 
     return this.extract(JSON.parse(responseAction.body).data);
   }
@@ -59,7 +61,7 @@ export class SaveTikProvider extends BaseProvider {
    * @return {ExtractedInfo}
    */
     extract(html: string): ExtractedInfo {
-      const urls = matchLink(html);
+      const urls = matchCustomDownload('savetik', html);
 
       return {
         'result': {
