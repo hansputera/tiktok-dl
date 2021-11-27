@@ -11,6 +11,7 @@ import {SaveTikProvider} from './saveTikProvider';
 import {FireTikProvider} from './fireTikProvider';
 import {TikDownProvider} from './tikDownProvider';
 import {DownTikProvider} from './downTikProvider';
+import {LoveTikProvider} from './loveTikProvider';
 
 export const Providers: BaseProvider[] = [
   new SnaptikProvider(),
@@ -24,6 +25,7 @@ export const Providers: BaseProvider[] = [
   new FireTikProvider(),
   new TikDownProvider(),
   new DownTikProvider(),
+  new LoveTikProvider(),
 ];
 
 export const getRandomProvider = () => Providers[
