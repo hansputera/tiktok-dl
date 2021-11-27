@@ -12,7 +12,7 @@ import {FireTikProvider} from './fireTikProvider';
 import {TikDownProvider} from './tikDownProvider';
 import {DownTikProvider} from './downTikProvider';
 import {LoveTikProvider} from './loveTikProvider';
-import { DDDTikProvider } from './dddTikProvider';
+import {DDDTikProvider} from './dddTikProvider';
 
 export const Providers: BaseProvider[] = [
   new SnaptikProvider(),

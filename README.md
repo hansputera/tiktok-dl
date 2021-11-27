@@ -38,5 +38,10 @@ Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
 - [Musically Down](https://musicaldown.com)
 - [DLTik](https://dltik.com/)
 - [TTSave](https://ttsave.app)
+- [FireTik](https://firetik.com)
+- [DDDTik](https://dddtik.com)
+- [TikDown](https://tikdown.org)
+- [DownTik](https://downtik.net)
+- [LoveTik](https://lovetik.com)
 
 Contribution(s) are welcome!
