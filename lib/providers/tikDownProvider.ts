@@ -43,7 +43,12 @@ export class TikDownProvider extends BaseProvider {
         },
     );
 
-    return this.extract(responseAjax.body);
+    if (!JSON.parse(responseAjax.body).status) {
+        return {
+            'error': 'Something was wrong',
+        };
+    }
+    return this.extract(JSON.parse(responseAjax.body).html);
   }
 
   /**
@@ -52,9 +57,9 @@ export class TikDownProvider extends BaseProvider {
      */
   extract(html: string): ExtractedInfo {
     const urls = matchLink(html) as string[];
-
     return {
       'result': {
+        'thumb': urls.shift(),
         'urls': urls,
       },
     };
