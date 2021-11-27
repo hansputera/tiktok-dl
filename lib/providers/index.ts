@@ -10,6 +10,7 @@ import {SaveFromProvider} from './saveFromProvider';
 import {SaveTikProvider} from './saveTikProvider';
 import {FireTikProvider} from './fireTikProvider';
 import {TikDownProvider} from './tikDownProvider';
+import {DownTikProvider} from './downTikProvider';
 
 export const Providers: BaseProvider[] = [
   new SnaptikProvider(),
@@ -22,6 +23,7 @@ export const Providers: BaseProvider[] = [
   new SaveTikProvider(),
   new FireTikProvider(),
   new TikDownProvider(),
+  new DownTikProvider(),
 ];
 
 export const getRandomProvider = () => Providers[

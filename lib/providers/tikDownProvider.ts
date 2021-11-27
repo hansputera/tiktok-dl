@@ -44,9 +44,9 @@ export class TikDownProvider extends BaseProvider {
     );
 
     if (!JSON.parse(responseAjax.body).status) {
-        return {
-            'error': 'Something was wrong',
-        };
+      return {
+        'error': 'Something was wrong',
+      };
     }
     return this.extract(JSON.parse(responseAjax.body).html);
   }
