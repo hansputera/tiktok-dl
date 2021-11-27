@@ -8,6 +8,7 @@ import {TTSave} from './ttSaveProvider';
 import {DLTikProvider} from './DLTikProvider';
 import {SaveFromProvider} from './saveFromProvider';
 import {SaveTikProvider} from './saveTikProvider';
+import {FireTikProvider} from './fireTikProvider';
 
 export const Providers: BaseProvider[] = [
   new SnaptikProvider(),
@@ -18,6 +19,7 @@ export const Providers: BaseProvider[] = [
   new DLTikProvider(),
   new SaveFromProvider(),
   new SaveTikProvider(),
+  new FireTikProvider(),
 ];
 
 export const getRandomProvider = () => Providers[
