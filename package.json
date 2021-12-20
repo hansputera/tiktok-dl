@@ -6,9 +6,7 @@
   "dependencies": {
     "got": "^11.8.2",
     "ioredis": "^4.28.0",
-    "nightmare": "^3.0.2",
     "ow": "^0.28.1",
-    "tough-cookie": "^4.0.0",
     "vm2": "^3.9.5"
   },
   "devDependencies": {
