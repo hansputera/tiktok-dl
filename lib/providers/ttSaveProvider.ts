@@ -3,6 +3,7 @@ import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {keyGeneratorTTSave, matchLink} from './util';
 
+
 /**
  * @class TTSave
  */
@@ -25,20 +26,23 @@ export class TTSave extends BaseProvider {
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting token
     const response = await this.client('./');
+
     const token = (
-          response.body.match(/m\(e,(.)?"(.*)"\)/) as string[]
-    ).filter((x) => x)[1].split(/"\)}/)[0];
+          response.body.match(/(m|doDownload)?\(e,"(.*)"\)}/) as string[]
+    ).filter((x) => x.length).pop() as string;
+    const key = await keyGeneratorTTSave(token);
 
     const dlResponse = await this.client.post('./download.php', {
       'json': {
         'id': url,
         'token': token,
-        'key': await keyGeneratorTTSave(token),
+        'key': key,
       },
       'headers': {
         'Origin': this.client.defaults.options.prefixUrl,
         'Referer': this.client.defaults.options.prefixUrl,
-        'Cookie': response.headers['set-cookie']?.toString(),
+        'Cookie': response.headers['set-cookie']?.toString(), // no cookies :(
+        ...response.headers,
       },
     });
 

@@ -11,7 +11,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   try {
     ow(req.query, ow.object.partialShape({
       'url': ow.string.url.validate((v) => ({
-        'validator': /(http|https):\/\/(.*)\.tiktok\.com\/(.*)/gi.test(v),
+        'validator': /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.*)?\/(.*)?$/gi
+            .test(v),
         'message': 'Expected (.*).tiktok.com',
       })),
       'type': ow.optional.string.validate((v) => ({
