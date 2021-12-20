@@ -1,5 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {getFetch} from '../fetch';
+import {handleException} from '../decorators';
 
 /**
  * @class TokupProvider
@@ -20,6 +21,7 @@ export class TokupProvider extends BaseProvider {
      * @param {string} url - TikTok Video URL
      * @return {Promise<ExtractedInfo>}
      */
+  @handleException
   public async fetch(
       url: string,
   ): Promise<ExtractedInfo> {
