@@ -1,20 +1,20 @@
-# TikTok Downloader
+# ⏫ TikTok Downloader
 
-Video TikTok Downloader using NodeJS with Watermark and Non-Watermark.
+Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 
-## Technology/Dependencies
+## 〽️ Technology/Dependencies
 - [Got](https://npmjs.com/got)
 - [Ow](https://npmjs.com/ow) 
 - [VM2](https://npmjs.com/vm2)
 
-## Develop
+## Develop 👷
 - Clone/fork into a directory you want.
 - Install all dependencies correctly (`yarn install` or `npm install`)
 - Install vercel cli too with `npm install vercel -g` or `yarn global add vercel`
 - Ran `vercel dev` for development (default port is: `3000`)
-> Use `vercel --prod` for production use.
+> Use `vercel --prod` for production use 😎
 
-# Configuration
+# Configuration 🔑
 
 **Environment Setup:**
 1. Rename `.env.example` to `.env`
@@ -25,10 +25,10 @@ Video TikTok Downloader using NodeJS with Watermark and Non-Watermark.
 2. Find `Environment Variables` button and click it.
 3. Add environment variable with `REDIS_URL` as the name, and fill the value using your redis url.
 
-## Endpoints
+## ☁️ Endpoints
 Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
 
-## Credits + Source
+## 🔥 Credits + Source
 
 - [TikTok](https://tiktok.com) 
 - [SnapTik](https://snaptik.app)
@@ -45,4 +45,4 @@ Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
 - [Tokup](https://tokup.app)
 - [TikTokDownloaderOne](https://tiktokdownloader.one) (TTSave alternative)
 
-Contribution(s) are welcome!
+🧗‍♀️ Contribution(s) are welcome!
