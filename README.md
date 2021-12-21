@@ -20,7 +20,7 @@ Video TikTok Downloader using NodeJS with Watermark and Non-Watermark.
 1. Rename `.env.example` to `.env`
 2. Fill `REDIS_URL` value with your redis database url.
 
-**Environment Setup on Hosting:**
+**Environment Setup on Hosting:** (vercel)
 1. Go to your project settings.
 2. Find `Environment Variables` button and click it.
 3. Add environment variable with `REDIS_URL` as the name, and fill the value using your redis url.
@@ -42,6 +42,7 @@ Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
 - [TikDown](https://tikdown.org)
 - [DownTik](https://downtik.net)
 - [LoveTik](https://lovetik.com)
-- [Tokup](https://tokup.app) (TTSave alternative)
+- [Tokup](https://tokup.app)
+- [TikTokDownloaderOne](https://tiktokdownloader.one) (TTSave alternative)
 
 Contribution(s) are welcome!
