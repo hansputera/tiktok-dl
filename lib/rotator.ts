@@ -1,9 +1,7 @@
 import {getRandomProvider} from '.';
 import {providerCache} from '../config';
 import {BaseProvider, ExtractedInfo} from './providers/baseProvider';
-import {client} from './redis';
-
-const redisClient = client;
+import {client as redisClient} from './redis';
 
 export const rotateProvider = async (
     provider: BaseProvider, url: string,
