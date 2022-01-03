@@ -16,7 +16,7 @@ export const rotateProvider = async (
     if (data.error) {
       // switching to other provider
       return await rotateProvider(getRandomProvider(), url);
-    } else if (data.result && !data.result.urls.length) {
+    } else if (data.video && !data.video.urls.length) {
       return await rotateProvider(getRandomProvider(), url);
     } else {
       if (!noCache) {

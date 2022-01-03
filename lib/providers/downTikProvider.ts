@@ -62,11 +62,11 @@ export class DownTikProvider extends BaseProvider {
       const urls = matchCustomDownload('downtik', html);
 
       return {
-        'result': {
+        'music': {
+          'url': urls.pop() as string,
+        },
+        'video': {
           'thumb': urls?.shift(),
-          'advanced': {
-            'musicUrl': urls?.pop(),
-          },
           'urls': urls as string[],
         },
       };

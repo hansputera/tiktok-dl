@@ -2,11 +2,32 @@ import {Got} from 'got';
 
 export interface ExtractedInfo {
     error?: string;
-    result?: {
+    video?: {
+        id?: string;
         thumb?: string;
-        advanced?: Record<string, unknown>;
         urls: string[];
-    }
+        title?: string;
+        duration?: string;
+    };
+    music?: {
+        url: string;
+        title?: string;
+        author?: string;
+        id?: string;
+        cover?: string;
+    };
+    author?: {
+        username?: string;
+        thumb?: string;
+        id?: string;
+    };
+    caption?: string;
+    playsCount?: number;
+    sharesCount?: number;
+    commentsCount?: number;
+    likesCount?: number;
+    uploadedAt?: string;
+    updatedAt?: string;
 };
 
 /**

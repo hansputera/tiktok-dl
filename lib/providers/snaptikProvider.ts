@@ -44,8 +44,7 @@ export class SnaptikProvider extends BaseProvider {
     if (!results || !results.length) throw new Error('Broken');
 
     return {
-      'error': undefined,
-      'result': {
+      'video': {
         'thumb': results?.shift(),
         'urls': [...new Set(results)],
       },

@@ -66,8 +66,7 @@ export class TikmateProvider extends BaseProvider {
   extract(html: string): ExtractedInfo {
     const matchs = matchCustomDownload('tikmate', deObfuscate(html));
     return {
-      'error': undefined,
-      'result': {
+      'video': {
         'thumb': matchs.shift(),
         'urls': matchs,
       },

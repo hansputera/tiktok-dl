@@ -52,11 +52,9 @@ export class TTDownloader extends BaseProvider {
     const urls = matchLink(html);
     urls?.pop(); // remove 'https://snaptik.fans'
     return {
-      'error': undefined,
-      'result': {
-        'thumb': undefined,
-        'urls': urls as string[],
-      },
+      'video': {
+          'urls': urls as string[],
+      }
     };
   }
 };

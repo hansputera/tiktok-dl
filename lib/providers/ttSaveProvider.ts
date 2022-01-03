@@ -61,14 +61,13 @@ export class TTSave extends BaseProvider {
     const videoCDNs = tiktokCDNs.filter((x) => !/jpeg/gi.test(x));
 
     return {
-      'error': undefined,
-      'result': {
-        'thumb': tiktokCDNs.find((x) => /jpeg/gi.test(x)),
-        'urls': videoCDNs.filter((x) => !/music/gi.test(x)),
-        'advanced': {
-          'musicUrl': videoCDNs.find((x) => /music/gi.test(x)),
-        },
+      'video': {
+          'thumb': tiktokCDNs.find((x) => /jpeg/gi.test(x)),
+          'urls': videoCDNs.filter((x) => !/music/gi.test(x)),
       },
+      'music': {
+          'url': videoCDNs.find((x) => /music/gi.test(x)) as string,
+      }
     };
   }
 };

@@ -51,13 +51,15 @@ export class LoveTikProvider extends BaseProvider {
       }
 
       return {
-        'result': {
+        'music': {
+          'url': json.links.pop().a,
+        },
+        'video': {
           'thumb': json.cover,
-          'advanced': {
-            'author': json.author.replace(/(<([^>]+)>)/ig, ''),
-            'musicUrl': json.links.pop().a,
-          },
           'urls': json.links.map((l: Record<string, unknown>) => l.a),
+        },
+        'author': {
+          'username': json.author.replace(/(<([^>]+)>)/ig, ''),
         },
       };
     }

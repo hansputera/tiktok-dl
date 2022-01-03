@@ -58,7 +58,7 @@ export class TikDownProvider extends BaseProvider {
   extract(html: string): ExtractedInfo {
     const urls = matchLink(html) as string[];
     return {
-      'result': {
+      'video': {
         'thumb': urls.shift(),
         'urls': urls,
       },

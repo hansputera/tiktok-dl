@@ -43,7 +43,7 @@ export class DDDTikProvider extends BaseProvider {
 
       const t = urls[1];
       return {
-        'result': {
+        'video': {
           'urls': urls.filter((u) => u !== t),
           'thumb': t,
         },

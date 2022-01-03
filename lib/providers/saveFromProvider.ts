@@ -57,21 +57,12 @@ export class SaveFromProvider extends BaseProvider {
             .replace(/(\(|\))/g, ''),
     );
     return {
-      'error': undefined,
-      'result': {
+      'video': {
         'thumb': json.thumb,
-        'advanced': {
-          'videoId': json.id,
-          'videoTitle': json.meta.title,
-          'videoDuration': json.meta.duration,
-          'urls': json.url.map((x:
-            { type: string; subname: string; }, index: number) => ({
-            'pos': index,
-            'type': x.type,
-            'resolution': x.subname,
-          })),
-        },
+        'id': json.id,
         'urls': json.url.map((x: { url: string; }) => x.url),
+        'duration': json.meta.duration,
+        'title': json.meta.title,
       },
     };
   }

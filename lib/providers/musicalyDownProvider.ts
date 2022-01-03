@@ -63,9 +63,8 @@ export class MusicalyDown extends BaseProvider {
       const urls = matchUrls.map((url) =>
       /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi.exec(url)?.[1] as string);
       return {
-        'error': undefined,
-        'result': {
-          urls,
+        'video': {
+          'urls': urls,
           'thumb': /img class="responsive-img" src="(.*?)"/gi.exec(html)?.[1],
         },
       };

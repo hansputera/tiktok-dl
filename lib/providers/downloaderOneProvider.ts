@@ -60,30 +60,32 @@ export class DownloadOne extends BaseProvider {
     const json = JSON.parse(html);
 
     return {
-      'result': {
+      'video': {
         'urls': [
           json.url,
           json.url_nwm,
         ],
         'thumb': json.cover,
-        'advanced': {
-          'videoId': json.video_id,
-          'musicUrl': json.music.url,
-          'musicTitle': json.music.title,
-          'musicAuthor': json.music.author,
-          'musicCover': json.music.cover,
-          'author': json.user.username,
-          'authorId': json.user.name,
-          'authorThumb': json.user.cover,
-          'uploadedAt': json.uploaded_at,
-          'updatedAt': json.updated_at ?? '-',
-          'caption': json.caption,
-          'commentsCount': json.stats.comment,
-          'sharesCount': json.stats.shares,
-          'likesCount': json.stats.like,
-          'playsCount': json.stats.play,
-        },
+        'id': json.video.id,
       },
+      'music': {
+        'url': json.music.url,
+        'title': json.music.title,
+        'cover': json.music.cover,
+        'author': json.music.author,
+      },
+      'author': {
+        'id': json.user.name,
+        'username': json.user.username,
+        'thumb': json.user.cover,
+      },
+      'caption': json.caption,
+      'updatedAt': json.updatedAt ?? '-',
+      'uploadedAt': json.uploaded_at,
+      'commentsCount': json.stats.comment,
+      'sharesCount': json.stats.shares,
+      'likesCount': json.stats.likes,
+      'playsCount': json.stats.play,
     };
   }
 }

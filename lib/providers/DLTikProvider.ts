@@ -61,16 +61,15 @@ export class DLTikProvider extends BaseProvider {
     //     };
     //   }
       return {
-        'error': undefined,
-        'result': {
+        'video': {
+          'id': json.data.videoId,
+          'urls': [json.data.watermarkVideoUrl, json.data.destinationUrl],
           'thumb': json.data.dynamicCover,
-          'urls': [json.data.destinationUrl, json.data.watermarkVideoUrl],
-          'advanced': {
-            'musicUrl': json.data.musicUrl,
-            'videoId': json.data.videoId,
-            'description': json.data.desc,
-          },
         },
+        'music': {
+          'url': json.data.musicUrl,
+        },
+        'caption': json.data.desc,
       };
     }
   }

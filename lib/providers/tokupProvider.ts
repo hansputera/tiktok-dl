@@ -69,22 +69,22 @@ export class TokupProvider extends BaseProvider {
     )][0];
 
     return {
-      'result': {
+      'video': {
         'urls': [url, url + '?hd=1'],
-        'advanced': {
-          'authorThumb': authorProfile
-              .substring(0, authorProfile.length-1),
-          'author': (/target="_blank"\>(.*)\</.exec(
-              html,
-          ) as string[])[1],
-          'uploadedAt': (html.match(
-              /<p>(.+)<\/p>/,
-          ) as string[])[1],
-          'likesCount': nums[0],
-          'commentsCount': nums[1],
-          'sharesCount': nums[2],
-        },
       },
+      'author': {
+        'username': (/target="_blank"\>(.*)\</.exec(
+            html,
+        ) as string[])[1],
+        'thumb': authorProfile
+            .substring(0, authorProfile.length-1),
+      },
+      'uploadedAt': (html.match(
+          /<p>(.+)<\/p>/,
+      ) as string[])[1],
+      'likesCount': nums[0] as unknown as number,
+      'commentsCount': nums[1] as unknown as number,
+      'sharesCount': nums[2] as unknown as number,
     };
   }
 }
