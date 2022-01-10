@@ -1,5 +1,4 @@
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {deObfuscateSaveFromScript} from './util';
 
@@ -17,11 +16,13 @@ export class SaveFromProvider extends BaseProvider {
 
   public client = getFetch('https://worker-as.sf-tools.com');
 
+  public maintenance = undefined;
+
   /**
      *
      * @param {string} url - Video TikTok URL
+     * @return {Promise<ExtractedInfo>}
      */
-  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     const response = await this.client.post('./savefrom.php', {
       'form': {
@@ -49,7 +50,6 @@ export class SaveFromProvider extends BaseProvider {
      * @param {string} html - HTML Raw
      * @return {ExtractedInfo}
      */
-  @handleException
   extract(html: string): ExtractedInfo {
     const deobfuscated = deObfuscateSaveFromScript(html);
     const json = JSON.parse(

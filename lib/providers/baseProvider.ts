@@ -30,11 +30,16 @@ export interface ExtractedInfo {
     updatedAt?: string;
 };
 
+export interface MaintenanceProvider {
+    reason: string;
+};
+
 /**
  * @class BaseProvider
  */
 export abstract class BaseProvider {
     abstract client: Got;
+    abstract maintenance?: MaintenanceProvider;
     abstract resourceName(): string;
     abstract fetch(url: string): Promise<ExtractedInfo>;
     abstract extract(html: string): ExtractedInfo;

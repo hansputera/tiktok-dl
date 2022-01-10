@@ -1,5 +1,4 @@
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {matchLink} from './util';
 
@@ -16,12 +15,13 @@ export class TTDownloader extends BaseProvider {
 
   public client = getFetch('https://ttdownloader.com');
 
+  public maintenance = undefined;
+
   /**
    *
    * @param {string} url - Video TikTok URL
    * @return {Promise<ExtractedInfo>}
    */
-  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting token and cookies
     const firstResponse = await this.client('./');

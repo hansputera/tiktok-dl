@@ -1,6 +1,5 @@
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {getFetch} from '../fetch';
-import {handleException} from '../decorators';
 
 /**
  * @class DownloadOne
@@ -16,12 +15,13 @@ export class DownloadOne extends BaseProvider {
 
   public client = getFetch('http://tiktokdownloader.one');
 
+  public maintenance = undefined;
+
   /**
      * Fetch ttdownloader.one
      * @param {string} url Video TikTok URL
      * @return {Promise<ExtractedInfo>}
      */
-  @handleException
   public async fetch(
       url: string,
   ): Promise<ExtractedInfo> {
@@ -66,7 +66,7 @@ export class DownloadOne extends BaseProvider {
           json.url_nwm,
         ],
         'thumb': json.cover,
-        'id': json.video.id,
+        'id': json.video_id,
       },
       'music': {
         'url': json.music.url,

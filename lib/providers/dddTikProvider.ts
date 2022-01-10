@@ -1,6 +1,5 @@
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {matchLink} from './util';
 
 /**
@@ -18,11 +17,12 @@ export class DDDTikProvider extends BaseProvider {
 
   public client = getFetch('https://dddtik.com');
 
-    /**
-     * @param {string} url
+  public maintenance = undefined;
+
+  /**
+     * @param {string} url Tiktok video url
      * @return {Promise<ExtractedInfo>}
      */
-    @handleException
   async fetch(url: string): Promise<ExtractedInfo> {
     const response = await this.client.post('./down.php', {
       'form': {
@@ -33,20 +33,20 @@ export class DDDTikProvider extends BaseProvider {
     return this.extract(response.body);
   }
 
-    /**
+  /**
      * @param {string} html
      * @return {ExtractedInfo}
      */
-    extract(html: string): ExtractedInfo {
-      const urls = matchLink(html) as string[];
-      urls.pop();
+  extract(html: string): ExtractedInfo {
+    const urls = matchLink(html) as string[];
+    urls.pop();
 
-      const t = urls[1];
-      return {
-        'video': {
-          'urls': urls.filter((u) => u !== t),
-          'thumb': t,
-        },
-      };
-    }
+    const t = urls[1];
+    return {
+      'video': {
+        'urls': urls.filter((u) => u !== t),
+        'thumb': t,
+      },
+    };
+  }
 }

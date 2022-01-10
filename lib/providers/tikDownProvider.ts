@@ -17,6 +17,8 @@ export class TikDownProvider extends BaseProvider {
 
   public client = getFetch('https://tikdown.org');
 
+  public maintenance = undefined;
+
   /**
      * @param {string} url
      *
