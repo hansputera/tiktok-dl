@@ -1,6 +1,5 @@
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {matchCustomDownload} from './util';
 
 /**
@@ -18,12 +17,12 @@ export class SaveTikProvider extends BaseProvider {
 
   public client = getFetch('https://savetik.net');
 
-    /**
-     * @param {string} url
-     *
+  public maintenance = undefined;
+
+  /**
+     * @param {string} url Video TikTok URL
      * @return {Promise<ExtractedInfo>}
      */
-    @handleException
   async fetch(url: string): Promise<ExtractedInfo> {
     const response = await this.client('./');
 
@@ -54,21 +53,21 @@ export class SaveTikProvider extends BaseProvider {
     return this.extract(JSON.parse(responseAction.body).data);
   }
 
-    /**
+  /**
    * @param {string} html
    * @return {ExtractedInfo}
    */
-    extract(html: string): ExtractedInfo {
-      const urls = matchCustomDownload('savetik', html);
+  extract(html: string): ExtractedInfo {
+    const urls = matchCustomDownload('savetik', html);
 
-      return {
-        'result': {
-          'thumb': urls?.shift(),
-          'advanced': {
-            'musicUrl': urls?.pop(),
-          },
-          'urls': urls as string[],
-        },
-      };
-    }
+    return {
+      'music': {
+        'url': urls?.pop() as string,
+      },
+      'video': {
+        'thumb': urls?.shift(),
+        'urls': urls as string[],
+      },
+    };
+  }
 }

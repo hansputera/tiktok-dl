@@ -1,5 +1,4 @@
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {keyGeneratorTTSave, matchLink} from './util';
 
@@ -17,12 +16,15 @@ export class TTSave extends BaseProvider {
 
   public client = getFetch('https://ttsave.app');
 
+  public maintenance = {
+    reason: 'TTSave doesn\'t returned cookie to manipulate the session',
+  };
+
   /**
    *
    * @param {string} url - TikTok Video URL
    * @return {Promise<ExtractedInfo>}
    */
-  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting token
     const response = await this.client('./');
@@ -61,13 +63,12 @@ export class TTSave extends BaseProvider {
     const videoCDNs = tiktokCDNs.filter((x) => !/jpeg/gi.test(x));
 
     return {
-      'error': undefined,
-      'result': {
+      'video': {
         'thumb': tiktokCDNs.find((x) => /jpeg/gi.test(x)),
         'urls': videoCDNs.filter((x) => !/music/gi.test(x)),
-        'advanced': {
-          'musicUrl': videoCDNs.find((x) => /music/gi.test(x)),
-        },
+      },
+      'music': {
+        'url': videoCDNs.find((x) => /music/gi.test(x)) as string,
       },
     };
   }

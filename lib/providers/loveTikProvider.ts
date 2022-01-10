@@ -1,6 +1,5 @@
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 
 /**
  * @class LoveTikProvider
@@ -17,10 +16,12 @@ export class LoveTikProvider extends BaseProvider {
 
   public client = getFetch('https://lovetik.com');
 
-    /**
-     * @param {string} url
+  public maintenance = undefined;
+
+  /**
+     * @param {string} url Video TikTok URL
+     * @return {Promise<ExtractedInfo>}
      */
-    @handleException
   async fetch(url: string): Promise<ExtractedInfo> {
     const response = await this.client.post(
         './api/ajax/search', {
@@ -37,28 +38,30 @@ export class LoveTikProvider extends BaseProvider {
     return this.extract(response.body);
   }
 
-    /**
+  /**
      * @param {string} jsonString
      * @return {ExtractedInfo}
      */
-    extract(jsonString: string): ExtractedInfo {
-      const json = JSON.parse(jsonString);
+  extract(jsonString: string): ExtractedInfo {
+    const json = JSON.parse(jsonString);
 
-      if (json.mess) {
-        return {
-          'error': json.mess,
-        };
-      }
-
+    if (json.mess) {
       return {
-        'result': {
-          'thumb': json.cover,
-          'advanced': {
-            'author': json.author.replace(/(<([^>]+)>)/ig, ''),
-            'musicUrl': json.links.pop().a,
-          },
-          'urls': json.links.map((l: Record<string, unknown>) => l.a),
-        },
+        'error': json.mess,
       };
     }
+
+    return {
+      'music': {
+        'url': json.links.pop().a,
+      },
+      'video': {
+        'thumb': json.cover,
+        'urls': json.links.map((l: Record<string, unknown>) => l.a),
+      },
+      'author': {
+        'username': json.author.replace(/(<([^>]+)>)/ig, ''),
+      },
+    };
+  }
 }

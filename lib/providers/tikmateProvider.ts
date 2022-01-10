@@ -1,5 +1,4 @@
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {deObfuscate, matchCustomDownload} from './util';
 
@@ -16,20 +15,13 @@ export class TikmateProvider extends BaseProvider {
     return 'tikmate';
   }
 
-  /**
-   *
-   * @return {string}
-   */
-  public getURI(): string {
-    return this.client.defaults.options.prefixUrl;
-  }
-
+  public maintenance = undefined;
 
   /**
    *
    * @param {string} url - Video TikTok URL
+   * @return {Promise<ExtractedInfo>}
    */
-  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     // we need to get the token
 
@@ -62,12 +54,10 @@ export class TikmateProvider extends BaseProvider {
    * @param {string} html - Raw HTML
    * @return {ExtractedInfo}
    */
-  @handleException
   extract(html: string): ExtractedInfo {
     const matchs = matchCustomDownload('tikmate', deObfuscate(html));
     return {
-      'error': undefined,
-      'result': {
+      'video': {
         'thumb': matchs.shift(),
         'urls': matchs,
       },

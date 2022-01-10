@@ -9,7 +9,7 @@ const providersType = Providers.map((p) => p.resourceName());
 
 export default async (req: VercelRequest, res: VercelResponse) => {
   try {
-    ow(req.query, ow.object.partialShape({
+    ow(req.method === 'POST' ? req.body : req.query, ow.object.partialShape({
       'url': ow.string.url.validate((v) => ({
         'validator': /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.*)?\/(.*)?$/gi
             .test(v),
@@ -21,10 +21,13 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         'message': 'Invalid Provider, available provider is: ' +
           Providers.map((x) => x.resourceName()).join(', '),
       })),
-      'nocache': ow.optional.string,
+      'nocache': req.method === 'POST' ?
+        ow.optional.boolean : ow.optional.string,
+      'rotateOnError': req.method === 'POST' ?
+        ow.optional.boolean : ow.optional.string,
     }));
 
-    const provider = getProvider(req.query.type ?? 'random');
+    const provider = getProvider((req.query.type || req.body.type) ?? 'random');
     if (!provider) {
       return res.status(400).json({
         'error': 'Invalid provider',
@@ -32,7 +35,11 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       });
     }
     const result = await rotateProvider(
-      provider as BaseProvider, req.query.url, !!req.query.nocache);
+      provider as BaseProvider, req.query.url || req.body.url,
+        req.method === 'POST' ?
+         req.body.url : req.query.url, req.method === 'POST' ?
+             req.body.rotateOnError :
+                !!req.query.rotateOnError);
     await ratelimitMiddleware(req);
     return res.status(200).json(result);
   } catch (e) {

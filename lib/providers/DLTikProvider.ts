@@ -1,5 +1,4 @@
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 
 /**
@@ -15,14 +14,18 @@ export class DLTikProvider extends BaseProvider {
 
   public client = getFetch('https://dltik.com');
 
+  public maintenance = {
+    'reason': 'My prediction is that DLTik needs an active session to use.',
+  };
+
   /**
-   *
    * @param {string} url - Video TikTok URL
+   * @return {Promise<ExtractedInfo>}
    */
-  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting verification token
-    const response = await this.client('./');
+    const response = await this.client('./#url=' +
+        encodeURIComponent(url));
     const token = (
         response.body.match(/type="hidden" value="([^""]+)"/) as string[]
     )[1];
@@ -30,13 +33,17 @@ export class DLTikProvider extends BaseProvider {
     const dlResponse = await this.client.post('./', {
       'form': {
         'm': 'getlink',
-        'url': url,
+        'url': `https://m.tiktok.com/v/${
+          (/predownload\('([0-9]+)'\)/gi.exec(response.body) as string[])[1]
+        }.html`,
         '__RequestVerificationToken': token,
       },
       'headers': {
         'Origin': this.client.defaults.options.prefixUrl,
-        'Referer': this.client.defaults.options.prefixUrl,
+        'Referer': response.url,
         'Cookie': response.headers['set-cookie']?.toString(),
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'x-requested-with': 'XMLHttpRequest',
       },
     });
 
@@ -61,16 +68,15 @@ export class DLTikProvider extends BaseProvider {
     //     };
     //   }
       return {
-        'error': undefined,
-        'result': {
+        'video': {
+          'id': json.data.videoId,
+          'urls': [json.data.watermarkVideoUrl, json.data.destinationUrl],
           'thumb': json.data.dynamicCover,
-          'urls': [json.data.destinationUrl, json.data.watermarkVideoUrl],
-          'advanced': {
-            'musicUrl': json.data.musicUrl,
-            'videoId': json.data.videoId,
-            'description': json.data.desc,
-          },
         },
+        'music': {
+          'url': json.data.musicUrl,
+        },
+        'caption': json.data.desc,
       };
     }
   }

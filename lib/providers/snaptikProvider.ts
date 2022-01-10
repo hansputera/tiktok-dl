@@ -1,5 +1,4 @@
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {deObfuscate, matchLink} from './util';
 
@@ -16,12 +15,13 @@ export class SnaptikProvider extends BaseProvider {
     return 'snaptik';
   }
 
+  public maintenance = undefined;
+
   /**
    *
    * @param {string} url - TikTok Video URL
    * @return {Promise<ExtractedInfo>}
    */
-  @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     const response = await this.client('./abc.php', {
       searchParams: {
@@ -38,14 +38,12 @@ export class SnaptikProvider extends BaseProvider {
    * @param {string} html - Raw HTML
    * @return {ExtractedInfo}
    */
-  @handleException
   extract(html: string): ExtractedInfo {
     const results = matchLink(deObfuscate(html));
     if (!results || !results.length) throw new Error('Broken');
 
     return {
-      'error': undefined,
-      'result': {
+      'video': {
         'thumb': results?.shift(),
         'urls': [...new Set(results)],
       },

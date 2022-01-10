@@ -1,6 +1,5 @@
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 import {getFetch} from '../fetch';
-import {handleException} from '../decorators';
 
 /**
  * @class TokupProvider
@@ -16,12 +15,15 @@ export class TokupProvider extends BaseProvider {
 
   public client = getFetch('https://tokup.app');
 
+  public maintenance = {
+    reason: 'Tokup site returned \'Oops! Something went wrong!\'',
+  };
+
   /**
      * Fetch tokup
      * @param {string} url - TikTok Video URL
      * @return {Promise<ExtractedInfo>}
      */
-  @handleException
   public async fetch(
       url: string,
   ): Promise<ExtractedInfo> {
@@ -34,6 +36,7 @@ export class TokupProvider extends BaseProvider {
             'Origin': this.client.defaults.options.prefixUrl,
             'Referer': this.client.defaults.options.prefixUrl,
           },
+          'timeout': 3000,
         },
     );
 
@@ -43,6 +46,10 @@ export class TokupProvider extends BaseProvider {
             )) {
       return {
         'error': 'Video Not Found',
+      };
+    } else if (/oops/gi.test(response.body)) {
+      return {
+        'error': 'Tokup Error',
       };
     } else {
       return this.extract(
@@ -57,6 +64,7 @@ export class TokupProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
   extract(html: string): ExtractedInfo {
+    console.log(html);
     const authorProfile = (/http(s)?(:\/\/(.*)\.tiktokcdn\.com\/(.*))/gi.exec(
         html,
     ) as string[])[0];
@@ -69,22 +77,22 @@ export class TokupProvider extends BaseProvider {
     )][0];
 
     return {
-      'result': {
+      'video': {
         'urls': [url, url + '?hd=1'],
-        'advanced': {
-          'authorThumb': authorProfile
-              .substring(0, authorProfile.length-1),
-          'author': (/target="_blank"\>(.*)\</.exec(
-              html,
-          ) as string[])[1],
-          'uploadedAt': (html.match(
-              /<p>(.+)<\/p>/,
-          ) as string[])[1],
-          'likesCount': nums[0],
-          'commentsCount': nums[1],
-          'sharesCount': nums[2],
-        },
       },
+      'author': {
+        'username': (/target="_blank"\>(.*)\</.exec(
+            html,
+        ) as string[])[1],
+        'thumb': authorProfile
+            .substring(0, authorProfile.length-1),
+      },
+      'uploadedAt': (html.match(
+          /<p>(.+)<\/p>/,
+      ) as string[])[1],
+      'likesCount': nums[0] as unknown as number,
+      'commentsCount': nums[1] as unknown as number,
+      'sharesCount': nums[2] as unknown as number,
     };
   }
 }

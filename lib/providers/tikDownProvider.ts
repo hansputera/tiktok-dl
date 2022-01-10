@@ -17,6 +17,8 @@ export class TikDownProvider extends BaseProvider {
 
   public client = getFetch('https://tikdown.org');
 
+  public maintenance = undefined;
+
   /**
      * @param {string} url
      *
@@ -58,7 +60,7 @@ export class TikDownProvider extends BaseProvider {
   extract(html: string): ExtractedInfo {
     const urls = matchLink(html) as string[];
     return {
-      'result': {
+      'video': {
         'thumb': urls.shift(),
         'urls': urls,
       },

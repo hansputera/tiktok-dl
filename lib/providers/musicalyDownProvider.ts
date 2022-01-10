@@ -1,5 +1,4 @@
 import {getFetch} from '..';
-import {handleException} from '../decorators';
 import {BaseProvider, ExtractedInfo} from './baseProvider';
 
 /**
@@ -15,12 +14,13 @@ export class MusicalyDown extends BaseProvider {
     return 'musicalydown';
   }
 
-    /**
+  public maintenance = undefined;
+
+  /**
      *
      * @param {string} url - Video Tiktok URL
-     * @return {string}
+     * @return {Promise<ExtractedInfo>}
      */
-    @handleException
   public async fetch(url: string): Promise<ExtractedInfo> {
     const res = await this.client('./', {
       'headers': {
@@ -52,22 +52,21 @@ export class MusicalyDown extends BaseProvider {
     return this.extract(response.body);
   }
 
-    /**
+  /**
      *
      * @param {string} html - Raw HTML
      * @return {ExtractedInfo}
      */
-    public extract(html: string): ExtractedInfo {
-      const matchUrls = (html
-          .match(/<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi) as string[]);
-      const urls = matchUrls.map((url) =>
+  public extract(html: string): ExtractedInfo {
+    const matchUrls = (html
+        .match(/<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi) as string[]);
+    const urls = matchUrls.map((url) =>
       /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi.exec(url)?.[1] as string);
-      return {
-        'error': undefined,
-        'result': {
-          urls,
-          'thumb': /img class="responsive-img" src="(.*?)"/gi.exec(html)?.[1],
-        },
-      };
-    }
+    return {
+      'video': {
+        'urls': urls,
+        'thumb': /img class="responsive-img" src="(.*?)"/gi.exec(html)?.[1],
+      },
+    };
+  }
 }
