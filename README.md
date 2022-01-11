@@ -26,7 +26,7 @@ Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 3. Add environment variable with `REDIS_URL` as the name, and fill the value using your redis url.
 
 ## ☁️ Endpoints
-Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
+Check [this](https://docs.tiktok-dl.tslab.site) out.
 
 ## 🔥 Credits + Source
 
