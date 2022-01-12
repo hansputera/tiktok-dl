@@ -27,7 +27,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         ow.optional.boolean : ow.optional.string,
     }));
 
-    const provider = getProvider((req.query.type || req.body.type) ?? 'random');
+    const provider = getProvider((req.query && req.query.type || req.body && req.body.type) ?? 'random');
     if (!provider) {
       return res.status(400).json({
         'error': 'Invalid provider',

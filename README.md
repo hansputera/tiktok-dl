@@ -26,7 +26,7 @@ Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 3. Add environment variable with `REDIS_URL` as the name, and fill the value using your redis url.
 
 ## ☁️ Endpoints
-Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
+Check [this](https://docs.tiktok-dl.tslab.site) out.
 
 ## 🔥 Credits + Source
 
@@ -37,12 +37,12 @@ Available on [Wiki](https://github.com/hansputera/tiktok-dl/wiki/Endpoints)
 - [TTDownloader](https://ttdownloader.com)
 - [Musically Down](https://musicaldown.com)
 - [DLTik](https://dltik.com/)
-- [TTSave](https://ttsave.app) (Won't work)
+- [TTSave](https://ttsave.app)
 - [DDDTik](https://dddtik.com)
 - [TikDown](https://tikdown.org)
 - [DownTik](https://downtik.net)
 - [LoveTik](https://lovetik.com)
 - [Tokup](https://tokup.app)
-- [TikTokDownloaderOne](https://tiktokdownloader.one) (TTSave alternative)
+- [TikTokDownloaderOne](https://tiktokdownloader.one)
 
 🧗‍♀️ Contribution(s) are welcome!
