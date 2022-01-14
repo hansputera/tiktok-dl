@@ -5,11 +5,10 @@ import {BaseProvider} from '../lib/providers/baseProvider';
 import {rotateProvider} from '../lib/rotator';
 import {ratelimitMiddleware} from '../middleware/ratelimit';
 
-const providersType = Providers.map((p) => p.resourceName());
-
 export default async (req: VercelRequest, res: VercelResponse) => {
   try {
     await ratelimitMiddleware(req);
+    const providersType = Providers.map((p) => p.resourceName());
     ow(req.method === 'POST' ? req.body : req.query, ow.object.partialShape({
       'url': ow.string.url.validate((v) => ({
         'validator': /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.*)?\/(.*)?$/gi
@@ -44,7 +43,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
     return res.status(200).json(result);
   } catch (e) {
-    return res.status(400).json({
+    return res.status(500).json({
       'error': (e as Error).message,
     });
   }
