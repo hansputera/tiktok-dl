@@ -2,7 +2,8 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "./api/vercel.ts"
+            "destination": "/api/serverless.ts"
         }
-    ]
+    ],
+    "version": 2
 }

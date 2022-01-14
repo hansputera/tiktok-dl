@@ -1,12 +1,15 @@
 import fastify from 'fastify';
-import {VercelRequest, VercelResponse} from '@vercel/node';
+import type {
+  VercelRequest,
+  VercelResponse,
+} from '@vercel/node';
 
 const app = fastify({
   trustProxy: true,
 });
 
 app.register(
-    import('../web/index'),
+    import('../web'),
 );
 
 export default async (req: VercelRequest, res: VercelResponse) => {
