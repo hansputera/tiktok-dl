@@ -1,0 +1,22 @@
+import {RouterHandler} from '../route';
+import {FastifyInstance, FastifyRequest, FastifyReply} from 'fastify';
+
+/**
+ * @class YourRoute
+ */
+export class YourRoute extends RouterHandler {
+  /**
+     * @param {FastifyInstance} app
+     */
+  constructor(app: FastifyInstance) {
+    super(app, '/route', 'GET');
+  }
+
+  /**
+   * @param {FastifyRequest} req
+   * @param {FastifyReply} reply
+   */
+  async exec(req: FastifyRequest, reply: FastifyReply) {
+    // do want you want here.
+  }
+}
