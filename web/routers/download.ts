@@ -40,7 +40,8 @@ export class DownloadRoute extends RouterHandler {
         } catch (e) {
           next({
             statusCode: 400,
-            ...e as Error,
+            message: (e as Error).message,
+            name: 'InvalidArguments',
           });
         }
       },

@@ -6,7 +6,7 @@ const app = fastify({
 });
 
 app.register(
-    import('../web'),
+    import('../web/index'),
 );
 
 export default async (req: VercelRequest, res: VercelResponse) => {
