@@ -1,6 +1,6 @@
 import {getFetch} from '..';
-import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {keyGeneratorTTSave, matchLink} from './util';
+import {BaseProvider, ExtractedInfo} from './base';
+import {keyGeneratorTTSave, matchLink} from './utils';
 
 
 /**

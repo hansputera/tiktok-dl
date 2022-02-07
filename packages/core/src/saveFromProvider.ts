@@ -1,6 +1,6 @@
 import {getFetch} from '..';
-import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {deObfuscateSaveFromScript} from './util';
+import {BaseProvider, ExtractedInfo} from './base';
+import {deObfuscateSaveFromScript} from './utils';
 
 /**
  * @class saveFromProvider

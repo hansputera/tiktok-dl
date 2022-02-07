@@ -1,6 +1,6 @@
 import {getFetch} from '..';
-import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {deObfuscate, matchLink} from './util';
+import {BaseProvider, ExtractedInfo} from './base';
+import {deObfuscate, matchLink} from './utils';
 
 /**
  * @class SnaptikProvider

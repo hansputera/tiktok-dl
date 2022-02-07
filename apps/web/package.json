@@ -1,0 +1,13 @@
+{
+	"name": "tiktok-dl-web",
+	"description": "TikTok-DL Project Website",
+	"version": "1.4.1",
+	"license": "MIT",
+	"dependencies": {
+		"ioredis": "^4.28.0",
+		"ow": "^0.28.1"
+	},
+	"scripts": {
+		"build": "echo build"
+	}
+}

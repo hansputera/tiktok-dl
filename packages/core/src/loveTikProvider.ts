@@ -1,4 +1,4 @@
-import {BaseProvider, ExtractedInfo} from './baseProvider';
+import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '..';
 
 /**

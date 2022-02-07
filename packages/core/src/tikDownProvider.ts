@@ -1,6 +1,6 @@
-import {BaseProvider, ExtractedInfo} from './baseProvider';
+import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '..';
-import {matchLink} from './util';
+import {matchLink} from './utils';
 
 /**
  * @class TikDownProvider

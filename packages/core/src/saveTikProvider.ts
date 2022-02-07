@@ -1,6 +1,6 @@
-import {BaseProvider, ExtractedInfo} from './baseProvider';
+import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '..';
-import {matchCustomDownload} from './util';
+import {matchCustomDownload} from './utils';
 
 /**
  * @class SaveTikProvider

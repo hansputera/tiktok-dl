@@ -1,4 +1,4 @@
-import type {BaseProvider} from './baseProvider';
+import type {BaseProvider} from './base';
 
 import {MusicalyDown} from './musicalyDownProvider';
 import {SnaptikProvider} from './snaptikProvider';

@@ -1,6 +1,6 @@
 import {getFetch} from '..';
-import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {deObfuscate, matchCustomDownload} from './util';
+import {BaseProvider, ExtractedInfo} from './base';
+import {deObfuscate, matchCustomDownload} from './utils';
 
 /**
  * @class TikmateProvider
@@ -63,4 +63,4 @@ export class TikmateProvider extends BaseProvider {
       },
     };
   }
-};
+}

@@ -1,5 +1,5 @@
-import {BaseProvider, ExtractedInfo} from './baseProvider';
-import {getFetch} from '../fetch';
+import {BaseProvider, ExtractedInfo} from './base';
+import {getFetch} from '..';
 
 /**
  * @class TokupProvider

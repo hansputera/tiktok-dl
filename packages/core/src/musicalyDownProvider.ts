@@ -1,5 +1,5 @@
 import {getFetch} from '..';
-import {BaseProvider, ExtractedInfo} from './baseProvider';
+import {BaseProvider, ExtractedInfo} from './base';
 
 /**
  * @class MusicalyDown
