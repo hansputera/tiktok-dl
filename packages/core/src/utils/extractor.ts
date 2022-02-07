@@ -1,5 +1,5 @@
 import {getProvider} from '..';
-import type {BaseProvider} from '../baseProvider';
+import type {BaseProvider} from '../base';
 
 import {NodeVM} from 'vm2';
 
