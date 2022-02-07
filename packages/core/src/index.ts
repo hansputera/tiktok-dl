@@ -40,3 +40,5 @@ export const getProvider = (name: string) => name.toLowerCase() !== 'random' ?
 Providers.find(
     (p) => p.resourceName() === name.toLowerCase(),
 ) : getRandomProvider();
+
+export { BaseProvider };
