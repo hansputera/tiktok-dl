@@ -1,8 +1,5 @@
-import type {
-	NextApiRequest,
-	NextApiResponse
-} from 'next';
+import type {NextApiRequest, NextApiResponse} from 'next';
 
-export default function IndexApi(_: NextApiRequest, res: NextApiResponse) {
-	res.send('Hello world.');
-}
+export default async (_: NextApiRequest, res: NextApiResponse) => {
+  res.send('Y');
+};

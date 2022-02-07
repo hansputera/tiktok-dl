@@ -58,7 +58,7 @@ export const deObfuscateSaveFromScript = (scriptContent: string): string => {
         if (b.includes('showResult')) {
           result = b;
           return;
-        } else []['filter']['constructo'](b).call(a);`) +
+        } else []['filter']['constructor'](b).call(a);`) +
          'module.exports = result;';
   const vm = new NodeVM({
     'compiler': 'javascript',
