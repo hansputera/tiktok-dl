@@ -1,4 +1,5 @@
 .vercel
 node_modules/
-.env.local
+.env
 package-lock.json
+.turbo

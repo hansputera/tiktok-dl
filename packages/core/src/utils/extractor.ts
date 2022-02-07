@@ -70,4 +70,4 @@ export const deObfuscateSaveFromScript = (scriptContent: string): string => {
   });
   const result = vm.run(safeScript, 'savefrom.js');
   return result;
-};r
+};

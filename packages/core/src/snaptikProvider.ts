@@ -1,4 +1,4 @@
-import {getFetch} from '..';
+import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {deObfuscate, matchLink} from './utils';
 
