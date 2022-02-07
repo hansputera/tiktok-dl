@@ -17,11 +17,16 @@
     "eslint": "^8.2.0",
     "eslint-config-google": "^0.14.0",
     "husky": "^7.0.4",
+    "turbo": "^1.1.2",
     "typescript": "^4.4.4"
   },
   "scripts": {
     "build": "echo build",
     "lint": "eslint \"+(lib|api|middleware)/**/*.ts\" --fix",
     "prepare": "husky install"
-  }
+  },
+  "workspaces": [
+	"packages/*"
+	"apps/*"
+  ]
 }

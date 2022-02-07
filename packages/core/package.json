@@ -1,0 +1,11 @@
+{
+	"name": "tiktok-dl-core",
+	"version": "1.4.1",
+	"main": "./index.ts",
+	"license": "MIT",
+	"description": "TikTok-DL Project Core",
+	"dependencies": {
+		"got": "^11.8.2",
+		"vm2": "^3.9.5"
+	}
+}
