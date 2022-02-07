@@ -1,4 +1,4 @@
-import type {BaseProvider} from './base';
+import type {BaseProvider, ExtractedInfo} from './base';
 
 import {MusicalyDown} from './musicalyDownProvider';
 import {SnaptikProvider} from './snaptikProvider';
@@ -41,4 +41,4 @@ Providers.find(
     (p) => p.resourceName() === name.toLowerCase(),
 ) : getRandomProvider();
 
-export { BaseProvider };
+export {BaseProvider, ExtractedInfo};
