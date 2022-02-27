@@ -13,9 +13,9 @@
     "apps/*"
   ],
   "scripts": {
-	"build": "turbo run build",
-	"dev": "turbo run dev --parallel",
-	"lint": "turbo run lint"
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint"
   },
   "packageManager": "yarn@1.22.17"
 }
