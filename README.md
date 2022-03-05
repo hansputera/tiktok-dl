@@ -10,8 +10,8 @@ Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 
 ## Development 👷
 - Clone/fork into a directory you want.
-- Install all dependencies correctly (`pnpm install`)
-- Ran `pnpm run dev` (default web port: `3000`)
+- Install all dependencies correctly (`yarn install`)
+- Ran `yarn dev` (default web port: `3000`)
 
 # Configuration 🔑
 

@@ -5,7 +5,8 @@
 	"files": [
 		"eslint.js",
 		"eslint.typescript.js",
-		"useragents.js"
+		"useragents.js",
+		"useragents.d.ts"
 	],
 	"dependencies": {
 		"eslint-config-google": "^0.14.0"
