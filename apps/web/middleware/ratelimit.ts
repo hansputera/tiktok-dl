@@ -5,7 +5,7 @@ import {client} from '../lib';
 export const ratelimitMiddleware = async (req: NextApiRequest, res: NextApiResponse) => {
   const ip = req.headers['x-real-ip'] ||
     req.headers['x-forwarded-for'];
-  if (!rateLimitConfig.enable) return true;
+  if (!rateLimitConfig.enable || process.env.NODE_ENV === 'development') return true;
     else if (!ip) {
       return res.status(401).json({ 'message': 'Couldn\'t find your real ip address.' });
     }
