@@ -10,7 +10,7 @@ export const matchTikTokData = (html: string): string => {
   );
 
   if (data) {
-    return matches[1].replace(/;window.+/gi, '');
+    return data[1].replace(/;window.+/gi, '');
   } else {
     return '';
   }
