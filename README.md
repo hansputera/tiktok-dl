@@ -3,16 +3,15 @@
 Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 
 ## 〽️ Technology/Dependencies
+- [Turbo Repo](https://turborepo.org)
 - [Got](https://npmjs.com/got)
 - [Ow](https://npmjs.com/ow) 
 - [VM2](https://npmjs.com/vm2)
 
-## Develop 👷
+## Development 👷
 - Clone/fork into a directory you want.
-- Install all dependencies correctly (`yarn install` or `npm install`)
-- Install vercel cli too with `npm install vercel -g` or `yarn global add vercel`
-- Ran `vercel dev` for development (default port is: `3000`)
-> Use `vercel --prod` for production use 😎
+- Install all dependencies correctly (`pnpm install`)
+- Ran `pnpm run dev` (default web port: `3000`)
 
 # Configuration 🔑
 
