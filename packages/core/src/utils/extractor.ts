@@ -68,7 +68,7 @@ export const matchCustomDownload = (
           (url) =>
             (
                     getProvider(provider) as BaseProvider
-            ).client.defaults.options.prefixUrl.slice(0, -1) +
+            ).client!.defaults.options.prefixUrl.slice(0, -1) +
                 url.slice(0, -3),
       );
 
