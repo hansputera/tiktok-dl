@@ -10,5 +10,9 @@
 	},
 	"scripts": {
 		"lint": "eslint \"+(src)/**/*.ts\" --fix"
+	},
+	"devDependencies": {
+		"@typescript-eslint/parser": "^5.13.0",
+		"eslint": "^8.10.0"
 	}
 }

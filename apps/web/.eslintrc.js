@@ -1,4 +1,4 @@
-const eslintConfigs = require('tiktok-dl-config/eslint');
+const eslintConfigs = require('tiktok-dl-config/eslint.typescript');
 
 module.exports = {
 	...eslintConfigs,
