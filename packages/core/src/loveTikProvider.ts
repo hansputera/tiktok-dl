@@ -23,17 +23,15 @@ export class LoveTikProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
   async fetch(url: string): Promise<ExtractedInfo> {
-    const response = await this.client.post(
-        './api/ajax/search', {
-          'form': {
-            'query': url,
-          },
-          'headers': {
-            'Origin': 'https://lovetik.com/',
-            'Referer': 'https://lovetik.com/',
-          },
-        },
-    );
+    const response = await this.client.post('./api/ajax/search', {
+      form: {
+        query: url,
+      },
+      headers: {
+        Origin: 'https://lovetik.com/',
+        Referer: 'https://lovetik.com/',
+      },
+    });
 
     return this.extract(response.body);
   }
@@ -47,20 +45,20 @@ export class LoveTikProvider extends BaseProvider {
 
     if (json.mess) {
       return {
-        'error': json.mess,
+        error: json.mess,
       };
     }
 
     return {
-      'music': {
-        'url': json.links.pop().a,
+      music: {
+        url: json.links.pop().a,
       },
-      'video': {
-        'thumb': json.cover,
-        'urls': json.links.map((l: Record<string, unknown>) => l.a),
+      video: {
+        thumb: json.cover,
+        urls: json.links.map((l: Record<string, unknown>) => l.a),
       },
-      'author': {
-        'username': json.author.replace(/(<([^>]+)>)/ig, ''),
+      author: {
+        username: json.author.replace(/(<([^>]+)>)/gi, ''),
       },
     };
   }

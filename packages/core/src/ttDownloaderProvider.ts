@@ -18,25 +18,26 @@ export class TTDownloader extends BaseProvider {
   public maintenance = undefined;
 
   /**
-   *
-   * @param {string} url - Video TikTok URL
-   * @return {Promise<ExtractedInfo>}
-   */
+     *
+     * @param {string} url - Video TikTok URL
+     * @return {Promise<ExtractedInfo>}
+     */
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting token and cookies
     const firstResponse = await this.client('./');
-    const token = (firstResponse.body
-        .match(/name="token" value="(.*)?"/) as string[])[1];
+    const token = (
+            firstResponse.body.match(/name="token" value="(.*)?"/) as string[]
+    )[1];
     const videoResponse = await this.client.post('./req', {
       form: {
-        'token': token,
-        'format': '',
-        'url': url,
+        token: token,
+        format: '',
+        url: url,
       },
       headers: {
-        'Origin': 'https://ttdownloader.com',
-        'Referer': 'https://ttdownloader.com',
-        'Cookie': firstResponse.headers['set-cookie']?.toString(),
+        Origin: 'https://ttdownloader.com',
+        Referer: 'https://ttdownloader.com',
+        Cookie: firstResponse.headers['set-cookie']?.toString(),
       },
     });
 
@@ -44,17 +45,17 @@ export class TTDownloader extends BaseProvider {
   }
 
   /**
-   *
-   * @param {string} html - HTML Raw
-   * @return {ExtractedInfo}
-   */
+     *
+     * @param {string} html - HTML Raw
+     * @return {ExtractedInfo}
+     */
   extract(html: string): ExtractedInfo {
     const urls = matchLink(html);
     urls?.pop(); // remove 'https://snaptik.fans'
     return {
-      'video': {
-        'urls': urls as string[],
+      video: {
+        urls: urls as string[],
       },
     };
   }
-};
+}

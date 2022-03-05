@@ -28,26 +28,23 @@ export class TikDownProvider extends BaseProvider {
     const response = await this.client('./');
 
     const token = (
-            response.body.match(
-                /name="_token" value="([^""]+)"/) as string[]
+            response.body.match(/name="_token" value="([^""]+)"/) as string[]
     )[1];
 
-    const responseAjax = await this.client.post(
-        './getAjax', {
-          'form': {
-            'url': url,
-            '_token': token,
-          },
-          'headers': {
-            'x-csrf-token': token,
-            'cookie': response.headers['set-cookie']?.toString(),
-          },
-        },
-    );
+    const responseAjax = await this.client.post('./getAjax', {
+      form: {
+        url: url,
+        _token: token,
+      },
+      headers: {
+        'x-csrf-token': token,
+        'cookie': response.headers['set-cookie']?.toString(),
+      },
+    });
 
     if (!JSON.parse(responseAjax.body).status) {
       return {
-        'error': 'Something was wrong',
+        error: 'Something was wrong',
       };
     }
     return this.extract(JSON.parse(responseAjax.body).html);
@@ -60,9 +57,9 @@ export class TikDownProvider extends BaseProvider {
   extract(html: string): ExtractedInfo {
     const urls = matchLink(html) as string[];
     return {
-      'video': {
-        'thumb': urls.shift(),
-        'urls': urls,
+      video: {
+        thumb: urls.shift(),
+        urls: urls,
       },
     };
   }

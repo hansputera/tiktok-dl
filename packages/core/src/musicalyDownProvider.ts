@@ -23,29 +23,26 @@ export class MusicalyDown extends BaseProvider {
      */
   public async fetch(url: string): Promise<ExtractedInfo> {
     const res = await this.client('./', {
-      'headers': {
-        'Accept': '*/*',
-        'Referer': this.client.defaults.options.prefixUrl,
-        'Origin': this.client.defaults.options.prefixUrl,
+      headers: {
+        Accept: '*/*',
+        Referer: this.client.defaults.options.prefixUrl,
+        Origin: this.client.defaults.options.prefixUrl,
       },
     });
-    const tokens = (
-      res.body.match(
-          /input name="([^""]+)" type="hidden" value="([^""]+)"/) as string[]
-    );
+    const tokens = res.body.match(
+        /input name="([^""]+)" type="hidden" value="([^""]+)"/,
+    ) as string[];
     const response = await this.client.post('./download', {
       form: {
-        [(
-          res.body.match(/input name="([^"]+)/) as string[]
-        )[1]]: url,
+        [(res.body.match(/input name="([^"]+)/) as string[])[1]]: url,
         [tokens[1]]: tokens[2],
-        'verify': 1,
+        verify: 1,
       },
       headers: {
-        'Cookie': res.headers['set-cookie']?.toString(),
-        'Accept': '*/*',
-        'Referer': this.client.defaults.options.prefixUrl,
-        'Origin': this.client.defaults.options.prefixUrl,
+        Cookie: res.headers['set-cookie']?.toString(),
+        Accept: '*/*',
+        Referer: this.client.defaults.options.prefixUrl,
+        Origin: this.client.defaults.options.prefixUrl,
       },
     });
 
@@ -58,14 +55,21 @@ export class MusicalyDown extends BaseProvider {
      * @return {ExtractedInfo}
      */
   public extract(html: string): ExtractedInfo {
-    const matchUrls = (html
-        .match(/<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi) as string[]);
-    const urls = matchUrls.map((url) =>
-      /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi.exec(url)?.[1] as string);
+    const matchUrls = html.match(
+        /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi,
+    ) as string[];
+    const urls = matchUrls.map(
+        (url) =>
+                /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi.exec(
+                    url,
+                )?.[1] as string,
+    );
     return {
-      'video': {
-        'urls': urls,
-        'thumb': /img class="responsive-img" src="(.*?)"/gi.exec(html)?.[1],
+      video: {
+        urls: urls,
+        thumb: /img class="responsive-img" src="(.*?)"/gi.exec(
+            html,
+        )?.[1],
       },
     };
   }

@@ -30,43 +30,41 @@ export class SaveTikProvider extends BaseProvider {
             response.body.match(/id="token" value="([^""]+)"/) as string[]
     )[1];
 
-    const responseAction = await this.client.post(
-        './action.php', {
-          'form': {
-            'url': url,
-            'token': token,
-          },
-          'headers': {
-            'cookie': response.headers['set-cookie']?.toString(),
-            'Referer': 'https://savetik.net/',
-            'Origin': 'https://savetik.net',
-          },
-        },
-    );
+    const responseAction = await this.client.post('./action.php', {
+      form: {
+        url: url,
+        token: token,
+      },
+      headers: {
+        cookie: response.headers['set-cookie']?.toString(),
+        Referer: 'https://savetik.net/',
+        Origin: 'https://savetik.net',
+      },
+    });
 
     if (JSON.parse(responseAction.body).error) {
       return {
-        'error': JSON.parse(responseAction.body).message,
+        error: JSON.parse(responseAction.body).message,
       };
-    };
+    }
 
     return this.extract(JSON.parse(responseAction.body).data);
   }
 
   /**
-   * @param {string} html
-   * @return {ExtractedInfo}
-   */
+     * @param {string} html
+     * @return {ExtractedInfo}
+     */
   extract(html: string): ExtractedInfo {
     const urls = matchCustomDownload('savetik', html);
 
     return {
-      'music': {
-        'url': urls?.pop() as string,
+      music: {
+        url: urls?.pop() as string,
       },
-      'video': {
-        'thumb': urls?.shift(),
-        'urls': urls as string[],
+      video: {
+        thumb: urls?.shift(),
+        urls: urls as string[],
       },
     };
   }

@@ -25,7 +25,7 @@ export class SaveFromProvider extends BaseProvider {
      */
   public async fetch(url: string): Promise<ExtractedInfo> {
     const response = await this.client.post('./savefrom.php', {
-      'form': {
+      form: {
         'sf_url': url,
         'sf_submit': '',
         'new': '2',
@@ -36,9 +36,9 @@ export class SaveFromProvider extends BaseProvider {
         'channel': 'Downloader',
         'sf-nomad': '1',
       },
-      'headers': {
-        'Origin': 'https://id.savefrom.net',
-        'Referer': 'https://id.savefrom.net',
+      headers: {
+        Origin: 'https://id.savefrom.net',
+        Referer: 'https://id.savefrom.net',
       },
     });
 
@@ -53,16 +53,18 @@ export class SaveFromProvider extends BaseProvider {
   extract(html: string): ExtractedInfo {
     const deobfuscated = deObfuscateSaveFromScript(html);
     const json = JSON.parse(
-        (deobfuscated.match(/\({(.*)}\)/) as string[])[0]
-            .replace(/(\(|\))/g, ''),
+        (deobfuscated.match(/\({(.*)}\)/) as string[])[0].replace(
+            /(\(|\))/g,
+            '',
+        ),
     );
     return {
-      'video': {
-        'thumb': json.thumb,
-        'id': json.id,
-        'urls': json.url.map((x: { url: string; }) => x.url),
-        'duration': json.meta.duration,
-        'title': json.meta.title,
+      video: {
+        thumb: json.thumb,
+        id: json.id,
+        urls: json.url.map((x: {url: string}) => x.url),
+        duration: json.meta.duration,
+        title: json.meta.title,
       },
     };
   }

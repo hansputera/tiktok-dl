@@ -18,48 +18,50 @@ export class TikmateProvider extends BaseProvider {
   public maintenance = undefined;
 
   /**
-   *
-   * @param {string} url - Video TikTok URL
-   * @return {Promise<ExtractedInfo>}
-   */
+     *
+     * @param {string} url - Video TikTok URL
+     * @return {Promise<ExtractedInfo>}
+     */
   public async fetch(url: string): Promise<ExtractedInfo> {
     // we need to get the token
 
     const response = await this.client('./');
-    const matchs = (
-      response.body.match(/id="token" value="(.*)?"/) as string[]);
+    const matchs = response.body.match(
+        /id="token" value="(.*)?"/,
+    ) as string[];
 
     const cookies = response.headers['cookie'];
 
     const abcResponse = await this.client.post('./abc.php', {
-      form: matchs ? {
-        'url': url,
-        'token': matchs[1],
-      } : {
-        'url': url,
-      },
+      form: matchs ?
+                {
+                  url: url,
+                  token: matchs[1],
+                } :
+                {
+                  url: url,
+                },
       headers: {
-        'Origin': this.client.defaults.options.prefixUrl,
-        'Referer': this.client.defaults.options.prefixUrl + '/',
-        'Cookie': cookies,
+        Origin: this.client.defaults.options.prefixUrl,
+        Referer: this.client.defaults.options.prefixUrl + '/',
+        Cookie: cookies,
       },
     });
 
     return this.extract(abcResponse.body);
   }
 
-
   /**
-   * Extract information from raw html
-   * @param {string} html - Raw HTML
-   * @return {ExtractedInfo}
-   */
+     * Extract information from raw html
+     * @param {string} html - Raw HTML
+     * @return {ExtractedInfo}
+     */
   extract(html: string): ExtractedInfo {
     const matchs = matchCustomDownload('tikmate', deObfuscate(html));
     return {
-      'video': {
-        'thumb': matchs.shift(),
-        'urls': matchs,
+      video: {
+        thumb: matchs.shift(),
+        urls: matchs,
       },
     };
   }

@@ -4,7 +4,8 @@
 	"description": "TikTok-DL Project Configuration",
 	"files": [
 		"eslint.js",
-		"eslint.typescript.js"
+		"eslint.typescript.js",
+		"useragents.js"
 	],
 	"dependencies": {
 		"eslint-config-google": "^0.14.0"

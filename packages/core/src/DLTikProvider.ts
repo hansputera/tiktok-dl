@@ -15,30 +15,33 @@ export class DLTikProvider extends BaseProvider {
   public client = getFetch('https://dltik.com');
 
   public maintenance = {
-    'reason': 'My prediction is that DLTik needs an active session to use.',
+    reason: 'My prediction is that DLTik needs an active session to use.',
   };
 
   /**
-   * @param {string} url - Video TikTok URL
-   * @return {Promise<ExtractedInfo>}
-   */
+     * @param {string} url - Video TikTok URL
+     * @return {Promise<ExtractedInfo>}
+     */
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting verification token
-    const response = await this.client('./#url=' +
-        encodeURIComponent(url));
+    const response = await this.client('./#url=' + encodeURIComponent(url));
     const token = (
-        response.body.match(/type="hidden" value="([^""]+)"/) as string[]
+            response.body.match(/type="hidden" value="([^""]+)"/) as string[]
     )[1];
 
     const dlResponse = await this.client.post('./', {
-      'form': {
-        'm': 'getlink',
-        'url': `https://m.tiktok.com/v/${
-          (/predownload\('([0-9]+)'\)/gi.exec(response.body) as string[])[1]
+      form: {
+        m: 'getlink',
+        url: `https://m.tiktok.com/v/${
+          (
+                        /predownload\('([0-9]+)'\)/gi.exec(
+                            response.body,
+                        ) as string[]
+          )[1]
         }.html`,
-        '__RequestVerificationToken': token,
+        __RequestVerificationToken: token,
       },
-      'headers': {
+      headers: {
         'Origin': this.client.defaults.options.prefixUrl,
         'Referer': response.url,
         'Cookie': response.headers['set-cookie']?.toString(),
@@ -51,33 +54,36 @@ export class DLTikProvider extends BaseProvider {
   }
 
   /**
-   *
-   * @param {string} html - Raw
-   * @return {ExtractedInfo}
-   */
+     *
+     * @param {string} html - Raw
+     * @return {ExtractedInfo}
+     */
   extract(html: string): ExtractedInfo {
     const json = JSON.parse(html);
     if (!json.status) {
       return {
-        'error': json.message,
+        error: json.message,
       };
     } else {
-    //   if (json.data.videoId === '7013188037203070234') {
-    //     return {
-    //       'error': 'Invalid url',
-    //     };
-    //   }
+      //   if (json.data.videoId === '7013188037203070234') {
+      //     return {
+      //       'error': 'Invalid url',
+      //     };
+      //   }
       return {
-        'video': {
-          'id': json.data.videoId,
-          'urls': [json.data.watermarkVideoUrl, json.data.destinationUrl],
-          'thumb': json.data.dynamicCover,
+        video: {
+          id: json.data.videoId,
+          urls: [
+            json.data.watermarkVideoUrl,
+            json.data.destinationUrl,
+          ],
+          thumb: json.data.dynamicCover,
         },
-        'music': {
-          'url': json.data.musicUrl,
+        music: {
+          url: json.data.musicUrl,
         },
-        'caption': json.data.desc,
+        caption: json.data.desc,
       };
     }
   }
-};
+}

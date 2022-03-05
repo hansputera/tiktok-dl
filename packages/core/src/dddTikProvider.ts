@@ -25,8 +25,8 @@ export class DDDTikProvider extends BaseProvider {
      */
   async fetch(url: string): Promise<ExtractedInfo> {
     const response = await this.client.post('./down.php', {
-      'form': {
-        'url': url,
+      form: {
+        url: url,
       },
     });
 
@@ -43,9 +43,9 @@ export class DDDTikProvider extends BaseProvider {
 
     const t = urls[1];
     return {
-      'video': {
-        'urls': urls.filter((u) => u !== t),
-        'thumb': t,
+      video: {
+        urls: urls.filter((u) => u !== t),
+        thumb: t,
       },
     };
   }

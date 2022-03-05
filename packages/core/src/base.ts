@@ -15,11 +15,14 @@ export interface ExtractedInfo {
         author?: string;
         id?: string;
         cover?: string;
+        album?: string;
+        duration?: number;
     };
     author?: {
         username?: string;
         thumb?: string;
         id?: string;
+        nick?: string;
     };
     caption?: string;
     playsCount?: number;
@@ -28,19 +31,19 @@ export interface ExtractedInfo {
     likesCount?: number;
     uploadedAt?: string;
     updatedAt?: string;
-};
+}
 
 export interface MaintenanceProvider {
     reason: string;
-};
+}
 
 /**
  * @class BaseProvider
  */
 export abstract class BaseProvider {
-    abstract client: Got;
+    abstract client?: Got;
     abstract maintenance?: MaintenanceProvider;
     abstract resourceName(): string;
     abstract fetch(url: string): Promise<ExtractedInfo>;
     abstract extract(html: string): ExtractedInfo;
-};
+}

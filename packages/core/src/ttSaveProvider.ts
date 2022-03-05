@@ -2,7 +2,6 @@ import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {keyGeneratorTTSave, matchLink} from './utils';
 
-
 /**
  * @class TTSave
  */
@@ -21,29 +20,31 @@ export class TTSave extends BaseProvider {
   };
 
   /**
-   *
-   * @param {string} url - TikTok Video URL
-   * @return {Promise<ExtractedInfo>}
-   */
+     *
+     * @param {string} url - TikTok Video URL
+     * @return {Promise<ExtractedInfo>}
+     */
   public async fetch(url: string): Promise<ExtractedInfo> {
     // getting token
     const response = await this.client('./');
 
     const token = (
-          response.body.match(/(m|doDownload)?\(e,"(.*)"\)}/) as string[]
-    ).filter((x) => x.length).pop() as string;
+            response.body.match(/(m|doDownload)?\(e,"(.*)"\)}/) as string[]
+        )
+        .filter((x) => x.length)
+        .pop() as string;
     const key = await keyGeneratorTTSave(token);
 
     const dlResponse = await this.client.post('./download.php', {
-      'json': {
-        'id': url,
-        'token': token,
-        'key': key,
+      json: {
+        id: url,
+        token: token,
+        key: key,
       },
-      'headers': {
-        'Origin': this.client.defaults.options.prefixUrl,
-        'Referer': this.client.defaults.options.prefixUrl,
-        'Cookie': response.headers['set-cookie']?.toString(), // no cookies :(
+      headers: {
+        Origin: this.client.defaults.options.prefixUrl,
+        Referer: this.client.defaults.options.prefixUrl,
+        Cookie: response.headers['set-cookie']?.toString(), // no cookies :(
         ...response.headers,
       },
     });
@@ -52,24 +53,24 @@ export class TTSave extends BaseProvider {
   }
 
   /**
-   *
-   * @param {string} html - HTML Raw
-   * @return {ExtractedInfo}
-   */
+     *
+     * @param {string} html - HTML Raw
+     * @return {ExtractedInfo}
+     */
   extract(html: string): ExtractedInfo {
-    const tiktokCDNs = (matchLink(html) as string[]).filter(
-        (x) => /http(s)?:\/\/(.*)?.tiktokcdn.com/gi.test(x),
+    const tiktokCDNs = (matchLink(html) as string[]).filter((x) =>
+      /http(s)?:\/\/(.*)?.tiktokcdn.com/gi.test(x),
     );
     const videoCDNs = tiktokCDNs.filter((x) => !/jpeg/gi.test(x));
 
     return {
-      'video': {
-        'thumb': tiktokCDNs.find((x) => /jpeg/gi.test(x)),
-        'urls': videoCDNs.filter((x) => !/music/gi.test(x)),
+      video: {
+        thumb: tiktokCDNs.find((x) => /jpeg/gi.test(x)),
+        urls: videoCDNs.filter((x) => !/music/gi.test(x)),
       },
-      'music': {
-        'url': videoCDNs.find((x) => /music/gi.test(x)) as string,
+      music: {
+        url: videoCDNs.find((x) => /music/gi.test(x)) as string,
       },
     };
   }
-};
+}
