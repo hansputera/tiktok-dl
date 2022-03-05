@@ -6,7 +6,8 @@ import {ratelimitMiddleware} from '../../middleware/ratelimit';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await ratelimitMiddleware(req, res);
+    const continueOrNah = await ratelimitMiddleware(req, res);
+    if (typeof continueOrNah !== 'boolean') return;
     const providersType = Providers.map((p) => p.resourceName());
     ow(req.body || req.query, ow.object.partialShape({
       'url': ow.string.url.validate((v) => ({

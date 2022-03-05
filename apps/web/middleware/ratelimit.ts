@@ -7,14 +7,15 @@ export const ratelimitMiddleware = async (req: NextApiRequest, res: NextApiRespo
     req.headers['x-forwarded-for'];
   if (!rateLimitConfig.enable) return true;
     else if (!ip) {
-      return res.status(401).send('Couldn\'t find your real ip address!')
+      return res.status(401).json({ 'message': 'Couldn\'t find your real ip address.' });
     }
     client.get('rate-' + ip, (_, result) => {
       if (result) {
         if (parseInt(result) > rateLimitConfig.maxRatelimitPerXSeconds) {
-          return res.status(429).send(
-            'Please try again, you are getting ratelimit!');
-        }
+          return res.status(429).json({
+		  'message': 'Please try again, you are getting ratelimit!'
+	  });
+	};
         client.incr('rate-' + ip);
         return true;
       } else {
