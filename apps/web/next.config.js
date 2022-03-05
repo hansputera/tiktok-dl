@@ -8,9 +8,11 @@ const { parsed: cusEnv } = require('dotenv').config({
 module.exports = withTM({
 	reactStrictMode: true,
 	webpack(config) {
-		config.plugins.push(
-			new webpack.EnvironmentPlugin(cusEnv)
-		);
+		if (typeof cusEnv !== 'undefined') {
+			config.plugins.push(
+				new webpack.EnvironmentPlugin(cusEnv)
+			);
+		}
 		return config;
 	}
 });
