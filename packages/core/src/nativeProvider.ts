@@ -7,85 +7,84 @@ import {matchTikTokData} from './utils';
  * @class NativeProvider
  */
 export class NativeProvider extends BaseProvider {
-  /**
+    /**
      * Get resource name.
      * @return {string}
      */
-  public resourceName(): string {
-    return 'native';
-  }
+    public resourceName(): string {
+        return 'native';
+    }
 
-  public maintenance = undefined;
-  public client = undefined;
+    public maintenance = undefined;
+    public client = undefined;
 
-  /**
+    /**
      * @param {string} url Tiktok video url
      * @return {Promise<ExtractedInfo>}
      */
-  async fetch(url: string): Promise<ExtractedInfo> {
-    const urlInstance = new URL(url);
+    async fetch(url: string): Promise<ExtractedInfo> {
+        const urlInstance = new URL(url);
+        const response = await getFetch(urlInstance.origin).get(
+            `.${urlInstance.pathname}`,
+            {
+                headers: {
+                    Referer: urlInstance.href,
+                    Origin: urlInstance.origin,
+                    'User-Agent': randomUA(),
+                },
+                timeout: {
+                    socket: 10000,
+                },
+            },
+        );
 
-    const response = await getFetch(urlInstance.origin).get(
-        urlInstance.pathname,
-        {
-          headers: {
-            'Referer': urlInstance.href,
-            'Origin': urlInstance.origin,
-            'User-Agent': randomUA(),
-          },
-          timeout: {
-            socket: 5000,
-          },
-        },
-    );
+        return this.extract(response.body);
+    }
 
-    return this.extract(response.body);
-  }
-
-  /**
-     * @param {string} html
+    /**
+     * @param {string} html Raw HTML Data
      * @return {ExtractedInfo}
      */
-  extract(html: string): ExtractedInfo {
-    const matches = matchTikTokData(html);
-    if (matches.length) {
-      const json = Object.values(
-          JSON.parse(matches).ItemModule,
-      )[0] as any;
+    extract(html: string): ExtractedInfo {
+        const matches = matchTikTokData(html);
+        if (matches.length) {
+            const json = Object.values(
+                JSON.parse(matches).ItemModule,
+            )[0] as any;
 
-      return {
-        video: {
-          id: json.id,
-          urls: [json.video.playAddr, json.video.downloadAddr],
-          thumb: json.video.cover,
-          duration: json.video.duration,
-        },
-        music: {
-          url: json.music.playUrl,
-          title: json.music.title,
-          author: json.music.authorName,
-          id: json.music.id,
-          cover: json.music.coverLarge,
-          album: json.music.album,
-          duration: json.music.duration,
-        },
-        author: {
-          username: json.author,
-          id: json.authorId,
-          thumb: json.avatarThumb,
-          nick: json.nickname,
-        },
-        caption: json.desc,
-        playsCount: json.stats.playCount,
-        sharesCount: json.stats.shareCount,
-        commentsCount: json.stats.commentCount,
-        likesCount: json.stats.diggCount,
-        uploadedAt: json.createTime,
-      };
-    } else {
-      return {
-        error: 'Something was wrong!',
-      };
+            return {
+                video: {
+                    id: json.id,
+                    urls: [json.video.playAddr, json.video.downloadAddr],
+                    thumb: json.video.cover,
+                    duration: json.video.duration,
+                },
+                music: {
+                    url: json.music.playUrl,
+                    title: json.music.title,
+                    author: json.music.authorName,
+                    id: json.music.id,
+                    cover: json.music.coverLarge,
+                    album: json.music.album,
+                    duration: json.music.duration,
+                },
+                author: {
+                    username: json.author,
+                    id: json.authorId,
+                    thumb: json.avatarThumb,
+                    nick: json.nickname,
+                },
+                caption: json.desc,
+                playsCount: json.stats.playCount,
+                sharesCount: json.stats.shareCount,
+                commentsCount: json.stats.commentCount,
+                likesCount: json.stats.diggCount,
+                uploadedAt: json.createTime,
+            };
+        } else {
+            return {
+                error: 'Something was wrong!',
+            };
+        }
     }
-  }
 }

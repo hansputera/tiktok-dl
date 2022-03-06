@@ -9,10 +9,12 @@
 		"vm2": "^3.9.6"
 	},
 	"scripts": {
-		"lint": "eslint \"+(src)/**/*.ts\" --fix"
+		"lint": "eslint \"+(src)/**/*.ts\" --fix",
+		"format": "prettier . --write"
 	},
 	"devDependencies": {
 		"@typescript-eslint/parser": "^5.13.0",
-		"eslint": "^8.10.0"
+		"eslint": "^8.10.0",
+		"prettier": "^2.5.1"
 	}
 }

@@ -17,29 +17,29 @@ import {DownloadOne} from './downloaderOneProvider';
 import {NativeProvider} from './nativeProvider';
 
 export const Providers: BaseProvider[] = [
-  new SnaptikProvider(),
-  new TikmateProvider(),
-  new MusicalyDown(),
-  new TTDownloader(),
-  new TTSave(), // won't work because we coudn't receive the cookie.
-  new DLTikProvider(),
-  new SaveFromProvider(),
-  new SaveTikProvider(),
-  new TikDownProvider(),
-  new DownTikProvider(), // SaveTik Mirror
-  new LoveTikProvider(),
-  new DDDTikProvider(),
-  new TokupProvider(), // ttsave alternative
-  new DownloadOne(),
-  new NativeProvider(),
+    new SnaptikProvider(),
+    new TikmateProvider(),
+    new MusicalyDown(),
+    new TTDownloader(),
+    new TTSave(), // won't work because we coudn't receive the cookie.
+    new DLTikProvider(),
+    new SaveFromProvider(),
+    new SaveTikProvider(),
+    new TikDownProvider(),
+    new DownTikProvider(), // SaveTik Mirror
+    new LoveTikProvider(),
+    new DDDTikProvider(),
+    new TokupProvider(), // ttsave alternative
+    new DownloadOne(),
+    new NativeProvider(),
 ];
 
 export const getRandomProvider = () =>
-  Providers[Math.floor(Math.random() * Providers.length)];
+    Providers[Math.floor(Math.random() * Providers.length)];
 
 export const getProvider = (name: string) =>
-    name.toLowerCase() !== 'random' ?
-        Providers.find((p) => p.resourceName() === name.toLowerCase()) :
-        getRandomProvider();
+    name.toLowerCase() !== 'random'
+        ? Providers.find((p) => p.resourceName() === name.toLowerCase())
+        : getRandomProvider();
 
 export {BaseProvider, ExtractedInfo};

@@ -5,7 +5,7 @@
  * @return {string | undefined}
  */
 export const keyGeneratorTTSave = async (token: string): Promise<string> => {
-  const expectedLen = token.length / 3;
+    const expectedLen = token.length / 3;
 
-  return token.split('').reverse().join('').slice(-expectedLen);
+    return token.split('').reverse().join('').slice(-expectedLen);
 };

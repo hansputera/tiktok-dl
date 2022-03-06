@@ -6,61 +6,61 @@ import {matchLink} from './utils';
  * @class TikDownProvider
  */
 export class TikDownProvider extends BaseProvider {
-  /**
+    /**
      * Get resource name.
      *
      * @return {string}
      */
-  public resourceName(): string {
-    return 'tikdown';
-  }
+    public resourceName(): string {
+        return 'tikdown';
+    }
 
-  public client = getFetch('https://tikdown.org');
+    public client = getFetch('https://tikdown.org');
 
-  public maintenance = undefined;
+    public maintenance = undefined;
 
-  /**
+    /**
      * @param {string} url
      *
      * @return {Promise<ExtractedInfo>}
      */
-  async fetch(url: string): Promise<ExtractedInfo> {
-    const response = await this.client('./');
+    async fetch(url: string): Promise<ExtractedInfo> {
+        const response = await this.client('./');
 
-    const token = (
+        const token = (
             response.body.match(/name="_token" value="([^""]+)"/) as string[]
-    )[1];
+        )[1];
 
-    const responseAjax = await this.client.post('./getAjax', {
-      form: {
-        url: url,
-        _token: token,
-      },
-      headers: {
-        'x-csrf-token': token,
-        'cookie': response.headers['set-cookie']?.toString(),
-      },
-    });
+        const responseAjax = await this.client.post('./getAjax', {
+            form: {
+                url: url,
+                _token: token,
+            },
+            headers: {
+                'x-csrf-token': token,
+                cookie: response.headers['set-cookie']?.toString(),
+            },
+        });
 
-    if (!JSON.parse(responseAjax.body).status) {
-      return {
-        error: 'Something was wrong',
-      };
+        if (!JSON.parse(responseAjax.body).status) {
+            return {
+                error: 'Something was wrong',
+            };
+        }
+        return this.extract(JSON.parse(responseAjax.body).html);
     }
-    return this.extract(JSON.parse(responseAjax.body).html);
-  }
 
-  /**
+    /**
      * @param {string} html
      * @return {ExtractedInfo}
      */
-  extract(html: string): ExtractedInfo {
-    const urls = matchLink(html) as string[];
-    return {
-      video: {
-        thumb: urls.shift(),
-        urls: urls,
-      },
-    };
-  }
+    extract(html: string): ExtractedInfo {
+        const urls = matchLink(html) as string[];
+        return {
+            video: {
+                thumb: urls.shift(),
+                urls: urls,
+            },
+        };
+    }
 }

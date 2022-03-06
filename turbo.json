@@ -11,6 +11,7 @@
 		"lint": {},
 		"dev": {
 			"cache": false
-		}
+		},
+		"format": {}
 	}
 }

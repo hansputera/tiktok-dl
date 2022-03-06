@@ -1,5 +1,5 @@
 module.exports = {
-	extends: ['google'],
+	extends: ['google', 'prettier'],
 	settings: {
 		next: {
 			rootDir: [

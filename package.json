@@ -15,7 +15,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
+    "lint": "turbo run lint --parallel",
+    "format": "turbo run format --parallel",
     "prepare": "husky install"
   },
   "packageManager": "yarn@3.2.0"
