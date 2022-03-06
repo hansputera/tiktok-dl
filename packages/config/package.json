@@ -6,7 +6,8 @@
 		"eslint.js",
 		"eslint.typescript.js",
 		"useragents.js",
-		"useragents.d.ts"
+		"useragents.d.ts",
+		"prettier.js"
 	],
 	"dependencies": {
 		"eslint-config-google": "^0.14.0"
