@@ -15,6 +15,7 @@ import {DDDTikProvider} from './dddTikProvider';
 import {TokupProvider} from './tokupProvider';
 import {DownloadOne} from './downloaderOneProvider';
 import {NativeProvider} from './nativeProvider';
+import {GetVidTikProvider} from './getVidTikProvider';
 
 export const Providers: BaseProvider[] = [
     new SnaptikProvider(),
@@ -32,6 +33,7 @@ export const Providers: BaseProvider[] = [
     new TokupProvider(), // ttsave alternative
     new DownloadOne(),
     new NativeProvider(),
+    new GetVidTikProvider(),
 ];
 
 export const getRandomProvider = () =>
