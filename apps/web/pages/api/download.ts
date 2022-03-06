@@ -56,8 +56,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         return res.status(200).json(result);
     } catch (e) {
-        return res.status(500).json({
-            error: (e as Error).message,
-        });
+        return res
+            .status((e as Error).name === 'ArgumentError' ? 400 : 500)
+            .json({
+                error: (e as Error).name + '|' + (e as Error).message,
+            });
     }
 };
