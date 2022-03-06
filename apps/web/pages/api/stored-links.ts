@@ -4,8 +4,7 @@ import {ratelimitMiddleware} from '../../middleware/ratelimit';
 import {matchLink} from 'tiktok-dl-core';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    const continueOrNah = await ratelimitMiddleware(req, res);
-    if (typeof continueOrNah !== 'boolean') return;
+    await ratelimitMiddleware(req, res);
     const keys = await client.keys('*');
     res.status(200).json(keys.filter((x) => matchLink(x)));
 };

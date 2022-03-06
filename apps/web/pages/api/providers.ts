@@ -3,8 +3,7 @@ import {Providers} from 'tiktok-dl-core';
 import {ratelimitMiddleware} from '../../middleware/ratelimit';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    const continueOrNah = await ratelimitMiddleware(req, res);
-    if (typeof continueOrNah !== 'boolean') return;
+    await ratelimitMiddleware(req, res);
 
     const providers = Providers.map((p) => ({
         name: p.resourceName(),
