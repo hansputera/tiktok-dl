@@ -43,5 +43,6 @@ Check [this](https://docs.tiktok-dl.tslab.site) out.
 - [LoveTik](https://lovetik.com)
 - [Tokup](https://tokup.app)
 - [TikTokDownloaderOne](https://tiktokdownloader.one)
+- [GetVidTik](https://getvidtik.com)
 
 🧗‍♀️ Contribution(s) are welcome!
