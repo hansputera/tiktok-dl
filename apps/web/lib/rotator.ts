@@ -1,6 +1,6 @@
-import {providerCache} from '../config';
-import {BaseProvider, ExtractedInfo, getRandomProvider} from 'tiktok-dl-core';
-import {client as redisClient} from './redis';
+import { providerCache } from "../config";
+import { BaseProvider, ExtractedInfo, getRandomProvider } from "tiktok-dl-core";
+import { client as redisClient } from "./redis";
 
 /**
  * Rotate provider.
@@ -10,11 +10,12 @@ import {client as redisClient} from './redis';
  * @return {Promise<ExtractedInfo>}
  */
 export const rotateProvider = async (
-    provider: BaseProvider, url: string,
-    skipOnError: boolean = true):
-    Promise<ExtractedInfo & { provider: string; }> => {
-//   await redisClient.del(url);
-//   console.log(provider.resourceName());
+  provider: BaseProvider,
+  url: string,
+  skipOnError: boolean = true
+): Promise<ExtractedInfo & { provider: string }> => {
+  //   await redisClient.del(url);
+  //   console.log(provider.resourceName());
   if (provider.maintenance) {
     return await rotateProvider(getRandomProvider(), url, skipOnError);
   }
@@ -28,11 +29,13 @@ export const rotateProvider = async (
       } else if (data.video && !data.video.urls.length) {
         return await rotateProvider(getRandomProvider(), url);
       } else {
-        redisClient.set(url,
-            JSON.stringify(
-                {...data, provider: provider.resourceName()}), 'ex',
-            providerCache);
-        return {...data, provider: provider.resourceName()};
+        redisClient.set(
+          url,
+          JSON.stringify({ ...data, provider: provider.resourceName() }),
+          "ex",
+          providerCache
+        );
+        return { ...data, provider: provider.resourceName() };
       }
     } catch (e) {
       if (skipOnError) {

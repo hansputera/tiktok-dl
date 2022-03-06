@@ -15,13 +15,15 @@
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev",
-		"lint": "next lint"
+		"lint": "next lint",
+		"format": "prettier . --write"
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "^12.0.10",
 		"@types/ioredis": "^4.28.7",
 		"@types/react": "^17.0.39",
 		"next-transpile-modules": "^9.0.0",
+		"prettier": "^2.5.1",
 		"tiktok-dl-config": "*",
 		"typescript": "latest"
 	}
