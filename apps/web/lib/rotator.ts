@@ -14,7 +14,9 @@ export const rotateProvider = async (
     url: string,
     skipOnError: boolean = true,
 ): Promise<ExtractedInfo & {provider: string}> => {
-    //   await redisClient.del(url);
+    if (process.env.NODE_ENV === 'development') {
+	    await redisClient.del(url);
+    }
     //   console.log(provider.resourceName());
     if (provider.maintenance) {
         return await rotateProvider(getRandomProvider(), url, skipOnError);

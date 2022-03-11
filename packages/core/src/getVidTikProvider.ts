@@ -48,11 +48,15 @@ export class GetVidTikProvider extends BaseProvider {
                     Referer: response.url,
                 },
                 followRedirect: false,
-            });
+		form: {
+			url,
+			token: matchs[1],
+		}
+	    });
 
             if (downloadResponse.statusCode === 302) {
                 return {
-                    error: 'The video is private or removed.',
+                    error: 'The video is private or removed. Please try again!',
                 };
             } else {
                 return this.extract(downloadResponse.body);
@@ -67,7 +71,7 @@ export class GetVidTikProvider extends BaseProvider {
      */
     extract(html: string): ExtractedInfo {
         const matchs = matchLink(html);
-        if (matchs) {
+	if (matchs) {
             const tiktokMatchs = matchs.filter((url) =>
                 /http(s)?:\/\/(.*)\.tiktok(cdn)?\.com/gi.test(url),
             );
