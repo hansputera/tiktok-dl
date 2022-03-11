@@ -77,9 +77,11 @@ export class GetVidTikProvider extends BaseProvider {
             );
 
             if (tiktokMatchs) {
-		const metadataMatchs = html.match(/<td>(.+)<\/td>/)![0].split(/<.*?>/g)
-			.filter((x) => x.length);
-		return {
+                const metadataMatchs = html
+                    .match(/<td>(.+)<\/td>/)![0]
+                    .split(/<.*?>/g)
+                    .filter((x) => x.length);
+                return {
                     video: {
                         thumb: tiktokMatchs[0],
                         urls: [tiktokMatchs[2], tiktokMatchs[3]], // [0] = no watermark, [1] = watermark
@@ -87,10 +89,10 @@ export class GetVidTikProvider extends BaseProvider {
                     music: {
                         url: tiktokMatchs[tiktokMatchs.length - 1], // soon, i'll use '.at(-1)'
                     },
-		    caption: metadataMatchs[3],
-		    author: {
-			    nick: metadataMatchs[1],
-		    }
+                    caption: metadataMatchs[3],
+                    author: {
+                        nick: metadataMatchs[1],
+                    },
                 };
             } else {
                 return {
