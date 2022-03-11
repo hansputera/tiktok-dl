@@ -48,11 +48,11 @@ export class GetVidTikProvider extends BaseProvider {
                     Referer: response.url,
                 },
                 followRedirect: false,
-		form: {
-			url,
-			token: matchs[1],
-		}
-	    });
+                form: {
+                    url,
+                    token: matchs[1],
+                },
+            });
 
             if (downloadResponse.statusCode === 302) {
                 return {
@@ -71,13 +71,15 @@ export class GetVidTikProvider extends BaseProvider {
      */
     extract(html: string): ExtractedInfo {
         const matchs = matchLink(html);
-	if (matchs) {
+        if (matchs) {
             const tiktokMatchs = matchs.filter((url) =>
                 /http(s)?:\/\/(.*)\.tiktok(cdn)?\.com/gi.test(url),
             );
 
             if (tiktokMatchs) {
-                return {
+		const metadataMatchs = html.match(/<td>(.+)<\/td>/)![0].split(/<.*?>/g)
+			.filter((x) => x.length);
+		return {
                     video: {
                         thumb: tiktokMatchs[0],
                         urls: [tiktokMatchs[2], tiktokMatchs[3]], // [0] = no watermark, [1] = watermark
@@ -85,6 +87,10 @@ export class GetVidTikProvider extends BaseProvider {
                     music: {
                         url: tiktokMatchs[tiktokMatchs.length - 1], // soon, i'll use '.at(-1)'
                     },
+		    caption: metadataMatchs[3],
+		    author: {
+			    nick: metadataMatchs[1],
+		    }
                 };
             } else {
                 return {
