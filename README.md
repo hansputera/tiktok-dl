@@ -9,6 +9,7 @@ Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 - [VM2](https://npmjs.com/vm2)
 
 ## Development 👷
+- Make sure you have [yarn](https://yarnpkg.com) installed, and you are using the [yarn berry](https://yarnpkg.com/getting-started/migration#step-by-step) version.
 - Clone/fork into a directory you want.
 - Install all dependencies correctly (`yarn install`)
 - Ran `yarn dev` (default web port: `3000`)
@@ -26,6 +27,9 @@ Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 
 ## ☁️ Endpoints
 Check [this](https://docs.tiktok-dl.tslab.site) out.
+
+## :bug: Bugs Report
+Feel free to open an issue if you have a problem or find a bug. That would be very helpful!
 
 ## 🔥 Credits + Source
 
