@@ -36,7 +36,6 @@ Check [this](https://docs.tiktok-dl.tslab.site) out.
 - [TTDownloader](https://ttdownloader.com)
 - [Musically Down](https://musicaldown.com)
 - [DLTik](https://dltik.com/)
-- [TTSave](https://ttsave.app)
 - [DDDTik](https://dddtik.com)
 - [TikDown](https://tikdown.org)
 - [DownTik](https://downtik.net)
