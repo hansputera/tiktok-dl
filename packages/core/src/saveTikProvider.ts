@@ -25,15 +25,9 @@ export class SaveTikProvider extends BaseProvider {
      */
     async fetch(url: string): Promise<ExtractedInfo> {
         const response = await this.client('./');
-
-        const token = (
-            response.body.match(/id="token" value="([^""]+)"/) as string[]
-        )[1];
-
         const responseAction = await this.client.post('./action.php', {
             form: {
                 url: url,
-                token: token,
             },
             headers: {
                 cookie: response.headers['set-cookie']?.toString(),
