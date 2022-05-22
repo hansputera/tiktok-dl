@@ -95,7 +95,9 @@ export class NativeProvider extends BaseProvider {
      */
     public getParams(): Shape | undefined {
         return {
-            'user-agent': ow.string.not.empty,
+            'user-agent': ow.string.not.empty
+                .minLength(5)
+                .message('Invalid user-agent'),
         };
     }
 }

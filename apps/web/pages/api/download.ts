@@ -46,12 +46,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 providers: providersType,
             });
         }
+
+        const params = provider.getParams();
+        if (params) ow(req.query || req.body, ow.object.partialShape(params));
+
         const result = await rotateProvider(
             provider as BaseProvider,
             req.query.url || req.body.url,
             req.method === 'POST'
                 ? req.body.rotateOnError
                 : !!req.query.rotateOnError,
+            Object.fromEntries(
+                Object.keys(params!).map((p) => [
+                    p,
+                    (req.query[p] as string) ?? req.body[p],
+                ]),
+            ),
         );
 
         return res.status(200).json(result);

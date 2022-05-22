@@ -7,12 +7,14 @@ import {client as redisClient} from './redis';
  * @param {BaseProvider} provider Provider instance
  * @param {string} url Video TikTok URL
  * @param {boolean?} skipOnError Rotate when error
+ * @param {Record<string,string>} params Advanced provider fetch options
  * @return {Promise<ExtractedInfo>}
  */
 export const rotateProvider = async (
     provider: BaseProvider,
     url: string,
     skipOnError: boolean = true,
+    params?: Record<string, string>,
 ): Promise<ExtractedInfo & {provider: string}> => {
     if (process.env.NODE_ENV === 'development') {
         await redisClient.del(url);
@@ -24,7 +26,7 @@ export const rotateProvider = async (
     const cachedData = await redisClient.get(url);
     if (!cachedData) {
         try {
-            const data = await provider.fetch(url);
+            const data = await provider.fetch(url, params ?? {});
             if (data.error) {
                 // switching to other provider
                 return await rotateProvider(getRandomProvider(), url);
