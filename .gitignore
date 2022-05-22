@@ -3,4 +3,8 @@ node_modules/
 .env
 package-lock.json
 .turbo
-.yarn/
+.yarn/cache
+.yarn/sdks
+.yarn/plugins
+.yarn/patches
+.yarn/*.gz
