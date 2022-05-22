@@ -26,7 +26,9 @@ export class SnaptikProvider extends BaseProvider {
         // get token
         const responseToken = await this.client('./');
         const token = (
-            responseToken.body.match(/name="token" value="([^""]+)"/) as string[]
+            responseToken.body.match(
+                /name="token" value="([^""]+)"/,
+            ) as string[]
         )[1];
 
         const response = await this.client('./abc.php', {
@@ -35,8 +37,8 @@ export class SnaptikProvider extends BaseProvider {
                 token,
             },
             headers: {
-                'Cookie': responseToken.headers['set-cookie']?.toString(),
-            }
+                Cookie: responseToken.headers['set-cookie']?.toString(),
+            },
         });
 
         return this.extract(response.body);
@@ -53,7 +55,7 @@ export class SnaptikProvider extends BaseProvider {
         return {
             video: {
                 thumb: results?.shift(),
-                urls: [...new Set(results.slice(0, results.length-1))],
+                urls: [...new Set(results.slice(0, results.length - 1))],
             },
         };
     }

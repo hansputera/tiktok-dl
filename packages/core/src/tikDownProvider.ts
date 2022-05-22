@@ -59,7 +59,7 @@ export class TikDownProvider extends BaseProvider {
         return {
             video: {
                 thumb: urls.shift(),
-                urls: urls,
+                urls: urls.filter((url) => /http(s)?:\/\/td-cdn\.pw\/api.php\?download=(.+)\.mp(3|4)/gi.test(url)),
             },
         };
     }

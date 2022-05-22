@@ -9,10 +9,8 @@ const {parsed: cusEnv} = require('dotenv').config({
 module.exports = withTM({
     reactStrictMode: true,
     webpack(config) {
-	// adding windicss plugin
-	config.plugins.push(
-		new WindiCSSWebpackPlugin(),
-	);
+        // adding windicss plugin
+        config.plugins.push(new WindiCSSWebpackPlugin());
         if (typeof cusEnv !== 'undefined') {
             config.plugins.push(new webpack.EnvironmentPlugin(cusEnv));
         }
