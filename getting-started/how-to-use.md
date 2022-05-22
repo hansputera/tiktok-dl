@@ -7,7 +7,7 @@ description: This page give an information how to use the API correctly.
 First, you need to know the Base URL of the TikTok-DL Rest API.
 
 {% hint style="info" %}
-Example: `https://tiktok-dl.tslab.site`
+Example: `https://tdl.besecure.eu.org`
 {% endhint %}
 
 Great! You're ready to use.
@@ -16,31 +16,7 @@ Great! You're ready to use.
 
 Currently, we only have 4 endpoints in the TikTok-DL Rest API v1.0.4.
 
-{% swagger method="get" path="api/ping" baseUrl="https://tiktok-dl.tslab.site/" summary="Getting ping response time from TikTok.com" %}
-{% swagger-description %}
-This endpoint isn't very important, but, you could check the response time from TikTok.com in miliseconds.
-{% endswagger-description %}
-
-{% swagger-response status="200: OK" description="It should return HTTP 200" %}
-```javascript
-{
-    "status": 200,
-    "took": miliseconds time, // example "1240"
-    "data": "OK"
-}
-```
-{% endswagger-response %}
-
-{% swagger-response status="500: Internal Server Error" description="An error occured in server, you should check the server logs or open an issue." %}
-```javascript
-{
-    // Response
-}
-```
-{% endswagger-response %}
-{% endswagger %}
-
-{% swagger method="get" path="api/download" baseUrl="https://tiktok-dl.tslab.site/" summary="Getting TikTok's video download urls with search params." %}
+{% swagger method="get" path="api/download" baseUrl="https://tdl.besecure.eu.org/" summary="Getting TikTok's video download urls with search params." %}
 {% swagger-description %}
 This endpoint will return download URLs without watermark and watermark.
 {% endswagger-description %}
@@ -101,7 +77,7 @@ Rotate provider when an error is returned.
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger method="post" path="api/download" baseUrl="https://tiktok-dl.tslab.site/" summary="Getting TikTok's video download urls with body." %}
+{% swagger method="post" path="api/download" baseUrl="https://tdl.besecure.eu.org/" summary="Getting TikTok's video download urls with body." %}
 {% swagger-description %}
 This endpoint will return download URLs without watermark and watermark.
 {% endswagger-description %}
@@ -165,7 +141,7 @@ Rotate provider when an error is returned.
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger method="get" path="api/stored-links" baseUrl="https://tiktok-dl.tslab.site/" summary="Getting cached TikTok's video URL." %}
+{% swagger method="get" path="api/stored-links" baseUrl="https://tdl.besecure.eu.org/" summary="Getting cached TikTok's video URL." %}
 {% swagger-description %}
 
 {% endswagger-description %}
@@ -177,7 +153,7 @@ Rotate provider when an error is returned.
 {% endswagger-response %}
 {% endswagger %}
 
-{% swagger method="get" path="api/providers" baseUrl="https://tiktok-dl.tslab.site/" summary="Getting all provider status." %}
+{% swagger method="get" path="api/providers" baseUrl="https://tdl.besecure.eu.org/" summary="Getting all provider status." %}
 {% swagger-description %}
 
 {% endswagger-description %}
