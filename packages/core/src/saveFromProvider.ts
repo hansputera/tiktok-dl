@@ -14,7 +14,7 @@ export class SaveFromProvider extends BaseProvider {
         return 'savefrom';
     }
 
-    public client = getFetch('https://worker-as.sf-tools.com');
+    public client = getFetch('https://worker.sf-tools.com');
 
     public maintenance = undefined;
 
