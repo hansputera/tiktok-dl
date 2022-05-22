@@ -1,6 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchCustomDownload} from './utils';
+import type {Shape} from 'ow';
 
 /**
  * @class SaveTikProvider
@@ -61,5 +62,13 @@ export class SaveTikProvider extends BaseProvider {
                 urls: urls as string[],
             },
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

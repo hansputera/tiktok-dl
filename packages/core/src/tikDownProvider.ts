@@ -1,6 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchLink} from './utils';
+import type {Shape} from 'ow';
 
 /**
  * @class TikDownProvider
@@ -66,5 +67,13 @@ export class TikDownProvider extends BaseProvider {
                 ),
             },
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

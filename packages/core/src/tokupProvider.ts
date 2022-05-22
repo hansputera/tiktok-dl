@@ -1,5 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
+import type {Shape} from 'ow';
 
 /**
  * @class TokupProvider
@@ -87,5 +88,13 @@ export class TokupProvider extends BaseProvider {
             commentsCount: nums[1] as unknown as number,
             sharesCount: nums[2] as unknown as number,
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

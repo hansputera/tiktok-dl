@@ -1974,6 +1974,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.13.0
     eslint: ^8.10.0
     got: ^11.8.2
+    ow: ^0.28.1
     prettier: ^2.5.1
     vm2: ^3.9.6
   languageName: unknown

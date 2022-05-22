@@ -1,5 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
+import type {Shape} from 'ow';
 
 /**
  * @class LoveTikProvider
@@ -61,5 +62,13 @@ export class LoveTikProvider extends BaseProvider {
                 username: json.author.replace(/(<([^>]+)>)/gi, ''),
             },
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

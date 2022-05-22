@@ -4,7 +4,6 @@ import {MusicalyDown} from './musicalyDownProvider';
 import {SnaptikProvider} from './snaptikProvider';
 import {TikmateProvider} from './tikmateProvider';
 import {TTDownloader} from './ttDownloaderProvider';
-import {DLTikProvider} from './DLTikProvider';
 import {SaveFromProvider} from './saveFromProvider';
 import {SaveTikProvider} from './saveTikProvider';
 import {TikDownProvider} from './tikDownProvider';
@@ -21,7 +20,6 @@ export const Providers: BaseProvider[] = [
     new TikmateProvider(),
     new MusicalyDown(),
     new TTDownloader(),
-    new DLTikProvider(),
     new SaveFromProvider(),
     new SaveTikProvider(),
     new TikDownProvider(),

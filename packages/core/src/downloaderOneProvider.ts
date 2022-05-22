@@ -1,5 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
+import type {Shape} from 'ow';
 
 /**
  * @class DownloadOne
@@ -81,5 +82,13 @@ export class DownloadOne extends BaseProvider {
             likesCount: json.stats.likes,
             playsCount: json.stats.play,
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

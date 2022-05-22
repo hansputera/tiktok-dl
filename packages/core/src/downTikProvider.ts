@@ -1,6 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchCustomDownload} from './utils';
+import type {Shape} from 'ow';
 
 /**
  * @class DownTikProvider
@@ -68,5 +69,13 @@ export class DownTikProvider extends BaseProvider {
                 urls: urls as string[],
             },
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

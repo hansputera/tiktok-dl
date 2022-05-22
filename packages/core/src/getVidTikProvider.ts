@@ -2,6 +2,7 @@ import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchLink} from './utils';
 import {random as randomUA} from 'tiktok-dl-config/useragents';
+import type {Shape} from 'ow';
 
 /**
  * @class GetVidTikProvider
@@ -104,5 +105,13 @@ export class GetVidTikProvider extends BaseProvider {
                 error: "Couldn't match site links.",
             };
         }
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

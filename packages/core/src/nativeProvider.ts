@@ -2,6 +2,7 @@ import {BaseProvider, ExtractedInfo} from './base';
 import {random as randomUA} from 'tiktok-dl-config/useragents';
 import {getFetch} from '../fetch';
 import {matchTikTokData} from './utils';
+import ow, {Shape} from 'ow';
 
 /**
  * @class NativeProvider
@@ -85,6 +86,16 @@ export class NativeProvider extends BaseProvider {
             return {
                 error: 'Something was wrong!',
             };
+        }
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return {
+            'user-agent': ow.string.not.empty,
         }
     }
 }

@@ -1,6 +1,7 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {matchLink} from './utils';
+import type {Shape} from 'ow';
 
 /**
  * @class TTDownloader
@@ -57,5 +58,13 @@ export class TTDownloader extends BaseProvider {
                 urls: urls as string[],
             },
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

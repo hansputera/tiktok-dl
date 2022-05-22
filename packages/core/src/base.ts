@@ -1,4 +1,6 @@
 import {Got} from 'got';
+import type {Shape} from 'ow';
+
 
 export interface ExtractedInfo {
     error?: string;
@@ -42,8 +44,9 @@ export interface MaintenanceProvider {
  */
 export abstract class BaseProvider {
     abstract client?: Got;
+    abstract getParams(): Shape | undefined;
     abstract maintenance?: MaintenanceProvider;
     abstract resourceName(): string;
-    abstract fetch(url: string): Promise<ExtractedInfo>;
+    abstract fetch(url: string, params?: Record<string, string>): Promise<ExtractedInfo>;
     abstract extract(html: string): ExtractedInfo;
 }

@@ -1,6 +1,7 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {deObfuscate, matchLink} from './utils';
+import type {Shape} from 'ow';
 
 /**
  * @class SnaptikProvider
@@ -58,5 +59,13 @@ export class SnaptikProvider extends BaseProvider {
                 urls: [...new Set(results.slice(0, results.length - 1))],
             },
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }

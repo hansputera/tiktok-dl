@@ -1,6 +1,7 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {deObfuscate, matchCustomDownload} from './utils';
+import type {Shape} from 'ow';
 
 /**
  * @class TikmateProvider
@@ -64,5 +65,13 @@ export class TikmateProvider extends BaseProvider {
                 urls: matchs,
             },
         };
+    }
+
+    /**
+     * Get ow.Shape params.
+     * @return {Shape | undefined}
+     */
+     public getParams(): Shape | undefined {
+        return undefined;
     }
 }
