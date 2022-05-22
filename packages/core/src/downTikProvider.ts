@@ -75,7 +75,7 @@ export class DownTikProvider extends BaseProvider {
      * Get ow.Shape params.
      * @return {Shape | undefined}
      */
-     public getParams(): Shape | undefined {
+    public getParams(): Shape | undefined {
         return undefined;
     }
 }

@@ -93,9 +93,9 @@ export class NativeProvider extends BaseProvider {
      * Get ow.Shape params.
      * @return {Shape | undefined}
      */
-     public getParams(): Shape | undefined {
+    public getParams(): Shape | undefined {
         return {
             'user-agent': ow.string.not.empty,
-        }
+        };
     }
 }
