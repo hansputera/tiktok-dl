@@ -19,7 +19,7 @@
     "format": "turbo run format --parallel",
     "prepare": "husky install"
   },
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "engines": {
     "node": ">=14.x"
   }

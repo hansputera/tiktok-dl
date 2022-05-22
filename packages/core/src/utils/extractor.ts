@@ -45,6 +45,7 @@ export const deObfuscate = (html: string): string => {
                     root: './',
                 },
             }).run(transformed, 'deobfuscate.js');
+
             return deObfuscated;
         }
     }

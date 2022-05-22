@@ -23,10 +23,20 @@ export class SnaptikProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     public async fetch(url: string): Promise<ExtractedInfo> {
+        // get token
+        const responseToken = await this.client('./');
+        const token = (
+            responseToken.body.match(/name="token" value="([^""]+)"/) as string[]
+        )[1];
+
         const response = await this.client('./abc.php', {
             searchParams: {
                 url: url,
+                token,
             },
+            headers: {
+                'Cookie': responseToken.headers['set-cookie']?.toString(),
+            }
         });
 
         return this.extract(response.body);
@@ -40,11 +50,10 @@ export class SnaptikProvider extends BaseProvider {
     extract(html: string): ExtractedInfo {
         const results = matchLink(deObfuscate(html));
         if (!results || !results.length) throw new Error('Broken');
-
         return {
             video: {
                 thumb: results?.shift(),
-                urls: [...new Set(results)],
+                urls: [...new Set(results.slice(0, results.length-1))],
             },
         };
     }
