@@ -5,8 +5,8 @@
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "husky": "^7.0.4",
-    "turbo": "^1.1.2"
+    "husky": "7.0.4",
+    "turbo": "1.2.11"
   },
   "workspaces": [
     "packages/*",
