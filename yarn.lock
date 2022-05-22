@@ -264,7 +264,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.45, @types/react@npm:^17":
+"@types/react@npm:18.0.9":
+  version: 18.0.9
+  resolution: "@types/react@npm:18.0.9"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 162364dad716d9017ee34aabf2ea37499709ebbdef70392ae1b39225985971e1a46f121efb9c5c7da92144ee1d96d4525df806a7c1c03a5db7fd31dd034ddc7a
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^17":
   version: 17.0.45
   resolution: "@types/react@npm:17.0.45"
   dependencies:
@@ -1986,7 +1997,7 @@ __metadata:
     "@next/eslint-plugin-next": 12.1.6
     "@types/ioredis": 4.28.10
     "@types/node": 17.0.35
-    "@types/react": 17.0.45
+    "@types/react": 18.0.9
     "@types/react-dom": 17.0.17
     dotenv: 16.0.1
     ioredis: 4.28.5
