@@ -54,7 +54,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:^12.0.10":
+"@next/eslint-plugin-next@npm:12.1.6":
   version: 12.1.6
   resolution: "@next/eslint-plugin-next@npm:12.1.6"
   dependencies:
@@ -209,7 +209,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ioredis@npm:^4.28.7":
+"@types/ioredis@npm:4.28.10":
   version: 4.28.10
   resolution: "@types/ioredis@npm:4.28.10"
   dependencies:
@@ -241,7 +241,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^17.0.21":
+"@types/node@npm:*, @types/node@npm:17.0.35":
   version: 17.0.35
   resolution: "@types/node@npm:17.0.35"
   checksum: 7a24946ae7fd20267ed92466384f594e448bfb151081158d565cc635d406ecb29ea8fb85fcd2a1f71efccf26fb5bd3c6f509bde56077eb8b832b847a6664bc62
@@ -255,7 +255,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17.0.13":
+"@types/react-dom@npm:17.0.17":
   version: 17.0.17
   resolution: "@types/react-dom@npm:17.0.17"
   dependencies:
@@ -264,7 +264,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17, @types/react@npm:^17.0.39":
+"@types/react@npm:17.0.45, @types/react@npm:^17":
   version: 17.0.45
   resolution: "@types/react@npm:17.0.45"
   dependencies:
@@ -291,7 +291,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.13.0":
+"@typescript-eslint/eslint-plugin@npm:5.25.0":
   version: 5.25.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.25.0"
   dependencies:
@@ -314,7 +314,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.13.0":
+"@typescript-eslint/parser@npm:5.25.0":
   version: 5.25.0
   resolution: "@typescript-eslint/parser@npm:5.25.0"
   dependencies:
@@ -716,7 +716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.0":
+"dotenv@npm:16.0.1":
   version: 16.0.1
   resolution: "dotenv@npm:16.0.1"
   checksum: f459ffce07b977b7f15d8cc4ee69cdff77d4dd8c5dc8c85d2d485ee84655352c2415f9dd09d42b5b5985ced3be186130871b34e2f3e2569ebc72fbc2e8096792
@@ -763,7 +763,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-google@npm:^0.14.0":
+"eslint-config-google@npm:0.14.0":
   version: 0.14.0
   resolution: "eslint-config-google@npm:0.14.0"
   peerDependencies:
@@ -772,7 +772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^8.5.0":
+"eslint-config-prettier@npm:8.5.0":
   version: 8.5.0
   resolution: "eslint-config-prettier@npm:8.5.0"
   peerDependencies:
@@ -828,7 +828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.10.0":
+"eslint@npm:8.16.0":
   version: 8.16.0
   resolution: "eslint@npm:8.16.0"
   dependencies:
@@ -1150,7 +1150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^7.0.4":
+"husky@npm:7.0.4":
   version: 7.0.4
   resolution: "husky@npm:7.0.4"
   bin:
@@ -1200,7 +1200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:^4.28.0":
+"ioredis@npm:4.28.5":
   version: 4.28.5
   resolution: "ioredis@npm:4.28.5"
   dependencies:
@@ -1485,7 +1485,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-transpile-modules@npm:^9.0.0":
+"next-transpile-modules@npm:9.0.0":
   version: 9.0.0
   resolution: "next-transpile-modules@npm:9.0.0"
   dependencies:
@@ -1495,7 +1495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^12.0.10":
+"next@npm:12.1.6":
   version: 12.1.6
   resolution: "next@npm:12.1.6"
   dependencies:
@@ -1596,7 +1596,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ow@npm:^0.28.1":
+"ow@npm:0.28.1":
   version: 0.28.1
   resolution: "ow@npm:0.28.1"
   dependencies:
@@ -1693,7 +1693,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.5.1":
+"prettier@npm:2.6.2":
   version: 2.6.2
   resolution: "prettier@npm:2.6.2"
   bin:
@@ -1733,7 +1733,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^17.0.2":
+"react-dom@npm:17.0.2":
   version: 17.0.2
   resolution: "react-dom@npm:17.0.2"
   dependencies:
@@ -1746,7 +1746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.2":
+"react@npm:17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:
@@ -1958,12 +1958,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tiktok-dl-config@workspace:packages/config"
   dependencies:
-    "@typescript-eslint/eslint-plugin": ^5.13.0
-    "@typescript-eslint/parser": ^5.13.0
-    eslint: ^8.10.0
-    eslint-config-google: ^0.14.0
-    eslint-config-prettier: ^8.5.0
-    prettier: ^2.5.1
+    "@typescript-eslint/eslint-plugin": 5.25.0
+    "@typescript-eslint/parser": 5.25.0
+    eslint: 8.16.0
+    eslint-config-google: 0.14.0
+    eslint-config-prettier: 8.5.0
+    prettier: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -1971,10 +1971,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tiktok-dl-core@workspace:packages/core"
   dependencies:
-    "@typescript-eslint/parser": ^5.13.0
-    eslint: ^8.10.0
+    "@typescript-eslint/parser": 5.25.0
+    eslint: 8.16.0
     got: ^11.8.2
-    prettier: ^2.5.1
+    prettier: 2.6.2
     vm2: ^3.9.6
   languageName: unknown
   linkType: soft
@@ -1983,23 +1983,23 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tiktok-dl-web@workspace:apps/web"
   dependencies:
-    "@next/eslint-plugin-next": ^12.0.10
-    "@types/ioredis": ^4.28.7
-    "@types/node": ^17.0.21
-    "@types/react": ^17.0.39
-    "@types/react-dom": ^17.0.13
-    dotenv: ^16.0.0
-    ioredis: ^4.28.0
-    next: ^12.0.10
-    next-transpile-modules: ^9.0.0
-    ow: ^0.28.1
-    prettier: ^2.5.1
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    "@next/eslint-plugin-next": 12.1.6
+    "@types/ioredis": 4.28.10
+    "@types/node": 17.0.35
+    "@types/react": 17.0.45
+    "@types/react-dom": 17.0.17
+    dotenv: 16.0.1
+    ioredis: 4.28.5
+    next: 12.1.6
+    next-transpile-modules: 9.0.0
+    ow: 0.28.1
+    prettier: 2.6.2
+    react: 17.0.2
+    react-dom: 17.0.2
     tiktok-dl-config: "*"
     tiktok-dl-core: "*"
     typescript: latest
-    windicss-webpack-plugin: ^1.6.7
+    windicss-webpack-plugin: 1.7.2
   languageName: unknown
   linkType: soft
 
@@ -2007,8 +2007,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tktk@workspace:."
   dependencies:
-    husky: ^7.0.4
-    turbo: ^1.1.2
+    husky: 7.0.4
+    turbo: 1.2.11
   languageName: unknown
   linkType: soft
 
@@ -2130,7 +2130,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.1.2":
+"turbo@npm:1.2.11":
   version: 1.2.11
   resolution: "turbo@npm:1.2.11"
   dependencies:
@@ -2276,7 +2276,7 @@ typescript@latest:
   languageName: node
   linkType: hard
 
-"windicss-webpack-plugin@npm:^1.6.7":
+"windicss-webpack-plugin@npm:1.7.2":
   version: 1.7.2
   resolution: "windicss-webpack-plugin@npm:1.7.2"
   dependencies:
