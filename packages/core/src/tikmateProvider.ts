@@ -27,7 +27,7 @@ export class TikmateProvider extends BaseProvider {
 
         const response = await this.client('./');
         const matchs = response.body.match(
-            /id="token" value="(.*)?"/,
+            /(name|id)="(\_)?token" value="([^""]+)"/,
         ) as string[];
 
         const cookies = response.headers['cookie'];
@@ -36,7 +36,7 @@ export class TikmateProvider extends BaseProvider {
             form: matchs
                 ? {
                       url: url,
-                      token: matchs[1],
+                      token: matchs.at(-1),
                   }
                 : {
                       url: url,
