@@ -43,8 +43,8 @@ export class TikmateProvider extends BaseProvider {
                       url: url,
                   },
             headers: {
-                Origin: this.client.defaults.options.prefixUrl,
-                Referer: this.client.defaults.options.prefixUrl + '/',
+                Origin: this.client.defaults.options.prefixUrl.toString(),
+                Referer: this.client.defaults.options.prefixUrl.toString(),
                 Cookie: cookies,
             },
         });

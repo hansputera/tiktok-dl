@@ -26,8 +26,8 @@ export class MusicalyDown extends BaseProvider {
         const res = await this.client('./', {
             headers: {
                 Accept: '*/*',
-                Referer: this.client.defaults.options.prefixUrl,
-                Origin: this.client.defaults.options.prefixUrl,
+                Referer: this.client.defaults.options.prefixUrl.toString(),
+                Origin: this.client.defaults.options.prefixUrl.toString(),
             },
         });
         const tokens = res.body.match(
@@ -42,8 +42,8 @@ export class MusicalyDown extends BaseProvider {
             headers: {
                 Cookie: res.headers['set-cookie']?.toString(),
                 Accept: '*/*',
-                Referer: this.client.defaults.options.prefixUrl,
-                Origin: this.client.defaults.options.prefixUrl,
+                Referer: this.client.defaults.options.prefixUrl.toString(),
+                Origin: this.client.defaults.options.prefixUrl.toString(),
             },
         });
 

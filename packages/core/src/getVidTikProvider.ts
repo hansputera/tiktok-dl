@@ -45,7 +45,7 @@ export class GetVidTikProvider extends BaseProvider {
                 headers: {
                     'User-Agent': randomUA(),
                     Cookie: response.headers['set-cookie']?.toString(),
-                    Origin: this.client.defaults.options.prefixUrl,
+                    Origin: this.client.defaults.options.prefixUrl.toString(),
                     Referer: response.url,
                 },
                 followRedirect: false,
