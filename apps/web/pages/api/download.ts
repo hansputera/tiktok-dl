@@ -37,7 +37,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             }),
         );
 
-        const provider = getProvider(
+        let provider = getProvider(
             (req.query.type || req.body.type) ?? 'random',
         );
         if (!provider) {
@@ -48,7 +48,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         const params = provider.getParams();
-        if (params) ow(req.query || req.body, ow.object.partialShape(params));
+        if (
+            params &&
+            provider.resourceName() ===
+                (req.query.type?.toString() || req.body.type)?.toLowerCase()
+        ) {
+            ow(req.query || req.body, ow.object.partialShape(params));
+        } else if (params) {
+            provider = getProvider('random');
+        }
 
         const result = await rotateProvider(
             provider as BaseProvider,
