@@ -1,40 +1,34 @@
-import Head from 'next/head';
+import dynamic from 'next/dynamic';
+import {TabSelectorComponent} from '../components/TabSelector';
 
 export default () => {
     return (
-        <>
-            <Head>
-                <title>TikTok Downloader</title>
-            </Head>
-            {/**
-			Body
-		*/}
-            <div>
-                {/** Header 1*/}
-                <div className="mt-5">
-                    <h1 className="font-mono text-center text-4xl">
-                        TikTok Downloader
-                    </h1>
-                    <p className="font-mono text-center text-xl">
-                        Free, and open-source TikTok Video Downloader
-                    </p>
-                </div>
+        <section className="p-5">
+            <h1 className="align-middle text-4xl font-sans font-medium tracking-wide leading-relaxed">
+                TikTok-DL{' '}
+                <span className="font-normal md:break-words text-2xl">
+                    Download TikTok Video without watermark and free ads.
+                </span>
+            </h1>
 
-                {/** Content */}
-                <div className="mt-3">
-                    <pre className="text-xl text-center">
-                        Hello, this page is still in development. Do you want to
-                        help me? Visit{' '}
-                        <a
-                            className="text-blue-500"
-                            href="https://github.com/hansputera/tiktok-dl"
-                        >
-                            github.com/hansputera/tiktok-dl
-                        </a>
-                        . Thanks!
-                    </pre>
-                </div>
-            </div>
-        </>
+            <TabSelectorComponent
+                tabs={[
+                    {
+                        name: 'Download',
+                        component: dynamic(
+                            () => import('../components/FormInput'),
+                            {
+                                loading: () => (
+                                    <p className="font-sans antiliased text-center">
+                                        Wait a minute!
+                                    </p>
+                                ),
+                                ssr: false,
+                            },
+                        ),
+                    },
+                ]}
+            />
+        </section>
     );
 };
