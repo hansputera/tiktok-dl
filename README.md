@@ -39,12 +39,10 @@ Feel free to open an issue if you have a problem or find a bug. That would be ve
 - [SaveFrom](https://id.savefrom.net)
 - [TTDownloader](https://ttdownloader.com)
 - [Musically Down](https://musicaldown.com)
-- [DLTik](https://dltik.com/)
 - [DDDTik](https://dddtik.com)
 - [TikDown](https://tikdown.org)
 - [DownTik](https://downtik.net)
 - [LoveTik](https://lovetik.com)
-- [Tokup](https://tokup.app)
 - [TikTokDownloaderOne](https://tiktokdownloader.one)
 - [GetVidTik](https://getvidtik.com)
 
