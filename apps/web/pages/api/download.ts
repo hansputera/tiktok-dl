@@ -56,12 +56,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             req.method === 'POST'
                 ? req.body.rotateOnError
                 : !!req.query.rotateOnError,
-            params ? Object.fromEntries(
-                Object.keys(params!).map((p) => [
-                    p,
-                    (req.query[p] as string) ?? req.body[p],
-                ]),
-            ) : {},
+            params
+                ? Object.fromEntries(
+                      Object.keys(params!).map((p) => [
+                          p,
+                          (req.query[p] as string) ?? req.body[p],
+                      ]),
+                  )
+                : {},
         );
 
         return res.status(200).json(result);
