@@ -1,5 +1,4 @@
 import {BaseProvider, ExtractedInfo} from './base';
-import {random as randomUA} from 'tiktok-dl-config/useragents';
 import {getFetch} from '../fetch';
 import {matchTikTokData} from './utils';
 import ow, {Shape} from 'ow';
@@ -21,9 +20,13 @@ export class NativeProvider extends BaseProvider {
 
     /**
      * @param {string} url Tiktok video url
+     * @param {Record<string, string>} params Advanced options.
      * @return {Promise<ExtractedInfo>}
      */
-    async fetch(url: string): Promise<ExtractedInfo> {
+    async fetch(
+        url: string,
+        params: Record<string, string>,
+    ): Promise<ExtractedInfo> {
         const urlInstance = new URL(url);
         const response = await getFetch(urlInstance.origin).get(
             `.${urlInstance.pathname}`,
@@ -31,7 +34,7 @@ export class NativeProvider extends BaseProvider {
                 headers: {
                     Referer: urlInstance.href,
                     Origin: urlInstance.origin,
-                    'User-Agent': randomUA(),
+                    'User-Agent': params['user-agent'],
                 },
                 timeout: {
                     socket: 10000,

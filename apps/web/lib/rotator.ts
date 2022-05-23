@@ -39,7 +39,7 @@ export const rotateProvider = async (
                         ...data,
                         provider: provider.resourceName(),
                     }),
-                    'ex',
+                    'EX',
                     providerCache,
                 );
                 return {...data, provider: provider.resourceName()};
