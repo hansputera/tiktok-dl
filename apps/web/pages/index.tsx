@@ -1,5 +1,11 @@
 import dynamic from 'next/dynamic';
-import {TabSelectorComponent} from '../components/TabSelector';
+
+const FormInputComponentDynamic = dynamic(
+    () => import('../components/FormInput'),
+    {
+        ssr: false,
+    },
+);
 
 export default () => {
     return (
@@ -11,24 +17,7 @@ export default () => {
                 </span>
             </h1>
 
-            <TabSelectorComponent
-                tabs={[
-                    {
-                        name: 'Download',
-                        component: dynamic(
-                            () => import('../components/FormInput'),
-                            {
-                                loading: () => (
-                                    <p className="font-sans antiliased text-center">
-                                        Wait a minute!
-                                    </p>
-                                ),
-                                ssr: false,
-                            },
-                        ),
-                    },
-                ]}
-            />
+            <FormInputComponentDynamic />
         </section>
     );
 };
