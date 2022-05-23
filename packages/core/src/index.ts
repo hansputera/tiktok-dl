@@ -10,7 +10,6 @@ import {TikDownProvider} from './tikDownProvider';
 import {DownTikProvider} from './downTikProvider';
 import {LoveTikProvider} from './loveTikProvider';
 import {DDDTikProvider} from './dddTikProvider';
-import {TokupProvider} from './tokupProvider';
 import {DownloadOne} from './downloaderOneProvider';
 import {NativeProvider} from './nativeProvider';
 import {GetVidTikProvider} from './getVidTikProvider';
@@ -26,7 +25,6 @@ export const Providers: BaseProvider[] = [
     new DownTikProvider(), // SaveTik Mirror
     new LoveTikProvider(),
     new DDDTikProvider(),
-    new TokupProvider(), // ttsave alternative
     new DownloadOne(),
     new NativeProvider(),
     new GetVidTikProvider(),

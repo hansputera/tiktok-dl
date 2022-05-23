@@ -8,6 +8,7 @@ const {parsed: cusEnv} = require('dotenv').config({
 
 module.exports = withTM({
     reactStrictMode: true,
+    experimental: { esmExternals: true },
     webpack(config) {
         // adding windicss plugin
         config.plugins.push(new WindiCSSWebpackPlugin());

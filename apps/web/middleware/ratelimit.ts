@@ -24,7 +24,7 @@ export const ratelimitMiddleware = async (
             client.incr('rate-' + ip);
             return true;
         } else {
-            client.set('rate-' + ip, '1', 'ex', rateLimitConfig.ratelimitTime);
+            client.set('rate-' + ip, '1', 'EX', rateLimitConfig.ratelimitTime);
             return true;
         }
     });

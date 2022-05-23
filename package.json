@@ -5,8 +5,8 @@
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "husky": "^7.0.4",
-    "turbo": "^1.1.2"
+    "husky": "^8.0.1",
+    "turbo": "^1.2.11"
   },
   "workspaces": [
     "packages/*",
@@ -22,5 +22,6 @@
   "packageManager": "yarn@3.2.1",
   "engines": {
     "node": ">=14.x"
-  }
+  },
+  "type": "module"
 }
