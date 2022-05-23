@@ -67,10 +67,9 @@ export const matchCustomDownload = (
         .match(/\/download.php\?token=(.*?)"/gi)
         ?.map(
             (url) =>
-                (
-                    getProvider(provider) as BaseProvider
-                ).client!.defaults.options.prefixUrl.toString().slice(0, -1) +
-                url.slice(0, -3),
+                (getProvider(provider) as BaseProvider)
+                    .client!.defaults.options.prefixUrl.toString()
+                    .slice(0, -1) + url.slice(0, -3),
         );
 
     return [links[0]].concat(urls as string[]);
