@@ -1997,7 +1997,7 @@ __metadata:
     tiktok-dl-config: "*"
     tiktok-dl-core: "*"
     typescript: latest
-    windicss-webpack-plugin: 1.7.2
+    windicss-webpack-plugin: 1.7.3
   languageName: unknown
   linkType: soft
 
@@ -2274,9 +2274,9 @@ typescript@latest:
   languageName: node
   linkType: hard
 
-"windicss-webpack-plugin@npm:1.7.2":
-  version: 1.7.2
-  resolution: "windicss-webpack-plugin@npm:1.7.2"
+"windicss-webpack-plugin@npm:1.7.3":
+  version: 1.7.3
+  resolution: "windicss-webpack-plugin@npm:1.7.3"
   dependencies:
     "@windicss/plugin-utils": ^1.8.4
     debug: ^4.3.4
@@ -2285,12 +2285,12 @@ typescript@latest:
     lodash: ^4.17.21
     pathe: ^0.2.0
     webpack-virtual-modules: ^0.4.3
-    windicss: ^3.5.1
-  checksum: 04bc04a3ec4a82dba484ee50a2512a8a131fba7099fc933cff7b5f804d63b27bb871fb854e6fd250e0b416b504fabb262d3734865d2ddf28e190cf877782c7c0
+    windicss: ^3.5.4
+  checksum: 3ae274a64b9124b088e4b9aeb2280bb358d6daf539e2630c670c39bb5c1211b88480f147e99907f377ed58ff1df3efd5bfa20dfd5a4c79a2085c9ad2aca733df
   languageName: node
   linkType: hard
 
-"windicss@npm:^3.5.1":
+"windicss@npm:^3.5.1, windicss@npm:^3.5.4":
   version: 3.5.4
   resolution: "windicss@npm:3.5.4"
   bin:
