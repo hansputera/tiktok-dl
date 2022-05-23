@@ -56,6 +56,11 @@ export class DownloadOne extends BaseProvider {
      */
     extract(html: string): ExtractedInfo {
         const json = JSON.parse(html);
+        if (json.error) {
+            return {
+                error: json.error,
+            };
+        }
 
         return {
             video: {
