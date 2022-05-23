@@ -10,10 +10,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         name: p.resourceName(),
         url: p.client?.defaults.options.prefixUrl,
         maintenance: p.maintenance,
-        params: p.getParams() ? Object.keys(p.getParams()!).map((x) => ({
-            name: x,
-            type: (p.getParams()![x] as Shape).type,
-        })) : {},
+        params: p.getParams()
+            ? Object.keys(p.getParams()!).map((x) => ({
+                  name: x,
+                  type: (p.getParams()![x] as Shape).type,
+              }))
+            : {},
     }));
 
     return res.send(providers);
