@@ -714,7 +714,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.1":
+"dotenv@npm:16.0.1":
   version: 16.0.1
   resolution: "dotenv@npm:16.0.1"
   checksum: f459ffce07b977b7f15d8cc4ee69cdff77d4dd8c5dc8c85d2d485ee84655352c2415f9dd09d42b5b5985ced3be186130871b34e2f3e2569ebc72fbc2e8096792
@@ -1164,7 +1164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^8.0.1":
+"husky@npm:8.0.1":
   version: 8.0.1
   resolution: "husky@npm:8.0.1"
   bin:
@@ -1214,7 +1214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:^5.0.5":
+"ioredis@npm:5.0.5":
   version: 5.0.5
   resolution: "ioredis@npm:5.0.5"
   dependencies:
@@ -1507,7 +1507,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^12.0.10":
+"next@npm:12.1.6":
   version: 12.1.6
   resolution: "next@npm:12.1.6"
   dependencies:
@@ -1601,7 +1601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ow@npm:^0.28.1":
+"ow@npm:0.28.1, ow@npm:^0.28.1":
   version: 0.28.1
   resolution: "ow@npm:0.28.1"
   dependencies:
@@ -1731,7 +1731,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.1.0":
+"react-dom@npm:18.1.0":
   version: 18.1.0
   resolution: "react-dom@npm:18.1.0"
   dependencies:
@@ -1743,7 +1743,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.1.0":
+"react@npm:18.1.0":
   version: 18.1.0
   resolution: "react@npm:18.1.0"
   dependencies:
@@ -1976,18 +1976,18 @@ __metadata:
     "@types/node": 17.0.35
     "@types/react": 18.0.9
     "@types/react-dom": 18.0.4
-    dotenv: ^16.0.1
-    ioredis: ^5.0.5
-    next: ^12.0.10
+    dotenv: 16.0.1
+    ioredis: 5.0.5
+    next: 12.1.6
     next-transpile-modules: 9.0.0
-    ow: ^0.28.1
+    ow: 0.28.1
     prettier: 2.6.2
-    react: ^18.1.0
-    react-dom: ^18.1.0
+    react: 18.1.0
+    react-dom: 18.1.0
     tiktok-dl-config: "*"
     tiktok-dl-core: "*"
     typescript: latest
-    windicss-webpack-plugin: 1.7.2
+    windicss-webpack-plugin: 1.7.3
   languageName: unknown
   linkType: soft
 
@@ -1995,8 +1995,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tktk@workspace:."
   dependencies:
-    husky: ^8.0.1
-    turbo: ^1.2.11
+    husky: 8.0.1
+    turbo: 1.2.11
   languageName: unknown
   linkType: soft
 
@@ -2118,7 +2118,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.2.11":
+"turbo@npm:1.2.11":
   version: 1.2.11
   resolution: "turbo@npm:1.2.11"
   dependencies:
@@ -2264,9 +2264,9 @@ typescript@latest:
   languageName: node
   linkType: hard
 
-"windicss-webpack-plugin@npm:1.7.2":
-  version: 1.7.2
-  resolution: "windicss-webpack-plugin@npm:1.7.2"
+"windicss-webpack-plugin@npm:1.7.3":
+  version: 1.7.3
+  resolution: "windicss-webpack-plugin@npm:1.7.3"
   dependencies:
     "@windicss/plugin-utils": ^1.8.4
     debug: ^4.3.4
@@ -2275,12 +2275,12 @@ typescript@latest:
     lodash: ^4.17.21
     pathe: ^0.2.0
     webpack-virtual-modules: ^0.4.3
-    windicss: ^3.5.1
-  checksum: 04bc04a3ec4a82dba484ee50a2512a8a131fba7099fc933cff7b5f804d63b27bb871fb854e6fd250e0b416b504fabb262d3734865d2ddf28e190cf877782c7c0
+    windicss: ^3.5.4
+  checksum: 3ae274a64b9124b088e4b9aeb2280bb358d6daf539e2630c670c39bb5c1211b88480f147e99907f377ed58ff1df3efd5bfa20dfd5a4c79a2085c9ad2aca733df
   languageName: node
   linkType: hard
 
-"windicss@npm:^3.5.1":
+"windicss@npm:^3.5.1, windicss@npm:^3.5.4":
   version: 3.5.4
   resolution: "windicss@npm:3.5.4"
   bin:
