@@ -14,7 +14,7 @@ Great! You're ready to use.
 
 ### :satellite: Endpoints
 
-Currently, we only have 4 endpoints in the TikTok-DL Rest API v1.0.4.
+Currently, we only have 3 endpoints in the TikTok-DL Rest API v1.0.4.
 
 {% swagger method="get" path="api/download" baseUrl="https://tdl.besecure.eu.org/" summary="Getting TikTok's video download urls with search params." %}
 {% swagger-description %}
@@ -51,14 +51,6 @@ Rotate provider when an error is returned.
             "musicUrl": "video music url if any"
         }
     }
-}
-```
-{% endswagger-response %}
-
-{% swagger-response status="200: OK" description="Internal error (soon, i will change it to 500 http status code)" %}
-```javascript
-{
-    "error": "sometimes it will return an error about internal program, like 'Cannot read property '0' of undefined' and others"
 }
 ```
 {% endswagger-response %}
@@ -116,14 +108,6 @@ Rotate provider when an error is returned.
 ```
 {% endswagger-response %}
 
-{% swagger-response status="200: OK" description="Internal error (soon, i will change it to 500 http status code)" %}
-```javascript
-{
-    "error": "sometimes it will return an error about internal program, like 'Cannot read property '0' of undefined' and others"
-}
-```
-{% endswagger-response %}
-
 {% swagger-response status="400: Bad Request" description="Something was wrong with your request payload." %}
 ```javascript
 {
@@ -158,7 +142,7 @@ Rotate provider when an error is returned.
 
 {% endswagger-description %}
 
-{% swagger-response status="200: OK" description="Maintenance response" %}
+{% swagger-response status="200: OK" description="Provider list." %}
 ```javascript
 [
     {
@@ -166,10 +150,15 @@ Rotate provider when an error is returned.
         "url": "https://site.com",
         "maintenance": {
             "reason": "Maintenance reason"
-        }
+        },
+        "params": [],
     }, {
         "name": "TikTok Provider name",
-        "url": "https://site.com"
+        "url": "https://site.com",
+        "params": [{
+            "name": "something",
+            "type": "string"
+        }]
     }
 ]
 ```
