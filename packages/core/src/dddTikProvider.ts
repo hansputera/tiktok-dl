@@ -42,6 +42,12 @@ export class DDDTikProvider extends BaseProvider {
         const urls = matchLink(html) as string[];
         urls.pop();
 
+        if (urls.length === 1) {
+            return {
+                'error': 'Something went wrong!',
+            };
+        }
+        
         const t = urls[1];
         return {
             video: {
