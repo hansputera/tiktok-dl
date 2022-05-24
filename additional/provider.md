@@ -18,7 +18,4 @@ description: A page give an information about providers.
 
 ### Maintenance Provider
 
-* Tokup - `tokup`
-  * Reason: `Tokup site returned 'Oops! Something went wrong!'`
-* DLTik - `dltik`
-  * Reason: I think, we need to create an active session page first to do a request.
+none.
