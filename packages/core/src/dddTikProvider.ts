@@ -44,10 +44,10 @@ export class DDDTikProvider extends BaseProvider {
 
         if (urls.length === 1) {
             return {
-                'error': 'Something went wrong!',
+                error: 'Something went wrong!',
             };
         }
-        
+
         const t = urls[1];
         return {
             video: {
