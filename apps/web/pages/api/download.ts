@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         await ratelimitMiddleware(req, res);
         const providersType = Providers.map((p) => p.resourceName());
         ow(
-            req.body || req.query,
+            req.method === 'POST' ? JSON.parse(req.body) : req.query,
             ow.object.partialShape({
                 url: ow.string.url.validate((v) => ({
                     validator:

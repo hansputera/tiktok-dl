@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {Suspense} from 'react';
+import {ErrorBoundary} from './ErrorBoundary';
+import {TikTokVideoComponent} from './Video';
 
 // // ERRORS ///
 /**
@@ -13,7 +15,6 @@ class InvalidUrlError extends Error {
         this.name = 'INVALID_URL';
     }
 }
-
 /**
  * FormInput Component.
  * @return {JSX.Element}
@@ -21,6 +22,7 @@ class InvalidUrlError extends Error {
 export const FormInputComponent = (): JSX.Element => {
     const [url, setUrl] = React.useState('');
     const [error, setError] = React.useState<string | Error>();
+    const [submitted, setSubmit] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         if (
@@ -49,7 +51,10 @@ export const FormInputComponent = (): JSX.Element => {
                 <form
                     target="#"
                     className="flex flex-col md:flex-row"
-                    onSubmit={() => {}}
+                    onSubmit={() => {
+                        !error && setSubmit(true);
+                        return;
+                    }}
                 >
                     <div>
                         <input
@@ -63,13 +68,33 @@ export const FormInputComponent = (): JSX.Element => {
 
                     <div>
                         <button
-                            type="button"
-                            className="p-3 ml-2 bg-sky-400 uppercase text-white"
+                            className="p-3 lg:ml-2 md:mt-2 sm:mt-2 bg-sky-400 uppercase text-white"
+                            disabled={submitted}
                         >
                             download
                         </button>
                     </div>
                 </form>
+
+                {submitted && (
+                    <ErrorBoundary
+                        fallback={
+                            <h2 className="text-red-500 font-sans font-medium text-base">
+                                Couldn't fetch tiktok's video url
+                            </h2>
+                        }
+                    >
+                        <Suspense
+                            fallback={
+                                <h2 className="font-sans font-medium text-base">
+                                    Loading...
+                                </h2>
+                            }
+                        >
+                            <TikTokVideoComponent url={new URL(url)} />
+                        </Suspense>
+                    </ErrorBoundary>
+                )}
             </section>
         </React.Fragment>
     );
