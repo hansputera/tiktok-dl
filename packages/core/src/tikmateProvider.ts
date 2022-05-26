@@ -31,7 +31,9 @@ export class TikmateProvider extends BaseProvider {
             /(name|id)="(\_)?token" value="([^""]+)"/,
         ) as string[];
 
-        const cookies = response.headers['cookie'];
+        const cookies =
+            response.headers['cookie'] ||
+            response.headers['set-cookie']?.toString();
 
         const abcResponse = await this.client.post('./abc.php', {
             form: matchs

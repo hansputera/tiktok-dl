@@ -1,6 +1,7 @@
-import React, {Suspense} from 'react';
-import {ErrorBoundary} from './ErrorBoundary';
-import {TikTokVideoComponent} from './Video';
+import React from 'react';
+import useSWR, {Fetcher} from 'swr';
+import {ExtractedInfo} from 'tiktok-dl-core';
+import { getTikTokURL } from '../lib/url';
 
 // // ERRORS ///
 /**
@@ -15,6 +16,15 @@ class InvalidUrlError extends Error {
         this.name = 'INVALID_URL';
     }
 }
+
+export type ExtractedInfoWithProvider = ExtractedInfo & {
+    provider: string;
+    _url: string;
+};
+
+const fetcher: Fetcher<ExtractedInfoWithProvider, string> = (...args) =>
+    fetch(...args).then((r) => r.json());
+
 /**
  * FormInput Component.
  * @return {JSX.Element}
@@ -23,6 +33,22 @@ export const FormInputComponent = (): JSX.Element => {
     const [url, setUrl] = React.useState('');
     const [error, setError] = React.useState<string | Error>();
     const [submitted, setSubmit] = React.useState<boolean>(false);
+    const {data, mutate} = useSWR(
+        submitted && (!error || !(error as string).length) && url.length
+            ? [
+                  '/api/download',
+                  {
+                      method: 'POST',
+                      body: JSON.stringify({url}),
+                  },
+              ]
+            : null,
+        fetcher,
+        {
+            loadingTimeout: 10_000,
+            refreshInterval: 0,
+        },
+    );
 
     React.useEffect(() => {
         if (
@@ -30,10 +56,25 @@ export const FormInputComponent = (): JSX.Element => {
             url.length
         ) {
             setError(new InvalidUrlError('Invalid TikTok Video URL'));
+            try {
+                const u = getTikTokURL(url);
+                if (!u) {
+                    setError(new InvalidUrlError('Invalid TikTok URL'));
+                    return;
+                }
+                setUrl(u);
+            } catch {
+                setError(new InvalidUrlError('Invalid TikTok Video URL'));
+            }
         } else {
+            // submit event trigger.
+            if (submitted && !error) {
+                mutate();
+            }
+
             setError(undefined);
         }
-    }, [url]);
+    }, [url, submitted]);
 
     return (
         <React.Fragment>
@@ -49,11 +90,14 @@ export const FormInputComponent = (): JSX.Element => {
                         : ''}
                 </p>
                 <form
-                    target="#"
                     className="flex flex-col md:flex-row"
-                    onSubmit={() => {
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        if (!url.length) {
+                            setError('Please fill the URL!');
+                            return;
+                        }
                         !error && setSubmit(true);
-                        return;
                     }}
                 >
                     <div>
@@ -68,7 +112,7 @@ export const FormInputComponent = (): JSX.Element => {
 
                     <div>
                         <button
-                            className="p-3 lg:ml-2 md:mt-2 sm:mt-2 bg-sky-400 uppercase text-white"
+                            className="p-3 lg:ml-2 mt-1 bg-sky-400 uppercase text-white shadow-sm"
                             disabled={submitted}
                         >
                             download
@@ -76,25 +120,15 @@ export const FormInputComponent = (): JSX.Element => {
                     </div>
                 </form>
 
-                {submitted && (
-                    <ErrorBoundary
-                        fallback={
-                            <h2 className="text-red-500 font-sans font-medium text-base">
-                                Couldn't fetch tiktok's video url
-                            </h2>
-                        }
-                    >
-                        <Suspense
-                            fallback={
-                                <h2 className="font-sans font-medium text-base">
-                                    Loading...
-                                </h2>
-                            }
-                        >
-                            <TikTokVideoComponent url={new URL(url)} />
-                        </Suspense>
-                    </ErrorBoundary>
-                )}
+                <section className="mt-3">
+                    {submitted && !data ? (
+                        <p className={'text-base font-sans text-blue-500'}>
+                            Wait a minute
+                        </p>
+                    ) : (
+                        <>{data?.provider}</>
+                    )}
+                </section>
             </section>
         </React.Fragment>
     );

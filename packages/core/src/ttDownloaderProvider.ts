@@ -55,7 +55,7 @@ export class TTDownloader extends BaseProvider {
         urls?.pop(); // remove 'https://snaptik.fans'
         return {
             video: {
-                urls: urls as string[],
+                urls: (urls as string[]) ?? [],
             },
         };
     }

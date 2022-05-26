@@ -18,3 +18,9 @@ export const rateLimitConfig = {
  * Default: 1 hour
  */
 export const providerCache = 3600;
+
+/**
+ * How much rotate retries is allowed?
+ * Default: 5x
+ */
+export const maxRotateCount = 3;

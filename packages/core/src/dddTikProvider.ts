@@ -27,7 +27,7 @@ export class DDDTikProvider extends BaseProvider {
     async fetch(url: string): Promise<ExtractedInfo> {
         const response = await this.client.post('./down.php', {
             form: {
-                url: url,
+                url,
             },
         });
 
