@@ -2,6 +2,7 @@ import React from 'react';
 import useSWR, {Fetcher} from 'swr';
 import {ExtractedInfo} from 'tiktok-dl-core';
 import {getTikTokURL} from '../lib/url';
+import {VideoComponent} from './Video';
 
 // // ERRORS ///
 /**
@@ -126,7 +127,7 @@ export const FormInputComponent = (): JSX.Element => {
                             Wait a minute
                         </p>
                     ) : (
-                        <>{data?.provider}</>
+                        data && <VideoComponent data={data} />
                     )}
                 </section>
             </section>
