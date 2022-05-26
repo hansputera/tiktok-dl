@@ -1,7 +1,7 @@
 import React from 'react';
 import useSWR, {Fetcher} from 'swr';
 import {ExtractedInfo} from 'tiktok-dl-core';
-import { getTikTokURL } from '../lib/url';
+import {getTikTokURL} from '../lib/url';
 
 // // ERRORS ///
 /**
