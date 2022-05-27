@@ -7,6 +7,8 @@ Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 - [Got](https://npmjs.com/got)
 - [Ow](https://npmjs.com/ow) 
 - [VM2](https://npmjs.com/vm2)
+- [Next.js](https://nextjs.org)
+- [WindiCSS](https://windicss.org)
 
 ## Development 👷
 - Make sure you have [yarn](https://yarnpkg.com) installed, and you are using the [yarn berry](https://yarnpkg.com/getting-started/migration#step-by-step) version.
@@ -26,7 +28,7 @@ Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 3. Add environment variable with `REDIS_URL` as the name, and fill the value using your redis url.
 
 ## ☁️ Endpoints
-Check [this](https://docs.tiktok-dl.tslab.site) out.
+Check [this](https://docs.tdl.besecure.eu.org) out.
 
 ## :bug: Bugs Report
 Feel free to open an issue if you have a problem or find a bug. That would be very helpful!
@@ -39,7 +41,6 @@ Feel free to open an issue if you have a problem or find a bug. That would be ve
 - [SaveFrom](https://id.savefrom.net)
 - [TTDownloader](https://ttdownloader.com)
 - [Musically Down](https://musicaldown.com)
-- [DDDTik](https://dddtik.com)
 - [TikDown](https://tikdown.org)
 - [DownTik](https://downtik.net)
 - [LoveTik](https://lovetik.com)
