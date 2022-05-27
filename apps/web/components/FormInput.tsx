@@ -129,7 +129,9 @@ export const FormInputComponent = (): JSX.Element => {
                             Wait a minute
                         </p>
                     ) : (
-                        data && data.video && data.video.urls.length &&<VideoComponent data={data} />
+                        data &&
+                        data.video &&
+                        data.video.urls.length && <VideoComponent data={data} />
                     )}
                 </section>
             </section>
