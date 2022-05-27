@@ -47,7 +47,9 @@ export const FormInputComponent = (): JSX.Element => {
         fetcher,
         {
             loadingTimeout: 10_000,
-            refreshInterval: 0,
+            refreshInterval: 30_000,
+            revalidateIfStale: true,
+            revalidateOnMount: false,
         },
     );
 
@@ -127,7 +129,7 @@ export const FormInputComponent = (): JSX.Element => {
                             Wait a minute
                         </p>
                     ) : (
-                        data && <VideoComponent data={data} />
+                        data && data.video && data.video.urls.length &&<VideoComponent data={data} />
                     )}
                 </section>
             </section>
