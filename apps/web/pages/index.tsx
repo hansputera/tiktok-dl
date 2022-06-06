@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import { Footer } from '../components/Footer';
 
 const FormInputComponentDynamic = dynamic(
     () => import('../components/FormInput'),
@@ -18,6 +19,7 @@ export default () => {
             </h1>
 
             <FormInputComponentDynamic />
+            <Footer />
         </section>
     );
 };
