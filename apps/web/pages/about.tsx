@@ -23,7 +23,7 @@ export default () => {
                                 <p className="text-center font-sans">
                                     {data.description}
                                 </p>
-                                <ul className="mb-3">
+                                <ul className="mb-3 mt-3">
                                     <li>
                                         This project is based on{' '}
                                         <span className="font-semibold">
