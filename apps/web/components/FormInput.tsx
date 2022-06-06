@@ -35,7 +35,9 @@ export const FormInputComponent = (): JSX.Element => {
     const [error, setError] = React.useState<string | Error>();
     const [submitted, setSubmit] = React.useState<boolean>(false);
     const {data, mutate} = useSWR(
-        submitted && (!error || !(error as string).length) && url.length
+        submitted &&
+            (!error || !(error as string).length) &&
+            /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.+)$/gi.test(url)
             ? [
                   '/api/download',
                   {
@@ -59,20 +61,23 @@ export const FormInputComponent = (): JSX.Element => {
             url.length
         ) {
             setError(new InvalidUrlError('Invalid TikTok Video URL'));
+        } else {
+            // submit event trigger.
+            if (submitted && !error) {
+                mutate();
+            }
+
             try {
                 const u = getTikTokURL(url);
                 if (!u) {
                     setError(new InvalidUrlError('Invalid TikTok URL'));
                     return;
                 }
+
+                console.log(u);
                 setUrl(u);
             } catch {
                 setError(new InvalidUrlError('Invalid TikTok Video URL'));
-            }
-        } else {
-            // submit event trigger.
-            if (submitted && !error) {
-                mutate();
             }
 
             setError(undefined);
@@ -123,7 +128,7 @@ export const FormInputComponent = (): JSX.Element => {
                     </div>
                 </form>
 
-                <section className="mt-3">
+                <section className="mt-3 mb-3">
                     {submitted && !data ? (
                         <p className={'text-base font-sans text-blue-500'}>
                             Wait a minute
