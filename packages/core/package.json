@@ -16,6 +16,6 @@
 	"devDependencies": {
 		"@typescript-eslint/parser": "5.28.0",
 		"eslint": "8.17.0",
-		"prettier": "2.6.2"
+		"prettier": "2.7.0"
 	}
 }
