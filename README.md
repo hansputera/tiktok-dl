@@ -1,4 +1,4 @@
-# ⏫ TikTok Downloader
+# ⏫ [DEPRECATED] TikTok Downloader
 
 Video TikTok Downloader using 🧰 NodeJS with Watermark and Non-Watermark!
 
