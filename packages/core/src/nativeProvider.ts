@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchTikTokData} from './utils';
-import ow, {Shape} from 'ow/dist';
+import ow, {Shape} from 'ow';
 
 /**
  * @class NativeProvider

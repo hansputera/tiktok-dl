@@ -1,7 +1,7 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {deObfuscate, matchLink} from './utils';
-import type {Shape} from 'ow/dist';
+import type {Shape} from 'ow';
 
 /**
  * @class SnaptikProvider

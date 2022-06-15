@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import type {Shape} from 'ow/dist';
+import type {Shape} from 'ow';
 
 /**
  * @class DownloadOne

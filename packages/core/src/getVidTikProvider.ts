@@ -2,7 +2,7 @@ import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchLink} from './utils';
 import {random as randomUA} from 'tiktok-dl-config/useragents';
-import type {Shape} from 'ow/dist';
+import type {Shape} from 'ow';
 
 /**
  * @class GetVidTikProvider

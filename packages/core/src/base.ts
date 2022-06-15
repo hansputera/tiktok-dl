@@ -1,5 +1,5 @@
 import {Got} from 'got';
-import type {Shape} from 'ow/dist';
+import type {Shape} from 'ow';
 
 export interface ExtractedInfo {
     error?: string;

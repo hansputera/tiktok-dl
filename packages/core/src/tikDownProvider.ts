@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchLink} from './utils';
-import type {Shape} from 'ow/dist';
+import type {Shape} from 'ow';
 
 /**
  * @class TikDownProvider
