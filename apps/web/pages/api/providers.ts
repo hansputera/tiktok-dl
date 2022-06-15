@@ -1,7 +1,7 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {Providers} from 'tiktok-dl-core';
 import {ratelimitMiddleware} from '../../middleware/ratelimit';
-import type {Shape} from 'ow/dist';
+import type {Shape} from 'ow';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     await ratelimitMiddleware(req, res);
