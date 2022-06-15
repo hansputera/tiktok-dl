@@ -1,6 +1,6 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
-import type {Shape} from 'ow';
+import type {Shape} from 'ow/dist';
 
 /**
  * @class MusicalyDown

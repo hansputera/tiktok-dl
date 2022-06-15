@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchCustomDownload} from './utils';
-import type {Shape} from 'ow';
+import type {Shape} from 'ow/dist';
 
 /**
  * @class SaveTikProvider

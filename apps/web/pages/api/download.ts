@@ -1,5 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import ow from 'ow';
+import ow from 'ow/dist';
 import {getProvider, Providers, BaseProvider} from 'tiktok-dl-core';
 import {getTikTokURL} from '../../lib';
 import {rotateProvider} from '../../lib/rotator';
