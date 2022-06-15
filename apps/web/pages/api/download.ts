@@ -1,6 +1,7 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import ow from 'ow';
 import {getProvider, Providers, BaseProvider} from 'tiktok-dl-core';
+import {getTikTokURL} from '../../lib';
 import {rotateProvider} from '../../lib/rotator';
 import {ratelimitMiddleware} from '../../middleware/ratelimit';
 
@@ -15,10 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             req.body || req.query,
             ow.object.partialShape({
                 url: ow.string.url.validate((v) => ({
-                    validator:
-                        /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.*)$/gi.test(
-                            v,
-                        ),
+                    validator: !!getTikTokURL(v),
                     message: 'Expected (.*).tiktok.com',
                 })),
                 type: ow.optional.string.validate((v) => ({
@@ -62,9 +60,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             provider = getProvider('random');
         }
 
+        const url = getTikTokURL(req.query.url || req.body.url);
+
         const result = await rotateProvider(
             provider as BaseProvider,
-            req.query.url || req.body.url,
+            url!,
             req.method === 'POST'
                 ? req.body.rotateOnError
                 : !!req.query.rotateOnError,
