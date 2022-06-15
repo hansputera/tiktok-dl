@@ -188,6 +188,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sindresorhus/is@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@sindresorhus/is@npm:5.1.0"
+  checksum: 12147a6c83a43d0aa69bd0e82c042904b797b5791668adb4c2bfcb7e84b7f542a7b53c51f1b9d84d40b230a8ce3e52aa6d2aaa3e6fc91497d5a4cedc9d9cab53
+  languageName: node
+  linkType: hard
+
 "@szmarczak/http-timer@npm:^5.0.1":
   version: 5.0.1
   resolution: "@szmarczak/http-timer@npm:5.0.1"
@@ -572,6 +579,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"callsites@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "callsites@npm:4.0.0"
+  checksum: ad3c3a57328a539c0d671cf1ca500abf09461b762807fc545a132026bdf87705fee9c299e1adb38b133c29201a3b04fbf4f2b90d8fa1d9e00ef507e803737cf2
+  languageName: node
+  linkType: hard
+
 "caniuse-lite@npm:^1.0.30001332":
   version: 1.0.30001342
   resolution: "caniuse-lite@npm:1.0.30001342"
@@ -722,6 +736,15 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: 0f47600a4b93e1dc37261da4e6909652c008832a5d3684b5bf9a9a0d3f4c67ea949a86dceed9b72f5733ed8e8e6383cc5958df3bbd0799ee317fd181f2ece700
+  languageName: node
+  linkType: hard
+
+"dot-prop@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "dot-prop@npm:7.2.0"
+  dependencies:
+    type-fest: ^2.11.2
+  checksum: 08e4ff14f7305ffb5fda7e4c88f3cdbeb3cd97bd27efa4f47503869a2ee7f96938b4c21b0a2abf9c37d891a1bdb3994a09d219b0dcfd6130da4eaeb44c6f067e
   languageName: node
   linkType: hard
 
@@ -1612,7 +1635,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ow@npm:0.28.1, ow@npm:^0.28.1":
+"ow@npm:^0.28.1":
   version: 0.28.1
   resolution: "ow@npm:0.28.1"
   dependencies:
@@ -1623,6 +1646,20 @@ __metadata:
     type-fest: ^2.3.4
     vali-date: ^1.0.0
   checksum: 151c3a90d767b907c0842993145432733962a0265eab70dad917d3b09ab5cc29946057b677431beec58fabfbc038d98327e22fc2b47a2e53a698b7969b29e3ce
+  languageName: node
+  linkType: hard
+
+"ow@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "ow@npm:1.0.0"
+  dependencies:
+    "@sindresorhus/is": ^5.1.0
+    callsites: ^4.0.0
+    dot-prop: ^7.2.0
+    lodash.isequal: ^4.5.0
+    type-fest: ^2.13.0
+    vali-date: ^1.0.0
+  checksum: 742499472d9fbcf9ff6cf79b47220ca03edff0a4cc84f79dd5409b9776f9bf90ac958b62ff1d3f8ed669ccfeb102f8fc70e8cf88664fcd299758110f95748004
   languageName: node
   linkType: hard
 
@@ -2000,7 +2037,7 @@ __metadata:
     ioredis: 5.0.6
     next: 12.1.6
     next-transpile-modules: 9.0.0
-    ow: 0.28.1
+    ow: ^1.0.0
     prettier: 2.7.0
     react: 18.2.0
     react-dom: 18.2.0
@@ -2202,6 +2239,13 @@ __metadata:
   version: 0.20.2
   resolution: "type-fest@npm:0.20.2"
   checksum: 4fb3272df21ad1c552486f8a2f8e115c09a521ad7a8db3d56d53718d0c907b62c6e9141ba5f584af3f6830d0872c521357e512381f24f7c44acae583ad517d73
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^2.11.2, type-fest@npm:^2.13.0":
+  version: 2.13.1
+  resolution: "type-fest@npm:2.13.1"
+  checksum: 16f05cfd2b701f923176b2d6c5656d26435e71dc874851c95df9b0a287ce18a31f5b14e487cc325df6286daac02124cb0551d48c2ae7039f8a763aa376f3b479
   languageName: node
   linkType: hard
 
