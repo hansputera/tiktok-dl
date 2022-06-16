@@ -26,7 +26,7 @@
 		"@types/react": "18.0.12",
 		"@types/react-dom": "18.0.5",
 		"next-transpile-modules": "9.0.0",
-		"prettier": "2.7.0",
+		"prettier": "2.7.1",
 		"tiktok-dl-config": "*",
 		"typescript": "latest",
 		"windicss-webpack-plugin": "1.7.3"
