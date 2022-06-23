@@ -2017,7 +2017,7 @@ __metadata:
   resolution: "tktk@workspace:."
   dependencies:
     husky: 8.0.1
-    turbo: 1.2.16
+    turbo: 1.3.0
   languageName: unknown
   linkType: soft
 
@@ -2048,115 +2048,125 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-darwin-64@npm:1.2.16"
+"turbo-android-arm64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-android-arm64@npm:1.3.0"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-darwin-64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-darwin-64@npm:1.3.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-darwin-arm64@npm:1.2.16"
+"turbo-darwin-arm64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-darwin-arm64@npm:1.3.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-freebsd-64@npm:1.2.16"
+"turbo-freebsd-64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-freebsd-64@npm:1.3.0"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-arm64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-freebsd-arm64@npm:1.2.16"
+"turbo-freebsd-arm64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-freebsd-arm64@npm:1.3.0"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-32@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-linux-32@npm:1.2.16"
+"turbo-linux-32@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-linux-32@npm:1.3.0"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-linux-64@npm:1.2.16"
+"turbo-linux-64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-linux-64@npm:1.3.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-linux-arm64@npm:1.2.16"
+"turbo-linux-arm64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-linux-arm64@npm:1.3.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-linux-arm@npm:1.2.16"
+"turbo-linux-arm@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-linux-arm@npm:1.3.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"turbo-linux-mips64le@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-linux-mips64le@npm:1.2.16"
+"turbo-linux-mips64le@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-linux-mips64le@npm:1.3.0"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"turbo-linux-ppc64le@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-linux-ppc64le@npm:1.2.16"
+"turbo-linux-ppc64le@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-linux-ppc64le@npm:1.3.0"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"turbo-windows-32@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-windows-32@npm:1.2.16"
+"turbo-windows-32@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-windows-32@npm:1.3.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-windows-64@npm:1.2.16"
+"turbo-windows-64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-windows-64@npm:1.3.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo-windows-arm64@npm:1.2.16"
+"turbo-windows-arm64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo-windows-arm64@npm:1.3.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:1.2.16":
-  version: 1.2.16
-  resolution: "turbo@npm:1.2.16"
+"turbo@npm:1.3.0":
+  version: 1.3.0
+  resolution: "turbo@npm:1.3.0"
   dependencies:
-    turbo-darwin-64: 1.2.16
-    turbo-darwin-arm64: 1.2.16
-    turbo-freebsd-64: 1.2.16
-    turbo-freebsd-arm64: 1.2.16
-    turbo-linux-32: 1.2.16
-    turbo-linux-64: 1.2.16
-    turbo-linux-arm: 1.2.16
-    turbo-linux-arm64: 1.2.16
-    turbo-linux-mips64le: 1.2.16
-    turbo-linux-ppc64le: 1.2.16
-    turbo-windows-32: 1.2.16
-    turbo-windows-64: 1.2.16
-    turbo-windows-arm64: 1.2.16
+    turbo-android-arm64: 1.3.0
+    turbo-darwin-64: 1.3.0
+    turbo-darwin-arm64: 1.3.0
+    turbo-freebsd-64: 1.3.0
+    turbo-freebsd-arm64: 1.3.0
+    turbo-linux-32: 1.3.0
+    turbo-linux-64: 1.3.0
+    turbo-linux-arm: 1.3.0
+    turbo-linux-arm64: 1.3.0
+    turbo-linux-mips64le: 1.3.0
+    turbo-linux-ppc64le: 1.3.0
+    turbo-windows-32: 1.3.0
+    turbo-windows-64: 1.3.0
+    turbo-windows-arm64: 1.3.0
   dependenciesMeta:
+    turbo-android-arm64:
+      optional: true
     turbo-darwin-64:
       optional: true
     turbo-darwin-arm64:
@@ -2185,7 +2195,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 245b1b28af153edd14ab35a4812a8651b1e7cbae44ce3f15b53e0a73a3cc9c4ea39734f18c966403496c37876dd57053070b5b7eb736a14f1bc7e1bfd36566f3
+  checksum: c57afb71ac593f62d28b2d0deb611baa4a36cc0d5674ea225c515a2e24a6f211b2bc9ffc74f6992ecda4a52ac436059afc8740d73960c354b846e7d5c965f67f
   languageName: node
   linkType: hard
 
