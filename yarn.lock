@@ -5,7 +5,7 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@antfu/utils@npm:^0.5.1":
+"@antfu/utils@npm:^0.5.2":
   version: 0.5.2
   resolution: "@antfu/utils@npm:0.5.2"
   checksum: 9b91446b2dbb823abeeba1cc33d6ebf701a462923408ad4751fbe162da46ae0669c774c2b5435fc77691dc207ce5de5945e693d5163e07d6ef42e376b04c7af4
@@ -433,29 +433,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@windicss/config@npm:1.8.4":
-  version: 1.8.4
-  resolution: "@windicss/config@npm:1.8.4"
+"@windicss/config@npm:1.8.6":
+  version: 1.8.6
+  resolution: "@windicss/config@npm:1.8.6"
   dependencies:
     debug: ^4.3.4
-    jiti: ^1.13.0
-    windicss: ^3.5.1
-  checksum: 2913d34ce205c6d337b0bc3d2f138260811b16df5dbb0a54a067a29b87d1067a8be0d2575a18a077445629d0589a8c9a22b3df7dac81f880154dd859436f9a72
+    jiti: ^1.14.0
+    windicss: ^3.5.6
+  checksum: c8691f1899bf5c754927127d4766641cdf27d646f3994f859109717e3e5f3fb3afdb98ab4453e7bd3112b9c349f4c0ace9a7cea8ced38f94a724df6fbebc62a3
   languageName: node
   linkType: hard
 
-"@windicss/plugin-utils@npm:^1.8.4":
-  version: 1.8.4
-  resolution: "@windicss/plugin-utils@npm:1.8.4"
+"@windicss/plugin-utils@npm:^1.8.6":
+  version: 1.8.6
+  resolution: "@windicss/plugin-utils@npm:1.8.6"
   dependencies:
-    "@antfu/utils": ^0.5.1
-    "@windicss/config": 1.8.4
+    "@antfu/utils": ^0.5.2
+    "@windicss/config": 1.8.6
     debug: ^4.3.4
     fast-glob: ^3.2.11
-    magic-string: ^0.26.1
+    magic-string: ^0.26.2
     micromatch: ^4.0.5
-    windicss: ^3.5.1
-  checksum: 1fdd8b50b73d4e0dd5efd733acc53d94158c5ecce671386e0703bc9415a495e6a7e16682c18dd05f99c4677af97e041c79b3268ccc912ccbb6ecec895c2dcfd3
+    windicss: ^3.5.6
+  checksum: 1cd725f6412f5615d8a2f50aee84bf84ec66fccc011d234e188bfe21a18b27089c91d70b922ee720d1ff31ed772a73cfea2ad9e460461cf8e543fefb239d4d70
   languageName: node
   linkType: hard
 
@@ -1295,12 +1295,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jiti@npm:^1.13.0":
-  version: 1.13.0
-  resolution: "jiti@npm:1.13.0"
+"jiti@npm:^1.14.0":
+  version: 1.14.0
+  resolution: "jiti@npm:1.14.0"
   bin:
     jiti: bin/jiti.js
-  checksum: 1e74d99b9a551df952057b8bce56f744caccca0044aa05021643e6ce0837ed47bc2d5b290fecb462e32988c6bf318afe77e341310c5ecf6bb63c19c80c929cb6
+  checksum: 61e7123caa397b8a53068120b7496b95048b96feba3cc1a263265e9b0bcfb375e90a182e07643a29e5380d92c485918d5e7db3805cc9511404e7e9c93234725b
   languageName: node
   linkType: hard
 
@@ -1452,7 +1452,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.26.1":
+"magic-string@npm:^0.26.2":
   version: 0.26.2
   resolution: "magic-string@npm:0.26.2"
   dependencies:
@@ -2029,7 +2029,7 @@ __metadata:
     tiktok-dl-config: "*"
     tiktok-dl-core: "*"
     typescript: latest
-    windicss-webpack-plugin: 1.7.3
+    windicss-webpack-plugin: 1.7.4
   languageName: unknown
   linkType: soft
 
@@ -2332,28 +2332,28 @@ typescript@latest:
   languageName: node
   linkType: hard
 
-"windicss-webpack-plugin@npm:1.7.3":
-  version: 1.7.3
-  resolution: "windicss-webpack-plugin@npm:1.7.3"
+"windicss-webpack-plugin@npm:1.7.4":
+  version: 1.7.4
+  resolution: "windicss-webpack-plugin@npm:1.7.4"
   dependencies:
-    "@windicss/plugin-utils": ^1.8.4
+    "@windicss/plugin-utils": ^1.8.6
     debug: ^4.3.4
     get-port: ^6.1.2
     loader-utils: ^2.0.0
     lodash: ^4.17.21
     pathe: ^0.2.0
     webpack-virtual-modules: ^0.4.3
-    windicss: ^3.5.4
-  checksum: 3ae274a64b9124b088e4b9aeb2280bb358d6daf539e2630c670c39bb5c1211b88480f147e99907f377ed58ff1df3efd5bfa20dfd5a4c79a2085c9ad2aca733df
+    windicss: ^3.5.6
+  checksum: c59c9ceba104d6aee28271147df67ad52c3cfadc3c9ffd1fa2cbe7e524fb0d8a0f98fe3fa40d6ffbd4b5119002b4d6a6938356d7280382631d9a7a161a309b0a
   languageName: node
   linkType: hard
 
-"windicss@npm:^3.5.1, windicss@npm:^3.5.4":
-  version: 3.5.4
-  resolution: "windicss@npm:3.5.4"
+"windicss@npm:^3.5.6":
+  version: 3.5.6
+  resolution: "windicss@npm:3.5.6"
   bin:
     windicss: cli/index.js
-  checksum: acad2be202354afa977a1fbb4e309dfc7b8858e14d401ab2d3417730519782fd61fc072cc9bae4c2eb1be635f515aa7df800304d0819307bd7168bfeec68f0fc
+  checksum: e4b6ab048488387b5bebfa6e65ccd0e55504f9133dfeb8c6cd4e817925b9941fff7680dc2aacc5923d293560e834427108039acff89eabe26a7429c0151eb1e7
   languageName: node
   linkType: hard
 
