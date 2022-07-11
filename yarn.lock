@@ -1241,9 +1241,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:5.1.0":
-  version: 5.1.0
-  resolution: "ioredis@npm:5.1.0"
+"ioredis@npm:5.2.0":
+  version: 5.2.0
+  resolution: "ioredis@npm:5.2.0"
   dependencies:
     "@ioredis/commands": ^1.1.1
     cluster-key-slot: ^1.1.0
@@ -1254,7 +1254,7 @@ __metadata:
     redis-errors: ^1.2.0
     redis-parser: ^3.0.0
     standard-as-callback: ^2.1.0
-  checksum: 7b1c137836ee136a634926df4ec68cc2393772a32ecda8e30dd305d7b9182af02d600456e661f96a6ceada17560ce7b6458948fd09b8adc277a1d287325777dd
+  checksum: 37189fcd4bd834d66aabb28a754d97da9147a6162c16bd971647750dbb81cbe7d93f4c07a623efdc0fdcb61bca243678b864229ddbcc2b8692755d7be40a2227
   languageName: node
   linkType: hard
 
@@ -2018,7 +2018,7 @@ __metadata:
     "@types/react": 18.0.15
     "@types/react-dom": 18.0.6
     dotenv: 16.0.1
-    ioredis: 5.1.0
+    ioredis: 5.2.0
     next: 12.2.2
     next-transpile-modules: 9.0.0
     ow: 0.28.1
