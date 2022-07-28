@@ -433,29 +433,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@windicss/config@npm:1.8.6":
-  version: 1.8.6
-  resolution: "@windicss/config@npm:1.8.6"
+"@windicss/config@npm:1.8.7":
+  version: 1.8.7
+  resolution: "@windicss/config@npm:1.8.7"
   dependencies:
     debug: ^4.3.4
     jiti: ^1.14.0
     windicss: ^3.5.6
-  checksum: c8691f1899bf5c754927127d4766641cdf27d646f3994f859109717e3e5f3fb3afdb98ab4453e7bd3112b9c349f4c0ace9a7cea8ced38f94a724df6fbebc62a3
+  checksum: 39cf492561c68ffe5e5866841d0e2ee2d59e3ca95a6487eee0b217b46583f58b8a66c649124c9727bed9de642fe0894038b9abff548638f60b7f2259cf3825e3
   languageName: node
   linkType: hard
 
-"@windicss/plugin-utils@npm:^1.8.6":
-  version: 1.8.6
-  resolution: "@windicss/plugin-utils@npm:1.8.6"
+"@windicss/plugin-utils@npm:^1.8.7":
+  version: 1.8.7
+  resolution: "@windicss/plugin-utils@npm:1.8.7"
   dependencies:
     "@antfu/utils": ^0.5.2
-    "@windicss/config": 1.8.6
+    "@windicss/config": 1.8.7
     debug: ^4.3.4
     fast-glob: ^3.2.11
     magic-string: ^0.26.2
     micromatch: ^4.0.5
     windicss: ^3.5.6
-  checksum: 1cd725f6412f5615d8a2f50aee84bf84ec66fccc011d234e188bfe21a18b27089c91d70b922ee720d1ff31ed772a73cfea2ad9e460461cf8e543fefb239d4d70
+  checksum: 413c3fa38f1b549450416db7b58179c82dcae50179595d06a51a285a7f77795acda732af74cd86400bf8adf8c2a9d41f0f40d819a6ac604e8b9b2bdf57c6c35b
   languageName: node
   linkType: hard
 
@@ -2029,7 +2029,7 @@ __metadata:
     tiktok-dl-config: "*"
     tiktok-dl-core: "*"
     typescript: latest
-    windicss-webpack-plugin: 1.7.4
+    windicss-webpack-plugin: 1.7.5
   languageName: unknown
   linkType: soft
 
@@ -2332,11 +2332,11 @@ typescript@latest:
   languageName: node
   linkType: hard
 
-"windicss-webpack-plugin@npm:1.7.4":
-  version: 1.7.4
-  resolution: "windicss-webpack-plugin@npm:1.7.4"
+"windicss-webpack-plugin@npm:1.7.5":
+  version: 1.7.5
+  resolution: "windicss-webpack-plugin@npm:1.7.5"
   dependencies:
-    "@windicss/plugin-utils": ^1.8.6
+    "@windicss/plugin-utils": ^1.8.7
     debug: ^4.3.4
     get-port: ^6.1.2
     loader-utils: ^2.0.0
@@ -2344,7 +2344,7 @@ typescript@latest:
     pathe: ^0.2.0
     webpack-virtual-modules: ^0.4.3
     windicss: ^3.5.6
-  checksum: c59c9ceba104d6aee28271147df67ad52c3cfadc3c9ffd1fa2cbe7e524fb0d8a0f98fe3fa40d6ffbd4b5119002b4d6a6938356d7280382631d9a7a161a309b0a
+  checksum: ed592c3063f8a0ce8225c26f33c2278e6d3f981906c3cb8f9f0ad84c8c299fd78f2864db0138d322d4237eb75d416584ec3d6db30e6873926f3eb017377145e6
   languageName: node
   linkType: hard
 
