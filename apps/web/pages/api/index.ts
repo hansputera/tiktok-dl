@@ -1,5 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 
 export default async (_: NextApiRequest, res: NextApiResponse) => {
-    res.send('Y');
+    return res.redirect('https://github.com/hansputera/tiktok-dl.git');
 };
