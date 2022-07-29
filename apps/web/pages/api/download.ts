@@ -28,10 +28,6 @@ export default applyRoute(
                             'Invalid Provider, available provider is: ' +
                             Providers.map((x) => x.resourceName()).join(', '),
                     })),
-                    nocache:
-                        req.method === 'POST'
-                            ? ow.optional.boolean
-                            : ow.optional.string,
                     rotateOnError:
                         req.method === 'POST'
                             ? ow.optional.boolean

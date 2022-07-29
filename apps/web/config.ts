@@ -10,7 +10,7 @@ export const rateLimitConfig = {
      * So, their ratelimit data will removed.
      * PS: Data stored on redis.
      */
-    ratelimitTime: 60,
+    ratelimitTime: 120,
 };
 
 /**
