@@ -7,7 +7,6 @@ export const Footer = () => (
             <a
                 target="_blank"
                 href="https://github.com/hansputera/tiktok-dl.git"
-                className="text-gray-800 font-sans"
             >
                 TikTok-DL Project
             </a>

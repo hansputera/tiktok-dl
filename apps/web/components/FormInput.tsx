@@ -27,7 +27,6 @@ interface StateData {
     submitted: boolean;
     error?: string | Error;
     url: string;
-    wasSubmit: boolean;
 }
 
 const fetcher: Fetcher<ExtractedInfoWithProvider, string> = (...args) =>
@@ -42,12 +41,9 @@ export const FormInputComponent = (): JSX.Element => {
         submitted: false,
         error: undefined,
         url: '',
-        wasSubmit: false,
     });
-
     const {data, mutate} = useSWR(
-        (state.submitted || state.wasSubmit) &&
-            (!state.error || !(state.error as string).length) &&
+        (!state.error || !(state.error as string).length) &&
             /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.+)$/gi.test(state.url)
             ? [
                   '/api/download',
@@ -59,8 +55,8 @@ export const FormInputComponent = (): JSX.Element => {
             : null,
         fetcher,
         {
-            loadingTimeout: 10_000,
-            refreshInterval: 30_000,
+            loadingTimeout: 5_000,
+            refreshInterval: 60_000,
             revalidateOnMount: false,
             onSuccess: () =>
                 setState({
@@ -179,7 +175,7 @@ export const FormInputComponent = (): JSX.Element => {
                             Wait a minute
                         </p>
                     )}
-                    {data && data && data.video && data.video.urls.length && (
+                    {data && data.video && data.video.urls.length && (
                         <VideoComponent data={data} />
                     )}
                 </section>
