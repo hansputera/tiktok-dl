@@ -2,64 +2,37 @@ import React from 'react';
 import type {ExtractedInfoWithProvider} from './FormInput';
 
 export const VideoComponent = ({data}: {data: ExtractedInfoWithProvider}) => {
+    const copyUrl = (url: string) => {
+        navigator.clipboard.writeText(url);
+        if (typeof window !== 'undefined') {
+            window.alert('URL Copied');
+        }
+    };
     return (
         <React.Fragment>
-            <h1 className="text-2xl text-center">Your Video Is Ready!</h1>
-            <div className="grid grid-cols-3 gap-3">
-                <div>
-                    <video
-                        autoPlay={false}
-                        controls
-                        className="h-64 w-80 rounded-md md:ml-2"
-                    >
-                        <source src={data.video?.urls[0]} />
-                    </video>
+            This video is downloaded from{' '}
+            <span className="font-semibold">{data.provider}</span>.
+            {data.caption && <pre>{data.caption}</pre>}
+            <div className="md:grid md:grid-cols-3 md:gap-4">
+                <video
+                    controls={true}
+                    autoPlay={false}
+                    className="rounded-md h-64 w-80"
+                >
+                    <source src={data.video?.urls[0]} />
+                </video>
+                <div className="flex flex-row font-sans basis-8 mt-2">
+                    {data.video?.urls.map((url, index) => (
+                        <button
+                            key={index.toString()}
+                            className="mr-1 bg-teal-400 md:p-2 p-1 rounded-md shadow"
+                            onClick={() => copyUrl(url)}
+                        >
+                            LINK {index + 1}
+                        </button>
+                    ))}
                 </div>
-                <div className="bg-teal-200 rounded-sm text-center">
-                    <ul className="grid grid-cols-1 gap-1">
-                        <li key="download-url">
-                            <p className="font-semibold">Download URLs:</p>
-                        </li>
-                        {data.video!.urls.map((url, index) => (
-                            <li key={index}>
-                                <a href={url}>Click to Download #{index + 1}</a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {data.music && (
-                    <div className="bg-light-500 rounded-sm text-center">
-                        <ul className="grid grid-cols-1 gap-1">
-                            <li key="music-head">
-                                <p className="font-semibold">Music:</p>
-                            </li>
-                            <li key="music-url">
-                                Music URL:{' '}
-                                <a
-                                    href={data.music.url}
-                                    className="text-blue-500 uppercase"
-                                    target="_blank"
-                                >
-                                    Click here
-                                </a>
-                            </li>
-                            {data.music.author && (
-                                <li key="music-author">
-                                    Music Author: {data.music.author}
-                                </li>
-                            )}
-                            {data.music.title && (
-                                <li key="music-title">
-                                    Music Title: {data.music.title}
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                )}
             </div>
-            <p className="font-sans text-base mt-2">
-                &copy; Source: {data.provider}
-            </p>
         </React.Fragment>
     );
 };

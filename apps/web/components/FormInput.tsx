@@ -23,6 +23,13 @@ export type ExtractedInfoWithProvider = ExtractedInfo & {
     _url: string;
 };
 
+interface StateData {
+    submitted: boolean;
+    error?: string | Error;
+    url: string;
+    wasSubmit: boolean;
+}
+
 const fetcher: Fetcher<ExtractedInfoWithProvider, string> = (...args) =>
     fetch(...args).then((r) => r.json());
 
@@ -31,18 +38,22 @@ const fetcher: Fetcher<ExtractedInfoWithProvider, string> = (...args) =>
  * @return {JSX.Element}
  */
 export const FormInputComponent = (): JSX.Element => {
-    const [url, setUrl] = React.useState('');
-    const [error, setError] = React.useState<string | Error>();
-    const [submitted, setSubmit] = React.useState<boolean>(false);
+    const [state, setState] = React.useState<StateData>({
+        submitted: false,
+        error: undefined,
+        url: '',
+        wasSubmit: false,
+    });
+
     const {data, mutate} = useSWR(
-        submitted &&
-            (!error || !(error as string).length) &&
-            /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.+)$/gi.test(url)
+        (state.submitted || state.wasSubmit) &&
+            (!state.error || !(state.error as string).length) &&
+            /^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.+)$/gi.test(state.url)
             ? [
                   '/api/download',
                   {
                       method: 'POST',
-                      body: JSON.stringify({url}),
+                      body: JSON.stringify({url: state.url}),
                   },
               ]
             : null,
@@ -50,39 +61,59 @@ export const FormInputComponent = (): JSX.Element => {
         {
             loadingTimeout: 10_000,
             refreshInterval: 30_000,
-            revalidateIfStale: true,
             revalidateOnMount: false,
+            onSuccess: () =>
+                setState({
+                    ...state,
+                    submitted: false,
+                }),
         },
     );
 
     React.useEffect(() => {
         if (
-            !/^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.+)$/gi.test(url) &&
-            url.length
+            !/^http(s?)(:\/\/)([a-z]+\.)*tiktok\.com\/(.+)$/gi.test(
+                state.url,
+            ) &&
+            state.url.length
         ) {
-            setError(new InvalidUrlError('Invalid TikTok Video URL'));
+            setState({
+                ...state,
+                error: new InvalidUrlError('Invalid TikTok URL'),
+            });
         } else {
             // submit event trigger.
-            if (submitted && !error) {
+            if (state.submitted && !state.error) {
                 mutate();
             }
 
             try {
-                const u = getTikTokURL(url);
+                const u = getTikTokURL(state.url);
                 if (!u) {
-                    setError(new InvalidUrlError('Invalid TikTok URL'));
+                    setState({
+                        ...state,
+                        error: new InvalidUrlError('Invalid TikTok URL'),
+                    });
                     return;
                 }
 
-                console.log(u);
-                setUrl(u);
+                setState({
+                    ...state,
+                    url: u,
+                });
             } catch {
-                setError(new InvalidUrlError('Invalid TikTok Video URL'));
+                setState({
+                    ...state,
+                    error: new InvalidUrlError('Invalid TikTok URL'),
+                });
             }
 
-            setError(undefined);
+            setState({
+                ...state,
+                error: undefined,
+            });
         }
-    }, [url, submitted]);
+    }, [state.submitted, state.url]);
 
     return (
         <React.Fragment>
@@ -91,28 +122,42 @@ export const FormInputComponent = (): JSX.Element => {
                     Fill TikTok's Video URL below:
                 </h1>
                 <p className="text-red-400 font-sans font-semibold">
-                    {error instanceof Error
-                        ? error.name.concat(': '.concat(error.message))
-                        : error
-                        ? error
+                    {state.error instanceof Error
+                        ? state.error.name.concat(
+                              ': '.concat(state.error.message),
+                          )
+                        : state.error
+                        ? state.error
                         : ''}
                 </p>
                 <form
                     className="flex flex-col md:flex-row"
                     onSubmit={(event) => {
                         event.preventDefault();
-                        if (!url.length) {
-                            setError('Please fill the URL!');
+                        if (!state.url.length) {
+                            setState({
+                                ...state,
+                                error: 'Please fill the URL!',
+                            });
                             return;
                         }
-                        !error && setSubmit(true);
+                        !state.error &&
+                            setState({
+                                ...state,
+                                submitted: true,
+                            });
                     }}
                 >
                     <div>
                         <input
                             type="url"
-                            onChange={(event) => setUrl(event.target.value)}
-                            value={url}
+                            onChange={(event) =>
+                                setState({
+                                    ...state,
+                                    url: event.target.value,
+                                })
+                            }
+                            value={state.url}
                             placeholder="e.g: "
                             className="p-3 border border-gray-300 font-sans h-auto w-auto outline-solid-blue-500"
                         />
@@ -121,7 +166,7 @@ export const FormInputComponent = (): JSX.Element => {
                     <div>
                         <button
                             className="p-3 lg:ml-2 mt-1 bg-sky-400 uppercase text-white shadow-sm"
-                            disabled={submitted}
+                            disabled={state.submitted}
                         >
                             download
                         </button>
@@ -129,14 +174,13 @@ export const FormInputComponent = (): JSX.Element => {
                 </form>
 
                 <section className="mt-3 mb-3">
-                    {submitted && !data ? (
+                    {state.submitted && !data && (
                         <p className={'text-base font-sans text-blue-500'}>
                             Wait a minute
                         </p>
-                    ) : (
-                        data &&
-                        data.video &&
-                        data.video.urls.length && <VideoComponent data={data} />
+                    )}
+                    {data && data && data.video && data.video.urls.length && (
+                        <VideoComponent data={data} />
                     )}
                 </section>
             </section>
