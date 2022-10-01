@@ -19,7 +19,7 @@
 		"dev": "next dev",
 		"lint": "next lint",
 		"format": "prettier . --write",
-		"start": "next start --port \"${PORT-3000}\""
+		"start": "next start --port process.env.PORT"
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "12.2.4",
