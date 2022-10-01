@@ -1,5 +1,5 @@
 import {getFetch} from '../fetch';
-import {BaseProvider, ExtractedInfo} from './base';
+import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
 import {deObfuscate, matchLink} from './utils';
 import type {Shape} from 'ow';
 
@@ -16,7 +16,9 @@ export class SnaptikProvider extends BaseProvider {
         return 'snaptik';
     }
 
-    public maintenance = undefined;
+    public maintenance?: MaintenanceProvider | undefined = {
+        reason: 'Snaptik block bots',
+    };
 
     /**
      *
@@ -25,7 +27,9 @@ export class SnaptikProvider extends BaseProvider {
      */
     public async fetch(url: string): Promise<ExtractedInfo> {
         // get token
-        const responseToken = await this.client('./');
+        const responseToken = await this.client('./', {
+            headers: {},
+        });
         const token = (
             responseToken.body.match(
                 /name="token" value="([^""]+)"/,
