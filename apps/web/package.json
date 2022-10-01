@@ -18,7 +18,8 @@
 		"build": "next build",
 		"dev": "next dev",
 		"lint": "next lint",
-		"format": "prettier . --write"
+		"format": "prettier . --write",
+		"start": "next start"
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "12.2.4",

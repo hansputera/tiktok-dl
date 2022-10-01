@@ -12,6 +12,9 @@
 		"dev": {
 			"cache": false
 		},
-		"format": {}
+		"format": {},
+		"start": {
+			"cache": false
+		}
 	}
 }

@@ -9,3 +9,6 @@ package-lock.json
 .yarn/patches
 .yarn/*.gz
 *.rdb
+
+# Local Netlify folder
+.netlify
