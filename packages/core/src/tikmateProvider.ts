@@ -1,6 +1,6 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
-import {deObfuscate, matchCustomDownload} from './utils';
+import {deObfuscate, matchCustomDownload, matchLink} from './utils';
 import type {Shape} from 'ow';
 
 /**
@@ -60,7 +60,12 @@ export class TikmateProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        const matchs = matchCustomDownload('tikmate', deObfuscate(html));
+        const matchs = matchLink(deObfuscate(html));
+        if (!matchs)
+            return {
+                error: "Couldn't match any links!",
+            };
+
         return {
             video: {
                 thumb: matchs.shift(),
