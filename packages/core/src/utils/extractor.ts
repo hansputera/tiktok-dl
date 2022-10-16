@@ -47,7 +47,8 @@ export const deObfuscate = (html: string): string => {
             throw new Error('Cannot download the video!');
         } else {
             return runObfuscatedScript(
-                obfuscatedScripts[0]
+                obfuscatedScripts
+                    .find((x) => x.length)!
                     .replace(/<(\/)?script( type=".+")?>/g, '')
                     .trim(),
             );
@@ -76,7 +77,7 @@ export const matchCustomDownload = (
                     .slice(0, -1) + url.slice(0, -3),
         );
 
-    return [links[0]].concat(urls as string[]);
+    return [links.find((x) => x)!].concat(urls as string[]);
 };
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
