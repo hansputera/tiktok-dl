@@ -77,7 +77,8 @@ export const matchCustomDownload = (
                     .slice(0, -1) + url.slice(0, -3),
         );
 
-    return [links.find((x) => x)!].concat(urls as string[]);
+    if (!urls?.length) return [];
+    return [links[0]].concat(urls as string[]);
 };
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
