@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import {matchCustomDownload} from './utils';
+import {matchCustomDownload, matchLink, runObfuscatedScript} from './utils';
 import type {Shape} from 'ow';
 
 /**
@@ -44,10 +44,15 @@ export class DownTikProvider extends BaseProvider {
             },
         });
 
-        if (JSON.parse(responseAction.body).error) {
-            return {
-                error: JSON.parse(responseAction.body).message,
-            };
+        try {
+            if (JSON.parse(responseAction.body).error) {
+                return {
+                    error: JSON.parse(responseAction.body).message,
+                };
+            }
+        } catch {
+            // if JSON.parse fail
+            return this.extract(responseAction.body);
         }
 
         return this.extract(JSON.parse(responseAction.body).data);
@@ -58,17 +63,32 @@ export class DownTikProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        const urls = matchCustomDownload('downtik', html);
+        let urls = matchCustomDownload('downtik', html);
 
-        return {
-            music: {
-                url: urls.pop() as string,
-            },
-            video: {
-                thumb: urls?.shift(),
-                urls: urls as string[],
-            },
-        };
+        if (!urls?.length) {
+            urls = matchLink(runObfuscatedScript(html)) as string[];
+            if (!urls?.length)
+                return {
+                    error: "Couldn't match any links!",
+                };
+
+            return {
+                video: {
+                    thumb: urls?.shift(),
+                    urls: urls as string[],
+                },
+            };
+        } else {
+            return {
+                music: {
+                    url: urls.pop() as string,
+                },
+                video: {
+                    thumb: urls?.shift(),
+                    urls: urls as string[],
+                },
+            };
+        }
     }
 
     /**
