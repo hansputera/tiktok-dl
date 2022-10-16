@@ -16,6 +16,23 @@ export const matchTikTokData = (html: string): string => {
     }
 };
 
+export const runObfuscatedScript = (jsCode: string): string => {
+    const transformed = jsCode
+        .trim()
+        .replace('eval', '')
+        .replace(/\(function(.)?\(h/gi, 'module.exports = (function (h');
+    const deObfuscated = new NodeVM({
+        compiler: 'javascript',
+        console: 'inherit',
+        require: {
+            external: true,
+            root: './',
+        },
+    }).run(transformed, 'deobfuscate.js');
+
+    return deObfuscated;
+};
+
 export const deObfuscate = (html: string): string => {
     if (/error/gi.test(html)) {
         throw new Error(
@@ -29,24 +46,11 @@ export const deObfuscate = (html: string): string => {
         if (!obfuscatedScripts?.length) {
             throw new Error('Cannot download the video!');
         } else {
-            const transformed = obfuscatedScripts[0]
-                .replace(/<(\/)?script( type=".+")?>/g, '')
-                .trim()
-                .replace('eval', '')
-                .replace(
-                    /\(function(.)?\(h/gi,
-                    'module.exports = (function (h',
-                );
-            const deObfuscated = new NodeVM({
-                compiler: 'javascript',
-                console: 'inherit',
-                require: {
-                    external: true,
-                    root: './',
-                },
-            }).run(transformed, 'deobfuscate.js');
-
-            return deObfuscated;
+            return runObfuscatedScript(
+                obfuscatedScripts[0]
+                    .replace(/<(\/)?script( type=".+")?>/g, '')
+                    .trim(),
+            );
         }
     }
 };
