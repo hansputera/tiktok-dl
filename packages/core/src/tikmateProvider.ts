@@ -1,6 +1,6 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
-import {deObfuscate, matchCustomDownload, matchLink} from './utils';
+import {deObfuscate, matchLink} from './utils';
 import type {Shape} from 'ow';
 
 /**
