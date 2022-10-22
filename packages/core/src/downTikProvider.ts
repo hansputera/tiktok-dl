@@ -16,7 +16,7 @@ export class DownTikProvider extends BaseProvider {
         return 'downtik';
     }
 
-    public client = getFetch('https://downtik.net');
+    public client = getFetch('https://downtik.io');
 
     public maintenance = undefined;
 
@@ -39,8 +39,8 @@ export class DownTikProvider extends BaseProvider {
             },
             headers: {
                 cookie: response.headers['set-cookie']?.toString(),
-                Referer: 'https://downtik.net/',
-                Origin: 'https://downtik.net',
+                Referer: 'https://downtik.io/',
+                Origin: 'https://downtik.io',
             },
         });
 
