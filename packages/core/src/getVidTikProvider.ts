@@ -74,7 +74,7 @@ export class GetVidTikProvider extends BaseProvider {
         const matchs = matchLink(html);
         if (matchs) {
             const tiktokMatchs = matchs.filter((url) =>
-                /http(s)?:\/\/(.*)\.tiktok(cdn)?\.com/gi.test(url),
+                /http(s)?:\/\/(.*)\.(tiktok(cdn)?\.com|akamaized.net)/gi.test(url),
             );
 
             if (tiktokMatchs) {
