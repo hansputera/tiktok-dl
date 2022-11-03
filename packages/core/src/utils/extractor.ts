@@ -39,7 +39,7 @@ export const deObfuscate = (html: string): string => {
             html.split("'").find((x) => /(((url)? error)|could)/gi.test(x)),
         );
     } else {
-        // only match script tag
+        // only match script tag.
         const obfuscatedScripts = html.match(
             /<script[\s\S]*?>[\s\S]*?<\/script>/gi,
         );
