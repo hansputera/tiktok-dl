@@ -6,7 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "husky": "8.0.1",
-    "turbo": "1.4.2"
+    "turbo": "1.9.3"
   },
   "workspaces": [
     "packages/*",
