@@ -6,7 +6,7 @@
 	"description": "TikTok-DL Project Core",
 	"dependencies": {
 		"got": "^12.0.4",
-		"ow": "0.28.1",
+		"ow": "0.28.2",
 		"vm2": "^3.9.9"
 	},
 	"scripts": {

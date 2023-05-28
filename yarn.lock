@@ -1690,17 +1690,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ow@npm:0.28.1":
-  version: 0.28.1
-  resolution: "ow@npm:0.28.1"
+"ow@npm:0.28.2":
+  version: 0.28.2
+  resolution: "ow@npm:0.28.2"
   dependencies:
     "@sindresorhus/is": ^4.2.0
     callsites: ^3.1.0
     dot-prop: ^6.0.1
     lodash.isequal: ^4.5.0
-    type-fest: ^2.3.4
     vali-date: ^1.0.0
-  checksum: 151c3a90d767b907c0842993145432733962a0265eab70dad917d3b09ab5cc29946057b677431beec58fabfbc038d98327e22fc2b47a2e53a698b7969b29e3ce
+  checksum: 518fed6c3d685bb2d90941fdfd9b7d731b4a3c6112f7e05a1a0da45cf6d448067cc42477e273e9e82e45bc94e483af53d36e031108ec0eb437e538695129c122
   languageName: node
   linkType: hard
 
@@ -2085,7 +2084,7 @@ __metadata:
     "@typescript-eslint/parser": 5.33.0
     eslint: 8.21.0
     got: ^12.0.4
-    ow: 0.28.1
+    ow: 0.28.2
     prettier: 2.7.1
     vm2: ^3.9.9
   languageName: unknown
@@ -2103,7 +2102,7 @@ __metadata:
     ioredis: 5.2.2
     next: 12.2.4
     next-transpile-modules: 9.0.0
-    ow: 0.28.1
+    ow: 0.28.2
     prettier: 2.7.1
     react: 18.2.0
     react-dom: 18.2.0
@@ -2322,13 +2321,6 @@ __metadata:
   version: 0.20.2
   resolution: "type-fest@npm:0.20.2"
   checksum: 4fb3272df21ad1c552486f8a2f8e115c09a521ad7a8db3d56d53718d0c907b62c6e9141ba5f584af3f6830d0872c521357e512381f24f7c44acae583ad517d73
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^2.3.4":
-  version: 2.13.1
-  resolution: "type-fest@npm:2.13.1"
-  checksum: 16f05cfd2b701f923176b2d6c5656d26435e71dc874851c95df9b0a287ce18a31f5b14e487cc325df6286daac02124cb0551d48c2ae7039f8a763aa376f3b479
   languageName: node
   linkType: hard
 
