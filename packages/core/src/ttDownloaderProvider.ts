@@ -29,7 +29,7 @@ export class TTDownloader extends BaseProvider {
         const token = (
             firstResponse.body.match(/name="token" value="(.*)?"/) as string[]
         )[1];
-        const videoResponse = await this.client.post('./req', {
+        const videoResponse = await this.client.post('./search', {
             form: {
                 token: token,
                 format: '',
