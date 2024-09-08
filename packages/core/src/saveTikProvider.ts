@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import {matchCustomDownload} from './utils';
+import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
 import type {Shape} from 'ow';
 
 /**
@@ -25,7 +25,11 @@ export class SaveTikProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client('./');
+        const response = await this.client('./', {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+            },
+        });
         const responseAction = await this.client.post('./action.php', {
             form: {
                 url: url,
@@ -34,16 +38,22 @@ export class SaveTikProvider extends BaseProvider {
                 cookie: response.headers['set-cookie']?.toString(),
                 Referer: 'https://savetik.net/',
                 Origin: 'https://savetik.net',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             },
+            searchParams: new URLSearchParams({
+                lang: 'en2',
+            }),
         });
 
-        if (JSON.parse(responseAction.body).error) {
-            return {
-                error: JSON.parse(responseAction.body).message,
-            };
+        try {
+            if (JSON.parse(responseAction.body).error) {
+                return {
+                    error: JSON.parse(responseAction.body).message,
+                };
+            }
+        } finally {
+            return this.extract(responseAction.body);
         }
-
-        return this.extract(JSON.parse(responseAction.body).data);
     }
 
     /**
@@ -51,7 +61,10 @@ export class SaveTikProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        const urls = matchCustomDownload('savetik', html);
+        const results = runObfuscatedReplaceEvalScript(html);
+        const matchUrls = matchLink(results) ?? [];
+
+        const urls = matchUrls.filter(url => /(tiktokcdn|rapidcdn)/gi.test(url));
 
         return {
             music: {

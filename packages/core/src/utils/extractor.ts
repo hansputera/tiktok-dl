@@ -16,6 +16,10 @@ export const matchTikTokData = (html: string): string => {
     }
 };
 
+export const runObfuscatedReplaceEvalScript = (jsCode: string): string => {
+    return runObfuscatedScript(jsCode.replace('eval', 'module.exports = '));
+}
+
 export const runObfuscatedScript = (jsCode: string): string => {
     const transformed = jsCode
         .trim()
@@ -85,17 +89,7 @@ export const deObfuscateSaveFromScript = (scriptContent: string): string => {
     const safeScript =
         'let result;' +
         scriptContent
-            .replace(/\/\*js\-response\*\//gi, '')
-            .replace(/eval\(a\)/gi, 'return a')
-            .replace(
-                /\[\]\["filter"\]\["constructor"\]\(b\)\.call\(a\);/gi,
-                `
-        if (b.includes('showResult')) {
-          result = b;
-          return;
-        } else []['filter']['constructor'](b).call(a);`,
-            ) +
-        'module.exports = result;';
+            .replace(/\/\*js\-response\*\//gi, '');
     const vm = new NodeVM({
         compiler: 'javascript',
         console: 'inherit',

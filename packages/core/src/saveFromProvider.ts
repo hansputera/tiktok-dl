@@ -1,5 +1,5 @@
 import {getFetch} from '../fetch';
-import {BaseProvider, ExtractedInfo} from './base';
+import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
 import {deObfuscateSaveFromScript} from './utils';
 import type {Shape} from 'ow';
 
@@ -15,9 +15,11 @@ export class SaveFromProvider extends BaseProvider {
         return 'savefrom';
     }
 
-    public client = getFetch('https://worker.sf-tools.com');
+    public client = getFetch('https://worker.savefrom.net');
 
-    public maintenance = undefined;
+    public maintenance: MaintenanceProvider = {
+        reason: 'Need advance investigate to Reverse Engineering the response scripts.'
+    }
 
     /**
      *
@@ -36,10 +38,13 @@ export class SaveFromProvider extends BaseProvider {
                 browser: 'Firefox',
                 channel: 'Downloader',
                 'sf-nomad': '1',
+                url,
+                ts: Date.now(),
             },
             headers: {
                 Origin: 'https://id.savefrom.net',
                 Referer: 'https://id.savefrom.net',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             },
         });
 
