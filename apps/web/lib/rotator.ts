@@ -34,7 +34,6 @@ export const rotateProvider = async (
     }
 
     const cachedData = await redisClient.get(url);
-    console.log(cachedData);
     if (!cachedData) {
         try {
             const data = await provider.fetch(url, params ?? {});
