@@ -26,7 +26,11 @@ export class DownTikProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client('./');
+        const response = await this.client('./', {
+            searchParams: new URLSearchParams({
+                lang: 'en',
+            }),
+        });
 
         const token = (
             response.body.match(/id="token" value="([^""]+)"/) as string[]
@@ -37,6 +41,9 @@ export class DownTikProvider extends BaseProvider {
                 url: url,
                 token: token,
             },
+            searchParams: new URLSearchParams({
+                lang: 'en',
+            }),
             headers: {
                 cookie: response.headers['set-cookie']?.toString(),
                 Referer: 'https://downtik.io/',
@@ -55,7 +62,7 @@ export class DownTikProvider extends BaseProvider {
             return this.extract(responseAction.body);
         }
 
-        return this.extract(JSON.parse(responseAction.body).data);
+        return this.extract(responseAction.body);
     }
 
     /**

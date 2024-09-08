@@ -27,15 +27,18 @@ export const rotateProvider = async (
     if (process.env.NODE_ENV === 'development') {
         await redisClient.del(url);
     }
+
     //   console.log(provider.resourceName());
     if (provider.maintenance) {
         return await rotateProvider(getRandomProvider(), url, skipOnError);
     }
 
     const cachedData = await redisClient.get(url);
+    console.log(cachedData);
     if (!cachedData) {
         try {
             const data = await provider.fetch(url, params ?? {});
+            console.log(data);
             if (data.error) {
                 if (!skipOnError) {
                     return {
