@@ -7,7 +7,7 @@ import type {Shape} from 'ow';
  * @class TikmateProvider
  */
 export class TikmateProvider extends BaseProvider {
-    public client = getFetch('https://tikmate.online');
+    public client = getFetch('https://tikmate.io');
     /**
      *
      * @return {string}
@@ -26,7 +26,12 @@ export class TikmateProvider extends BaseProvider {
     public async fetch(url: string): Promise<ExtractedInfo> {
         // we need to get the token
 
-        const response = await this.client('./');
+        const response = await this.client('./', {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+            }
+        });
+
         const matchs = response.body.match(
             /(name|id)="(\_)?token" value="([^""]+)"/,
         ) as string[];
@@ -36,7 +41,7 @@ export class TikmateProvider extends BaseProvider {
             response.headers['set-cookie']?.toString();
 
         const abcResponse = await this.client.post('./abc.php', {
-            form: matchs
+            form: matchs.at(-1)
                 ? {
                       url: url,
                       token: matchs.at(-1),
@@ -48,6 +53,7 @@ export class TikmateProvider extends BaseProvider {
                 Origin: this.client.defaults.options.prefixUrl.toString(),
                 Referer: this.client.defaults.options.prefixUrl.toString(),
                 Cookie: cookies,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             },
         });
 

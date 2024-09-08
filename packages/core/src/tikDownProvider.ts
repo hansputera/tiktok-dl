@@ -18,7 +18,9 @@ export class TikDownProvider extends BaseProvider {
 
     public client = getFetch('https://tikdown.org');
 
-    public maintenance = undefined;
+    public maintenance = {
+        reason: 'Service unavailable from tikdown',
+    }
 
     /**
      * @param {string} url
