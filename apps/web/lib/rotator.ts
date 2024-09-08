@@ -37,7 +37,6 @@ export const rotateProvider = async (
     if (!cachedData) {
         try {
             const data = await provider.fetch(url, params ?? {});
-            console.log(data);
             if (data.error) {
                 if (!skipOnError) {
                     return {

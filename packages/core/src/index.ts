@@ -8,11 +8,11 @@ import {SaveFromProvider} from './saveFromProvider';
 import {SaveTikProvider} from './saveTikProvider';
 import {TikDownProvider} from './tikDownProvider';
 import {DownTikProvider} from './downTikProvider';
-import {LoveTikProvider} from './loveTikProvider';
+// import {LoveTikProvider} from './loveTikProvider';
 // import {DDDTikProvider} from './dddTikProvider';
 // import {DownloadOne} from './downloaderOneProvider';
 import {NativeProvider} from './nativeProvider';
-import {GetVidTikProvider} from './getVidTikProvider';
+// import {GetVidTikProvider} from './getVidTikProvider';
 
 export const Providers: BaseProvider[] = [
     new SnaptikProvider(),
@@ -23,11 +23,11 @@ export const Providers: BaseProvider[] = [
     new SaveTikProvider(),
     new TikDownProvider(),
     new DownTikProvider(), // SaveTik Mirror
-    new LoveTikProvider(),
+    // new LoveTikProvider(),
     // new DDDTikProvider(),
     // new DownloadOne(),
     new NativeProvider(),
-    new GetVidTikProvider(),
+    // new GetVidTikProvider(),
 ];
 
 export const getRandomProvider = () =>

@@ -1,6 +1,7 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import type {Shape} from 'ow';
+import { matchLink } from './utils';
 
 /**
  * @class MusicalyDown
@@ -28,11 +29,14 @@ export class MusicalyDown extends BaseProvider {
                 Accept: '*/*',
                 Referer: this.client.defaults.options.prefixUrl.toString(),
                 Origin: this.client.defaults.options.prefixUrl.toString(),
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
             },
         });
+
         const tokens = res.body.match(
             /input name="([^""]+)" type="hidden" value="([^""]+)"/,
         ) as string[];
+
         const response = await this.client.post('./download', {
             form: {
                 [(res.body.match(/input name="([^"]+)/) as string[])[1]]: url,
@@ -44,6 +48,7 @@ export class MusicalyDown extends BaseProvider {
                 Accept: '*/*',
                 Referer: this.client.defaults.options.prefixUrl.toString(),
                 Origin: this.client.defaults.options.prefixUrl.toString(),
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             },
         });
 
@@ -56,19 +61,12 @@ export class MusicalyDown extends BaseProvider {
      * @return {ExtractedInfo}
      */
     public extract(html: string): ExtractedInfo {
-        const matchUrls = html.match(
-            /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi,
-        ) as string[];
-        const urls = matchUrls.map(
-            (url) =>
-                /<a.*?target="_blank".*?href="(.*?)".*?<\/a>/gi.exec(
-                    url,
-                )?.[1] as string,
-        );
+        const urls = matchLink(html);
+
         return {
             video: {
-                urls: urls,
-                thumb: /img class="responsive-img" src="(.*?)"/gi.exec(
+                urls: urls?.filter(url => /muscdn/gi.test(url)) ?? [],
+                thumb: /img src="(.*?)" alt class="circle responsive-img"/gi.exec(
                     html,
                 )?.[1],
             },
