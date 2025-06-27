@@ -4,7 +4,7 @@
 	"version": "1.4.1",
 	"license": "MIT",
 	"dependencies": {
-		"dotenv": "16.0.1",
+		"dotenv": "16.6.1",
 		"ioredis": "5.2.2",
 		"next": "12.2.4",
 		"ow": "0.28.1",

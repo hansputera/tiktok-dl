@@ -757,10 +757,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:16.0.1":
-  version: 16.0.1
-  resolution: "dotenv@npm:16.0.1"
-  checksum: f459ffce07b977b7f15d8cc4ee69cdff77d4dd8c5dc8c85d2d485ee84655352c2415f9dd09d42b5b5985ced3be186130871b34e2f3e2569ebc72fbc2e8096792
+"dotenv@npm:16.6.1":
+  version: 16.6.1
+  resolution: "dotenv@npm:16.6.1"
+  checksum: e8bd63c9a37f57934f7938a9cf35de698097fadf980cb6edb61d33b3e424ceccfe4d10f37130b904a973b9038627c2646a3365a904b4406514ea94d7f1816b69
   languageName: node
   linkType: hard
 
@@ -2099,7 +2099,7 @@ __metadata:
     "@types/node": 17.0.35
     "@types/react": 18.0.17
     "@types/react-dom": 18.0.6
-    dotenv: 16.0.1
+    dotenv: 16.6.1
     ioredis: 5.2.2
     next: 12.2.4
     next-transpile-modules: 9.0.0
