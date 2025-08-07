@@ -54,10 +54,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ioredis/commands@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@ioredis/commands@npm:1.1.1"
-  checksum: 66a9dc315dc077826fef4057c027c77c5af3fba247e6a5156c6847700fec8968a1b180bca344120ad561f5654cda54ed63119f790a041b0a010cacf02421ecff
+"@ioredis/commands@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@ioredis/commands@npm:1.3.0"
+  checksum: 2e1446ada871059753e0883edfdd992a81d34fa10313978c83450246d1543962acfe852d30dbc942259ecda3ed1e84a281914bbdeb2dfcfe9e78b7cab3902127
   languageName: node
   linkType: hard
 
@@ -723,10 +723,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"denque@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "denque@npm:2.0.1"
-  checksum: ec398d1e3c6c8d4f5213dcf9ad74d7faa3b461e29a0019c9742b49a97ac5e16aa7134db45fa9d841e318e7722dd1ba670a474fde9a5b0d870b3a5fc6fe914c30
+"denque@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "denque@npm:2.1.0"
+  checksum: 1d4ae1d05e59ac3a3481e7b478293f4b4c813819342273f3d5b826c7ffa9753c520919ba264f377e09108d24ec6cf0ec0ac729a5686cbb8f32d797126c5dae74
   languageName: node
   linkType: hard
 
@@ -1289,20 +1289,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:5.2.2":
-  version: 5.2.2
-  resolution: "ioredis@npm:5.2.2"
+"ioredis@npm:5.7.0":
+  version: 5.7.0
+  resolution: "ioredis@npm:5.7.0"
   dependencies:
-    "@ioredis/commands": ^1.1.1
+    "@ioredis/commands": ^1.3.0
     cluster-key-slot: ^1.1.0
     debug: ^4.3.4
-    denque: ^2.0.1
+    denque: ^2.1.0
     lodash.defaults: ^4.2.0
     lodash.isarguments: ^3.1.0
     redis-errors: ^1.2.0
     redis-parser: ^3.0.0
     standard-as-callback: ^2.1.0
-  checksum: 8d650326063de4e37ec7ab38f00dde555284d9fc99fcbe698a4b0d65214920b8cb0f9483c0390fef8d81e9ee26e65380c93113cdedee184206815787bf88cec7
+  checksum: fc351fc4458f5cc8371faccd5c4d49a9cdb333163a018553124e0dde5b64e683cf360c974afa278a3eff08e56bc5e6a5903f8b2906893a2cae8f801b8e8eedff
   languageName: node
   linkType: hard
 
@@ -2100,7 +2100,7 @@ __metadata:
     "@types/react": 18.0.17
     "@types/react-dom": 18.0.6
     dotenv: 16.0.1
-    ioredis: 5.2.2
+    ioredis: 5.7.0
     next: 12.2.4
     next-transpile-modules: 9.0.0
     ow: 0.28.1
