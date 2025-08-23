@@ -1,4 +1,14 @@
 .vercel
 node_modules/
-.env.local
+.env
 package-lock.json
+.turbo
+.yarn/cache
+.yarn/sdks
+.yarn/plugins
+.yarn/patches
+.yarn/*.gz
+*.rdb
+
+# Local Netlify folder
+.netlify

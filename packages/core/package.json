@@ -1,0 +1,21 @@
+{
+	"name": "tiktok-dl-core",
+	"version": "2.0.0",
+	"main": "./index.ts",
+	"license": "MIT",
+	"description": "TikTok-DL Project Core",
+	"dependencies": {
+		"got": "^12.6.1",
+		"ow": "0.28.1",
+		"vm2": "^3.9.19"
+	},
+	"scripts": {
+		"lint": "eslint \"+(src)/**/*.ts\" --fix",
+		"format": "prettier . --write"
+	},
+	"devDependencies": {
+		"@typescript-eslint/parser": "5.33.0",
+		"eslint": "8.21.0",
+		"prettier": "2.7.1"
+	}
+}
