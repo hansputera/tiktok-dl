@@ -1,6 +1,6 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
-import {deObfuscate, matchLink} from './utils';
+import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
 import type {Shape} from 'ow';
 
 /**
@@ -16,9 +16,7 @@ export class SnaptikProvider extends BaseProvider {
         return 'snaptik';
     }
 
-    public maintenance?: MaintenanceProvider | undefined = {
-        reason: 'Snaptik block bots',
-    };
+    public maintenance?: MaintenanceProvider | undefined = undefined
 
     /**
      *
@@ -36,10 +34,11 @@ export class SnaptikProvider extends BaseProvider {
             ) as string[]
         )[1];
 
-        const response = await this.client('./abc.php', {
+        const response = await this.client('./abc2.php', {
             searchParams: {
                 url: url,
                 token,
+                lang: 'ID2',
             },
             headers: {
                 Cookie: responseToken.headers['set-cookie']?.toString(),
@@ -55,7 +54,8 @@ export class SnaptikProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        const results = matchLink(deObfuscate(html));
+        const scriptsResult = runObfuscatedReplaceEvalScript(html);
+        const results = matchLink(scriptsResult);
         if (!results || !results.length) throw new Error('Broken');
         return {
             video: {
