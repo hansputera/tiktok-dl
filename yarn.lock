@@ -1613,17 +1613,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ow@npm:0.28.1":
-  version: 0.28.1
-  resolution: "ow@npm:0.28.1"
+"ow@npm:0.28.2":
+  version: 0.28.2
+  resolution: "ow@npm:0.28.2"
   dependencies:
     "@sindresorhus/is": "npm:^4.2.0"
     callsites: "npm:^3.1.0"
     dot-prop: "npm:^6.0.1"
     lodash.isequal: "npm:^4.5.0"
-    type-fest: "npm:^2.3.4"
     vali-date: "npm:^1.0.0"
-  checksum: 10/1f74b055df64f88d50cf11f83badad9bce1c92440752aeb4d29ec113744a22f96c314aa819751c0b507cc30dc7a36de66a6d3b5b5ee21a7cc256a1ce0166cb8b
+  checksum: 10/ea324ad8b69c250203fe6dbb008cee8983f17e432c56850e63f4bbe0e4c408ff1e33468c6713359134b5c522c26f4b432fb5f36ffa529cca624a811d6532cebd
   languageName: node
   linkType: hard
 
@@ -1998,7 +1997,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:5.33.0"
     eslint: "npm:8.21.0"
     got: "npm:^12.6.1"
-    ow: "npm:0.28.1"
+    ow: "npm:0.28.2"
     prettier: "npm:2.7.1"
     vm2: "npm:^3.9.19"
   languageName: unknown
@@ -2016,7 +2015,7 @@ __metadata:
     ioredis: "npm:5.7.0"
     next: "npm:12.2.4"
     next-transpile-modules: "npm:9.0.0"
-    ow: "npm:0.28.1"
+    ow: "npm:0.28.2"
     prettier: "npm:2.7.1"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
@@ -2155,13 +2154,6 @@ __metadata:
   version: 0.20.2
   resolution: "type-fest@npm:0.20.2"
   checksum: 10/8907e16284b2d6cfa4f4817e93520121941baba36b39219ea36acfe64c86b9dbc10c9941af450bd60832c8f43464974d51c0957f9858bc66b952b66b6914cbb9
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^2.3.4":
-  version: 2.13.1
-  resolution: "type-fest@npm:2.13.1"
-  checksum: 10/949bbc235f21048546e22ed0bd081ecb533ffdd2c6bd18d637eaa8fbb7ca5a7d4b4cdb8732ddde863be8067f46b671adc4edca554aa678f60e321efc88605ff0
   languageName: node
   linkType: hard
 
