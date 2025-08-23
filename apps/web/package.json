@@ -30,6 +30,6 @@
 		"prettier": "2.7.1",
 		"tiktok-dl-config": "*",
 		"typescript": "^5.9.2",
-		"windicss-webpack-plugin": "1.7.5"
+		"windicss-webpack-plugin": "1.8.0"
 	}
 }

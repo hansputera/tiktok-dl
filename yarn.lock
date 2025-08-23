@@ -5,10 +5,10 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@antfu/utils@npm:^0.5.2":
-  version: 0.5.2
-  resolution: "@antfu/utils@npm:0.5.2"
-  checksum: 10/f8fd575efbe231938a9e4d6e4f9161b90c08797815ff57fedcd27f469913a73137ca58a83cd31b575af83567245695b70158579304a40b51dc789662d2de1376
+"@antfu/utils@npm:^0.7.10":
+  version: 0.7.10
+  resolution: "@antfu/utils@npm:0.7.10"
+  checksum: 10/c8c2797aeab3e88f0095dea5736d2f16137a7213195e568246792b2cceecb184234f018346dc07c252c62e4d9085c09ce6bd180da833266cafa65133fb03e075
   languageName: node
   linkType: hard
 
@@ -58,6 +58,13 @@ __metadata:
   version: 1.3.0
   resolution: "@ioredis/commands@npm:1.3.0"
   checksum: 10/203029f09d6ed626677aff01c2a8358af1dfe0f26ebe2e36b18ec2af10721b04d316174aa4e75f37477a316aef065abb492f830c58f6ab7df361af1796c94a7e
+  languageName: node
+  linkType: hard
+
+"@jridgewell/sourcemap-codec@npm:^1.5.5":
+  version: 1.5.5
+  resolution: "@jridgewell/sourcemap-codec@npm:1.5.5"
+  checksum: 10/5d9d207b462c11e322d71911e55e21a4e2772f71ffe8d6f1221b8eb5ae6774458c1d242f897fb0814e8714ca9a6b498abfa74dfe4f434493342902b1a48b33a5
   languageName: node
   linkType: hard
 
@@ -410,29 +417,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@windicss/config@npm:1.8.7":
-  version: 1.8.7
-  resolution: "@windicss/config@npm:1.8.7"
+"@windicss/config@npm:1.9.4":
+  version: 1.9.4
+  resolution: "@windicss/config@npm:1.9.4"
   dependencies:
-    debug: "npm:^4.3.4"
-    jiti: "npm:^1.14.0"
+    debug: "npm:^4.3.7"
+    jiti: "npm:^1.21.6"
     windicss: "npm:^3.5.6"
-  checksum: 10/5b3d366627328d14a1a3adcdfdefb232e78ee76f47e22b2053502386c4e482f68416657e1a2ac993682d60b4e01f80ed36141901e7d6ade63e4db118f60a2dbb
+  checksum: 10/500e38a648c37734f6703ae4b00a3e3d1ac8eb47844c5cb54cf3d71b19f1cab9d2628f6e68bff2068680cb894a9dbe2d1d353d039cf9e33f8cb120de65de2cb5
   languageName: node
   linkType: hard
 
-"@windicss/plugin-utils@npm:^1.8.7":
-  version: 1.8.7
-  resolution: "@windicss/plugin-utils@npm:1.8.7"
+"@windicss/plugin-utils@npm:^1.9.1":
+  version: 1.9.4
+  resolution: "@windicss/plugin-utils@npm:1.9.4"
   dependencies:
-    "@antfu/utils": "npm:^0.5.2"
-    "@windicss/config": "npm:1.8.7"
-    debug: "npm:^4.3.4"
-    fast-glob: "npm:^3.2.11"
-    magic-string: "npm:^0.26.2"
-    micromatch: "npm:^4.0.5"
+    "@antfu/utils": "npm:^0.7.10"
+    "@windicss/config": "npm:1.9.4"
+    debug: "npm:^4.3.7"
+    fast-glob: "npm:^3.3.2"
+    magic-string: "npm:^0.30.14"
+    micromatch: "npm:^4.0.8"
     windicss: "npm:^3.5.6"
-  checksum: 10/48a14fb5bc0a50e35a203bd89ede948692577f8b3ac6745dffb2f2eafa3a57551a0990ff43a2f40e0ee8c3caaf0927c8f396d04f7cb9dde2acd30f6e80bcddbe
+  checksum: 10/dd827819c87c36d1c72e6a476790d5db64c8d558a1f30cb04b56785a202a28538087a7ceb44bf17a4e5d7ff27fd659a20aab80c3016df01fd44cb23d8e34dc8d
   languageName: node
   linkType: hard
 
@@ -545,6 +552,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"braces@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "braces@npm:3.0.3"
+  dependencies:
+    fill-range: "npm:^7.1.1"
+  checksum: 10/fad11a0d4697a27162840b02b1fad249c1683cbc510cd5bf1a471f2f8085c046d41094308c577a50a03a579dd99d5a6b3724c4b5e8b14df2c4443844cfcda2c6
+  languageName: node
+  linkType: hard
+
 "cacheable-lookup@npm:^7.0.0":
   version: 7.0.0
   resolution: "cacheable-lookup@npm:7.0.0"
@@ -648,6 +664,18 @@ __metadata:
     supports-color:
       optional: true
   checksum: 10/0073c3bcbd9cb7d71dd5f6b55be8701af42df3e56e911186dfa46fac3a5b9eb7ce7f377dd1d3be6db8977221f8eb333d945216f645cf56f6b688cd484837d255
+  languageName: node
+  linkType: hard
+
+"debug@npm:^4.3.7":
+  version: 4.4.1
+  resolution: "debug@npm:4.4.1"
+  dependencies:
+    ms: "npm:^2.1.3"
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: 10/8e2709b2144f03c7950f8804d01ccb3786373df01e406a0f66928e47001cf2d336cbed9ee137261d4f90d68d8679468c755e3548ed83ddacdc82b194d2468afe
   languageName: node
   linkType: hard
 
@@ -928,7 +956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.11, fast-glob@npm:^3.2.9":
+"fast-glob@npm:^3.2.9":
   version: 3.2.11
   resolution: "fast-glob@npm:3.2.11"
   dependencies:
@@ -938,6 +966,19 @@ __metadata:
     merge2: "npm:^1.3.0"
     micromatch: "npm:^4.0.4"
   checksum: 10/6b736d92a47f27218a85bf184a4ccab9f707398f86711bf84d730243b10a999a85f79afc526133c044ebebfcb42a68d09f769fdbedcc00680ddd56e56a56483a
+  languageName: node
+  linkType: hard
+
+"fast-glob@npm:^3.3.2":
+  version: 3.3.3
+  resolution: "fast-glob@npm:3.3.3"
+  dependencies:
+    "@nodelib/fs.stat": "npm:^2.0.2"
+    "@nodelib/fs.walk": "npm:^1.2.3"
+    glob-parent: "npm:^5.1.2"
+    merge2: "npm:^1.3.0"
+    micromatch: "npm:^4.0.8"
+  checksum: 10/dcc6432b269762dd47381d8b8358bf964d8f4f60286ac6aa41c01ade70bda459ff2001b516690b96d5365f68a49242966112b5d5cc9cd82395fa8f9d017c90ad
   languageName: node
   linkType: hard
 
@@ -979,6 +1020,15 @@ __metadata:
   dependencies:
     to-regex-range: "npm:^5.0.1"
   checksum: 10/e260f7592fd196b4421504d3597cc76f4a1ca7a9488260d533b611fc3cefd61e9a9be1417cb82d3b01ad9f9c0ff2dbf258e1026d2445e26b0cf5148ff4250429
+  languageName: node
+  linkType: hard
+
+"fill-range@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "fill-range@npm:7.1.1"
+  dependencies:
+    to-regex-range: "npm:^5.0.1"
+  checksum: 10/a7095cb39e5bc32fada2aa7c7249d3f6b01bd1ce461a61b0adabacccabd9198500c6fb1f68a7c851a657e273fce2233ba869638897f3d7ed2e87a2d89b4436ea
   languageName: node
   linkType: hard
 
@@ -1274,12 +1324,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jiti@npm:^1.14.0":
-  version: 1.14.0
-  resolution: "jiti@npm:1.14.0"
+"jiti@npm:^1.21.6":
+  version: 1.21.7
+  resolution: "jiti@npm:1.21.7"
   bin:
     jiti: bin/jiti.js
-  checksum: 10/ce692368b91993bd00da4568b35661e0baf069d463ba5079cbf7a232bb93f87054f88d6e8a9054a351a47d59286891a581c98591cf399396a8c28ebbb92ed0b4
+  checksum: 10/6a182521532126e4b7b5ad64b64fb2e162718fc03bc6019c21aa2222aacde6c6dfce4fc3bce9f69561a73b24ab5f79750ad353c37c3487a220d5869a39eae3a2
   languageName: node
   linkType: hard
 
@@ -1432,12 +1482,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.26.2":
-  version: 0.26.2
-  resolution: "magic-string@npm:0.26.2"
+"magic-string@npm:^0.30.14":
+  version: 0.30.18
+  resolution: "magic-string@npm:0.30.18"
   dependencies:
-    sourcemap-codec: "npm:^1.4.8"
-  checksum: 10/3b2078dd30c91db8e9544db60ecd2bff28db93dd1e4058cb9d79ab32a70e6d2dea7d032a26bab330c0dd75be36cb3262960e76b998969547c681a2d7800d5d7d
+    "@jridgewell/sourcemap-codec": "npm:^1.5.5"
+  checksum: 10/dd180f174cfe066f501dc700ec58815eae3cbde402308f3326574bad09a5ff9c9c5b6fc71502e9d1c663254614fe21679c6360cd39aaeedd2cee1b40e14669f2
   languageName: node
   linkType: hard
 
@@ -1448,13 +1498,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.4, micromatch@npm:^4.0.5":
+"micromatch@npm:^4.0.4":
   version: 4.0.5
   resolution: "micromatch@npm:4.0.5"
   dependencies:
     braces: "npm:^3.0.2"
     picomatch: "npm:^2.3.1"
   checksum: 10/a749888789fc15cac0e03273844dbd749f9f8e8d64e70c564bcf06a033129554c789bb9e30d7566d7ff6596611a08e58ac12cf2a05f6e3c9c47c50c4c7e12fa2
+  languageName: node
+  linkType: hard
+
+"micromatch@npm:^4.0.8":
+  version: 4.0.8
+  resolution: "micromatch@npm:4.0.8"
+  dependencies:
+    braces: "npm:^3.0.3"
+    picomatch: "npm:^2.3.1"
+  checksum: 10/6bf2a01672e7965eb9941d1f02044fad2bd12486b5553dc1116ff24c09a8723157601dc992e74c911d896175918448762df3b3fd0a6b61037dd1a9766ddfbf58
   languageName: node
   linkType: hard
 
@@ -1485,6 +1545,13 @@ __metadata:
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
   checksum: 10/673cdb2c3133eb050c745908d8ce632ed2c02d85640e2edb3ace856a2266a813b30c613569bf3354fdf4ea7d1a1494add3bfa95e2713baa27d0c2c71fc44f58f
+  languageName: node
+  linkType: hard
+
+"ms@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "ms@npm:2.1.3"
+  checksum: 10/aa92de608021b242401676e35cfa5aa42dd70cbdc082b916da7fb925c542173e36bce97ea3e804923fe92c0ad991434e4a38327e15a1b5b5f945d66df615ae6d
   languageName: node
   linkType: hard
 
@@ -1689,10 +1756,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pathe@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "pathe@npm:0.2.0"
-  checksum: 10/668de2d14200be08139713f3359c4beb91fd1bba08addf665ac7acb706e8443e6c4c72eb6e77ddcf81c90af667949e185f0eaa757bd2be28859259de64820cfd
+"pathe@npm:^1.1.0":
+  version: 1.1.2
+  resolution: "pathe@npm:1.1.2"
+  checksum: 10/f201d796351bf7433d147b92c20eb154a4e0ea83512017bf4ec4e492a5d6e738fb45798be4259a61aa81270179fce11026f6ff0d3fa04173041de044defe9d80
   languageName: node
   linkType: hard
 
@@ -1902,13 +1969,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sourcemap-codec@npm:^1.4.8":
-  version: 1.4.8
-  resolution: "sourcemap-codec@npm:1.4.8"
-  checksum: 10/6fc57a151e982b5c9468362690c6d062f3a0d4d8520beb68a82f319c79e7a4d7027eeb1e396de0ecc2cd19491e1d602b2d06fd444feac9b63dd43fea4c55a857
-  languageName: node
-  linkType: hard
-
 "standard-as-callback@npm:^2.1.0":
   version: 2.1.0
   resolution: "standard-as-callback@npm:2.1.0"
@@ -2024,7 +2084,7 @@ __metadata:
     tiktok-dl-config: "npm:*"
     tiktok-dl-core: "npm:*"
     typescript: "npm:^5.9.2"
-    windicss-webpack-plugin: "npm:1.7.5"
+    windicss-webpack-plugin: "npm:1.8.0"
   languageName: unknown
   linkType: soft
 
@@ -2229,10 +2289,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-virtual-modules@npm:^0.4.3":
-  version: 0.4.3
-  resolution: "webpack-virtual-modules@npm:0.4.3"
-  checksum: 10/dc6a96e49342cf5e2799bef8884c41b890f718a6b3b36a3a05b1791ac2736637ed77bf8e88a645d2b480e860d80a55171b30a7573a7c3f21b0b0414289d6ebde
+"webpack-virtual-modules@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "webpack-virtual-modules@npm:0.5.0"
+  checksum: 10/65a8f90c7e6609ba1c4ad2697bb83ae662485893fb545f6aa9a74e3a5d7485bbc50ef057c5bc3feca25d3153ebf9c097c233cbe4d67b52418bc84348dfb20c1a
   languageName: node
   linkType: hard
 
@@ -2247,19 +2307,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"windicss-webpack-plugin@npm:1.7.5":
-  version: 1.7.5
-  resolution: "windicss-webpack-plugin@npm:1.7.5"
+"windicss-webpack-plugin@npm:1.8.0":
+  version: 1.8.0
+  resolution: "windicss-webpack-plugin@npm:1.8.0"
   dependencies:
-    "@windicss/plugin-utils": "npm:^1.8.7"
+    "@windicss/plugin-utils": "npm:^1.9.1"
     debug: "npm:^4.3.4"
     get-port: "npm:^6.1.2"
     loader-utils: "npm:^2.0.0"
     lodash: "npm:^4.17.21"
-    pathe: "npm:^0.2.0"
-    webpack-virtual-modules: "npm:^0.4.3"
+    pathe: "npm:^1.1.0"
+    webpack-virtual-modules: "npm:^0.5.0"
     windicss: "npm:^3.5.6"
-  checksum: 10/9e50efbf771ef4b6929dc5aa0aeab7a9f2af2b09f620d8990efeb0594f3adc7c6f7f86418f7f6d98f2833434cffc1d4a7288622a67839be988e470699298ab4a
+  checksum: 10/548732ff60da65a18fcc64f5e1b1dcbc290510ec5e9fb9b373531cc9c47359cdcfdf7129d1f33d7232a766dc786accb5aadfeba1f7d4ca37b0cf957f5a6b5009
   languageName: node
   linkType: hard
 
