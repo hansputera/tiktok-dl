@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
+// import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
 import type {Shape} from 'ow';
 
 /**
@@ -25,35 +25,21 @@ export class SaveTikProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client('./', {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-            },
-        });
-        const responseAction = await this.client.post('./action.php', {
-            form: {
-                url: url,
-            },
-            headers: {
-                cookie: response.headers['set-cookie']?.toString(),
-                Referer: 'https://savetik.net/',
-                Origin: 'https://savetik.net',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-            },
+        const response = await this.client.get('./api/action', {
             searchParams: new URLSearchParams({
-                lang: 'en2',
+                url,
             }),
+            throwHttpErrors: false,
         });
 
-        try {
-            if (JSON.parse(responseAction.body).error) {
-                return {
-                    error: JSON.parse(responseAction.body).message,
-                };
-            }
-        } finally {
-            return this.extract(responseAction.body);
+        if (response.statusCode === 400)
+        {
+            return {
+                error: 'Video not found',
+            };
         }
+
+        return this.extract(response.body);
     }
 
     /**
@@ -61,20 +47,53 @@ export class SaveTikProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        const results = runObfuscatedReplaceEvalScript(html);
-        const matchUrls = matchLink(results) ?? [];
+        // const results = runObfuscatedReplaceEvalScript(html);
+        // const matchUrls = matchLink(results) ?? [];
 
-        const urls = matchUrls.filter(url => /(tiktokcdn|rapidcdn)/gi.test(url));
+        // const urls = matchUrls.filter(url => /(tiktokcdn|rapidcdn)/gi.test(url));
 
-        return {
-            music: {
-                url: urls?.pop() as string,
-            },
-            video: {
-                thumb: urls?.shift(),
-                urls: urls as string[],
-            },
-        };
+        // return {
+        //     music: {
+        //         url: urls?.pop() as string,
+        //     },
+        //     video: {
+        //         thumb: urls?.shift(),
+        //         urls: urls as string[],
+        //     },
+        // };
+
+        try {
+            const json = JSON.parse(html);
+            if (json.error) {
+                return {
+                    error: json.error,
+                };
+            }
+
+            return {
+                video: {
+                    urls: [
+                        json.hdDownloadUrl,
+                        json.downloadUrl,
+                    ],
+                    title: json.postinfo.media_title,
+                    duration: json.duration.toString(),
+                },
+                author: {
+                    username: json.postinfo.unique_id,
+                    id: json.postinfo.uid,
+                    nick: json.postinfo.username,
+                    thumb: json.postinfo.avatar_url,
+                },
+                sharesCount: json.stats.shareCount,
+                playsCount: json.stats.playCount,
+                commentsCount: json.stats.commentCount,
+            }
+        } catch {
+            return {
+                error: 'Video not found',
+            }
+        }
     }
 
     /**
