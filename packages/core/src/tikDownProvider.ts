@@ -1,6 +1,5 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import {matchLink} from './utils';
 import type {Shape} from 'ow';
 
 /**
@@ -18,9 +17,7 @@ export class TikDownProvider extends BaseProvider {
 
     public client = getFetch('https://tikdown.org');
 
-    public maintenance = {
-        reason: 'Service unavailable from tikdown',
-    }
+    public maintenance = undefined;
 
     /**
      * @param {string} url
@@ -28,29 +25,35 @@ export class TikDownProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client('./');
-
-        const token = (
-            response.body.match(/name="_token" value="([^""]+)"/) as string[]
-        )[1];
-
-        const responseAjax = await this.client.post('./getAjax', {
+        const response = await this.client.post('./', {
             form: {
-                url: url,
-                _token: token,
-            },
-            headers: {
-                'x-csrf-token': token,
-                cookie: response.headers['set-cookie']?.toString(),
+                'tiktok-url': url,
             },
         });
 
-        if (!JSON.parse(responseAjax.body).status) {
+        const body = response.body;
+        if (/please double/gi.test(body))
+        {
             return {
-                error: 'Something was wrong',
+                error: 'Video not found',
             };
         }
-        return this.extract(JSON.parse(responseAjax.body).html);
+
+        const indexLink = body.match(/\.\/index\.php\?url=[^'"]+/gi)?.at(0);
+        if (!indexLink) {
+            return {
+                error: 'Couldnt find URL',
+            };
+        }
+
+        const responseVideo = await this.client.get(indexLink);
+        if (!responseVideo.body.length) {
+            return {
+                error: 'Couldnt find downloaded URL',
+            }
+        }
+        
+        return this.extract(responseVideo.body);
     }
 
     /**
@@ -58,20 +61,11 @@ export class TikDownProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        const urls = matchLink(html) as string[];
         return {
             video: {
-                thumb: urls.shift(),
-                urls: urls.filter((url) =>
-                    /http(s)?:\/\/td-cdn\.pw\/api.php\?download=(.+)\.mp4/gi.test(
-                        url,
-                    ),
-                ),
-            },
-            music: {
-                url: urls.find((url) => /.*\.mp3/gi.test(url)) || '',
-            },
-        };
+                urls: [new URL(`./${html}`, this.client.defaults.options.prefixUrl.toString()).href],
+            }
+        }
     }
 
     /**
