@@ -73,8 +73,8 @@ export class SaveTikProvider extends BaseProvider {
             return {
                 video: {
                     urls: [
-                        json.hdDownloadUrl,
                         json.downloadUrl,
+                        json.hdDownloadUrl,
                     ],
                     title: json.postinfo.media_title,
                     duration: json.duration.toString(),
