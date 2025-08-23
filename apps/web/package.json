@@ -4,8 +4,8 @@
 	"version": "1.4.1",
 	"license": "MIT",
 	"dependencies": {
-		"dotenv": "16.0.1",
-		"ioredis": "5.2.2",
+		"dotenv": "16.6.1",
+		"ioredis": "5.7.0",
 		"next": "12.2.4",
 		"ow": "0.28.1",
 		"react": "18.2.0",
@@ -29,7 +29,7 @@
 		"next-transpile-modules": "9.0.0",
 		"prettier": "2.7.1",
 		"tiktok-dl-config": "*",
-		"typescript": "latest",
+		"typescript": "^5.9.2",
 		"windicss-webpack-plugin": "1.7.5"
 	}
 }

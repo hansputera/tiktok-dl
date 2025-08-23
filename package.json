@@ -5,8 +5,8 @@
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "husky": "8.0.1",
-    "turbo": "1.4.2"
+    "husky": "8.0.3",
+    "turbo": "1.13.4"
   },
   "workspaces": [
     "packages/*",
@@ -20,7 +20,7 @@
     "prepare": "husky install",
     "start": "turbo run start"
   },
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@4.9.3",
   "engines": {
     "node": ">=14.x"
   },

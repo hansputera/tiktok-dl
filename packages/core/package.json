@@ -5,9 +5,9 @@
 	"license": "MIT",
 	"description": "TikTok-DL Project Core",
 	"dependencies": {
-		"got": "^12.0.4",
+		"got": "^12.6.1",
 		"ow": "0.28.1",
-		"vm2": "^3.9.9"
+		"vm2": "^3.9.19"
 	},
 	"scripts": {
 		"lint": "eslint \"+(src)/**/*.ts\" --fix",
