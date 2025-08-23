@@ -63,12 +63,12 @@ export class MusicalyDown extends BaseProvider {
     public extract(html: string): ExtractedInfo {
         const urls = matchLink(html);
 
+        const matchedUrls = urls?.filter(url => /muscdn/gi.test(url)) ?? [];
+
         return {
             video: {
-                urls: urls?.filter(url => /muscdn/gi.test(url)) ?? [],
-                thumb: /img src="(.*?)" alt class="circle responsive-img"/gi.exec(
-                    html,
-                )?.[1],
+                urls: matchedUrls.filter(murl => !murl.includes('images')),
+                thumb: matchedUrls.find(murl => murl.includes('images')),
             },
         };
     }
