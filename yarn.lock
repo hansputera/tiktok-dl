@@ -722,13 +722,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^5.7.0":
-  version: 5.9.3
-  resolution: "enhanced-resolve@npm:5.9.3"
+"enhanced-resolve@npm:^5.10.0":
+  version: 5.18.3
+  resolution: "enhanced-resolve@npm:5.18.3"
   dependencies:
     graceful-fs: "npm:^4.2.4"
     tapable: "npm:^2.2.0"
-  checksum: 10/99683bafd48c73fa965e45f5cc9997561ea05effcba985212ae8f82470f901fe6fd5341c2a707555ab38eb926caafe0336d0b3b3217bf5b33edff951d5579c32
+  checksum: 10/a4d0a1eacba3079f617b68c8f7e17583c3cbc572055c2edca41c0fa0230a49f6e9b2c6ffd4128cc5f84e15ea6cc313ae2b01e1057fcd252fabef70220a5d9f6a
   languageName: node
   linkType: hard
 
@@ -1504,13 +1504,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-transpile-modules@npm:9.0.0":
-  version: 9.0.0
-  resolution: "next-transpile-modules@npm:9.0.0"
+"next-transpile-modules@npm:9.1.0":
+  version: 9.1.0
+  resolution: "next-transpile-modules@npm:9.1.0"
   dependencies:
-    enhanced-resolve: "npm:^5.7.0"
+    enhanced-resolve: "npm:^5.10.0"
     escalade: "npm:^3.1.1"
-  checksum: 10/3553d66aee8682ce0669581548f08549e198aa80463dc26426a450339cb365311872ceff8adc00e0bf1e81f7dea00080526ee2eb99a65251c50ec0b21b7cbdea
+  checksum: 10/fc8fbc7c22c56ec55062e2cc3e05c1d098100ade3eb8907e7148ff0150cd2cfa60c4eac4dabd87cd6a50162e621fa3e480a9b264a2a2bae6f7a1d69e4d021b20
   languageName: node
   linkType: hard
 
@@ -2015,7 +2015,7 @@ __metadata:
     dotenv: "npm:16.6.1"
     ioredis: "npm:5.7.0"
     next: "npm:12.2.4"
-    next-transpile-modules: "npm:9.0.0"
+    next-transpile-modules: "npm:9.1.0"
     ow: "npm:0.28.1"
     prettier: "npm:2.7.1"
     react: "npm:18.2.0"
