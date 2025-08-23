@@ -241,10 +241,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:17.0.35":
-  version: 17.0.35
-  resolution: "@types/node@npm:17.0.35"
-  checksum: 10/36d9fc1ce64fd2595a2dbb9e28596d3552885a1f272a9cb72d4096564bf05307e2ad06a9d7d0620fb3a3c1b1da0a4e88de4dcf4eaa80fbec155790fdf932fd50
+"@types/node@npm:17.0.45":
+  version: 17.0.45
+  resolution: "@types/node@npm:17.0.45"
+  checksum: 10/b45fff7270b5e81be19ef91a66b764a8b21473a97a8d211218a52e3426b79ad48f371819ab9153370756b33ba284e5c875463de4d2cf48a472e9098d7f09e8a2
   languageName: node
   linkType: hard
 
@@ -2009,7 +2009,7 @@ __metadata:
   resolution: "tiktok-dl-web@workspace:apps/web"
   dependencies:
     "@next/eslint-plugin-next": "npm:12.2.4"
-    "@types/node": "npm:17.0.35"
+    "@types/node": "npm:17.0.45"
     "@types/react": "npm:18.0.17"
     "@types/react-dom": "npm:18.0.6"
     dotenv: "npm:16.6.1"
