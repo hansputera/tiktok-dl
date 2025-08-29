@@ -6,8 +6,8 @@
 	"description": "TikTok-DL Project Core",
 	"dependencies": {
 		"got": "^12.6.1",
-		"ow": "0.28.1",
-		"vm2": "^3.9.19"
+		"vm2": "^3.9.19",
+		"zod": "^4.1.5"
 	},
 	"scripts": {
 		"lint": "eslint \"+(src)/**/*.ts\" --fix",

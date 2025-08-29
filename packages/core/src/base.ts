@@ -1,5 +1,5 @@
 import {Got} from 'got';
-import type {Shape} from 'ow';
+import { ZodObject } from 'zod';
 
 export interface ExtractedInfo {
     error?: string;
@@ -43,7 +43,7 @@ export interface MaintenanceProvider {
  */
 export abstract class BaseProvider {
     abstract client?: Got;
-    abstract getParams(): Shape | undefined;
+    abstract getParams(): ZodObject | undefined;
     abstract maintenance?: MaintenanceProvider;
     abstract resourceName(): string;
     abstract fetch(

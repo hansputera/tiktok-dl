@@ -1,6 +1,5 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
-import type {Shape} from 'ow';
 import { matchLink } from './utils';
 
 /**
@@ -73,11 +72,7 @@ export class MusicalyDown extends BaseProvider {
         };
     }
 
-    /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
-     */
-    public getParams(): Shape | undefined {
+    public getParams() {
         return undefined;
     }
 }

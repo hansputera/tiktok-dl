@@ -1,7 +1,6 @@
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
 import {deObfuscateSaveFromScript} from './utils';
-import type {Shape} from 'ow';
 
 /**
  * @class saveFromProvider
@@ -75,11 +74,7 @@ export class SaveFromProvider extends BaseProvider {
         };
     }
 
-    /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
-     */
-    public getParams(): Shape | undefined {
+    public getParams() {
         return undefined;
     }
 }
