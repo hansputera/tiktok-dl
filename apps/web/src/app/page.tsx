@@ -39,7 +39,7 @@ const VideoPlayer = ({
         });
       }
     }
-  }, [currentTime, isActive, isPlaying, onPlayStateChange]);
+  }, [currentTime, isActive, isPlaying]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -64,7 +64,7 @@ const VideoPlayer = ({
         }
       }
     }
-  }, [isPlaying, isActive, currentTime, onPlayStateChange]);
+  }, [isPlaying, isActive, currentTime]);
 
   const handleTimeUpdate = () => {
     if (videoRef.current && isActive) {
