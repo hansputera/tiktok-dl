@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import type {Shape} from 'ow';
+import { ZodObject } from 'zod';
 
 /**
  * @class TikDownProvider
@@ -69,10 +69,10 @@ export class TikDownProvider extends BaseProvider {
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }

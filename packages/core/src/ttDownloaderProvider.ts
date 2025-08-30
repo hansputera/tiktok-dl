@@ -1,7 +1,7 @@
+import { ZodObject } from 'zod';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {matchLink} from './utils';
-import type {Shape} from 'ow';
 
 /**
  * @class TTDownloader
@@ -61,10 +61,10 @@ export class TTDownloader extends BaseProvider {
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }

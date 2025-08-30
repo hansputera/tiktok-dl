@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
+import { ZodObject } from 'zod';
 // import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
-import type {Shape} from 'ow';
 
 /**
  * @class SaveTikProvider
@@ -97,10 +97,10 @@ export class SaveTikProvider extends BaseProvider {
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }

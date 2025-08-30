@@ -1,7 +1,7 @@
+import { ZodObject } from 'zod';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
 import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
-import type {Shape} from 'ow';
 
 /**
  * @class SnaptikProvider
@@ -66,10 +66,10 @@ export class SnaptikProvider extends BaseProvider {
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }

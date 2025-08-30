@@ -30,8 +30,15 @@ export const Providers: BaseProvider[] = [
     // new GetVidTikProvider(),
 ];
 
-export const getRandomProvider = () =>
-    Providers[Math.floor(Math.random() * Providers.length)];
+export const getRandomProvider = (): BaseProvider => {
+    const provider = Providers[Math.floor(Math.random() * Providers.length)]
+    while(provider.resourceName() === 'native')
+    {
+        return getRandomProvider();
+    }
+
+    return provider;
+};
 
 export const getProvider = (name: string) =>
     name.toLowerCase() !== 'random'
