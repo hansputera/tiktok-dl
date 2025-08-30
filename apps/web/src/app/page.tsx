@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { getTikTokURL } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Download, ExternalLink, Loader2 } from "lucide-react";
 import z from "zod";
 
@@ -28,25 +28,111 @@ const VideoPlayer = ({
   isActive?: boolean;
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [lastSyncTime, setLastSyncTime] = useState(0);
+  const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const playPromiseRef = useRef<Promise<void> | null>(null);
 
-  useEffect(() => {
+  const syncVideoTime = useCallback((targetTime: number) => {
+    if (syncTimeoutRef.current) {
+      clearTimeout(syncTimeoutRef.current);
+    }
+
+    syncTimeoutRef.current = setTimeout(() => {
+      const video = videoRef.current;
+      if (video && isActive && isVideoReady) {
+        const timeDiff = Math.abs(video.currentTime - targetTime);
+        if (timeDiff > 0.5) {
+          video.currentTime = targetTime;
+          setLastSyncTime(targetTime);
+        }
+      }
+    }, 100);
+  }, [isActive, isVideoReady]);
+
+  const handlePlayPause = useCallback(async (shouldPlay: boolean) => {
     const video = videoRef.current;
-    if (video && isActive) {
+    if (!video || !isActive || !isVideoReady) return;
+
+    try {
+      if (playPromiseRef.current) {
+        await playPromiseRef.current.catch(() => {});
+      }
+
+      if (shouldPlay && video.paused) {
+        playPromiseRef.current = video.play();
+        await playPromiseRef.current;
+      } else if (!shouldPlay && !video.paused) {
+        video.pause();
+        playPromiseRef.current = null;
+      }
+    } catch (error) {
+      console.warn('Playback error:', error);
+      onPlayStateChange(false);
+    }
+  }, [isActive, isVideoReady]);
+
+  const handleLoadedMetadata = useCallback(() => {
+    setIsVideoReady(true);
+    const video = videoRef.current;
+    if (video && currentTime > 0) {
       video.currentTime = currentTime;
-      if (isPlaying) {
-        video.play().catch(() => {
-          onPlayStateChange(false);
-        });
+    }
+  }, [currentTime]);
+
+  const handleTimeUpdate = useCallback(() => {
+    const video = videoRef.current;
+    if (video && isActive && isVideoReady) {
+      const currentVideoTime = video.currentTime;
+      if (Math.abs(currentVideoTime - lastSyncTime) > 0.1) {
+        onTimeUpdate(currentVideoTime);
+        setLastSyncTime(currentVideoTime);
       }
     }
-  }, [currentTime, isActive, isPlaying]);
+  }, [isActive, isVideoReady, lastSyncTime]);
+
+  const handlePlay = useCallback(() => {
+    if (isActive) {
+      onPlayStateChange(true);
+    }
+  }, [isActive]);
+
+  const handlePause = useCallback(() => {
+    if (isActive) {
+      onPlayStateChange(false);
+    }
+  }, [isActive]);
+
+  const handleEnded = useCallback(() => {
+    onPlayStateChange(false);
+    onTimeUpdate(0);
+  }, []);
+
+  const handleError = useCallback((e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    console.error('Video error:', e);
+    onPlayStateChange(false);
+    setIsVideoReady(false);
+  }, []);
+
+  const handleWaiting = useCallback(() => {
+    // Buffering video...
+  }, []);
+
+  const handleCanPlay = useCallback(() => {
+    setIsVideoReady(true);
+  }, []);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (video && isActive && Math.abs(video.currentTime - currentTime) > 1) {
-      video.currentTime = currentTime;
+    if (isVideoReady && isActive) {
+      handlePlayPause(isPlaying);
     }
-  }, [currentTime, isActive]);
+  }, [isPlaying, isVideoReady, isActive]);
+
+  useEffect(() => {
+    if (isVideoReady && isActive) {
+      syncVideoTime(currentTime);
+    }
+  }, [currentTime, isVideoReady, isActive]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -55,34 +141,37 @@ const VideoPlayer = ({
         if (!video.paused) {
           video.pause();
         }
-      } else {
-        if (isPlaying && video.paused) {
+      } else if (isVideoReady && isPlaying) {
+        if (Math.abs(video.currentTime - currentTime) > 0.5) {
           video.currentTime = currentTime;
-          video.play().catch(() => onPlayStateChange(false));
-        } else if (!isPlaying && !video.paused) {
-          video.pause();
+        }
+        if (video.paused) {
+          handlePlayPause(true);
         }
       }
     }
-  }, [isPlaying, isActive, currentTime]);
+  }, [isActive, isVideoReady]);
 
-  const handleTimeUpdate = () => {
-    if (videoRef.current && isActive) {
-      onTimeUpdate(videoRef.current.currentTime);
+  useEffect(() => {
+    setIsVideoReady(false);
+    setLastSyncTime(0);
+    if (playPromiseRef.current) {
+      playPromiseRef.current.catch(() => {});
+      playPromiseRef.current = null;
     }
-  };
+  }, [videoData.video?.urls[0]]);
 
-  const handlePlay = () => {
-    if (isActive) {
-      onPlayStateChange(true);
-    }
-  };
-
-  const handlePause = () => {
-    if (isActive) {
-      onPlayStateChange(false);
-    }
-  };
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      if (syncTimeoutRef.current) {
+        clearTimeout(syncTimeoutRef.current);
+      }
+      if (playPromiseRef.current) {
+        playPromiseRef.current.catch(() => {});
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-white rounded-xl p-6 shadow-lg border">
@@ -95,17 +184,30 @@ const VideoPlayer = ({
           src={videoData.video?.urls[0]}
           poster={videoData.video?.thumb}
           preload="metadata"
+          playsInline
+          onLoadedMetadata={handleLoadedMetadata}
           onTimeUpdate={handleTimeUpdate}
           onPlay={handlePlay}
           onPause={handlePause}
-          onLoadedMetadata={handleTimeUpdate}
+          onEnded={handleEnded}
+          onError={handleError}
+          onWaiting={handleWaiting}
+          onCanPlay={handleCanPlay}
         >
           Your browser does not support the video tag.
         </video>
+        
+        {/* Loading indicator */}
+        {!isVideoReady && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
+            <Loader2 className="w-8 h-8 text-white animate-spin" />
+          </div>
+        )}
       </div>
       <div className="mt-4 text-sm text-gray-600">
         <p><strong>Provider:</strong> {videoData.provider}</p>
         <p><strong>Available formats:</strong> {videoData.video?.urls.length}</p>
+        <p><strong>Status:</strong> {isVideoReady ? 'Ready' : 'Loading...'}</p>
       </div>
     </div>
   );
@@ -218,6 +320,7 @@ export default function Home() {
       }
 
       setVideoData(response);
+      // Reset video state untuk video baru
       setVideoCurrentTime(0);
       setVideoIsPlaying(false);
     } catch (error) {
@@ -247,13 +350,13 @@ export default function Home() {
     form.reset();
   };
 
-  const handleTimeUpdate = (time: number) => {
+  const handleTimeUpdate = useCallback((time: number) => {
     setVideoCurrentTime(time);
-  };
+  }, []);
 
-  const handlePlayStateChange = (playing: boolean) => {
+  const handlePlayStateChange = useCallback((playing: boolean) => {
     setVideoIsPlaying(playing);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen">

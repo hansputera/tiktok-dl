@@ -3,9 +3,8 @@ import { rotateProvider } from "@/services/rotator";
 import { NextRequest } from "next/server";
 import { getProvider } from "tiktok-dl-core";
 
-export async function POST(request: NextRequest) {
+const handleRequest = async <T>(json: T) => {
     try {
-        const json = await request.json();
         const safeData = await downloadValidator.safeParseAsync(json);
 
         if (safeData.error || !safeData.success) {
@@ -50,8 +49,18 @@ export async function POST(request: NextRequest) {
     }
 }
 
-export async function GET() {
-    return Response.json({
-        message: 'Currently we moved to POST method only.',
-    });
+export async function GET(request: NextRequest) {
+    const allParams = Object.fromEntries(request.nextUrl.searchParams.entries());
+    return handleRequest(allParams);
+}
+
+export async function POST(request: NextRequest) {
+    try {
+        const json = await request.json();
+        return handleRequest(json);
+    } catch (e) {
+        return Response.json({
+            message: (e as Error).message,
+        }, { status: 500 });
+    }
 }
