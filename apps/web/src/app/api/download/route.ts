@@ -1,4 +1,4 @@
-import { downloadValidator } from "@/app/validators/download.validator";
+import { downloadValidator } from "@/validators/download.validator";
 import { rotateProvider } from "@/services/rotator";
 import { NextRequest } from "next/server";
 import { getProvider } from "tiktok-dl-core";
