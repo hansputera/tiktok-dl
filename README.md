@@ -37,6 +37,7 @@ Feel free to open an issue if you have a problem or find a bug. That would be ve
 
 - [TikTok](https://tiktok.com) 
 - [SnapTik](https://snaptik.app)
+- [FastTokSave](https://www.fasttoksave.com/)
 - [Tikmate](https://tikmate.online)
 - [SaveFrom](https://id.savefrom.net)
 - [TTDownloader](https://ttdownloader.com)
