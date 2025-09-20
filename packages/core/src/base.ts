@@ -10,6 +10,7 @@ export interface ExtractedInfo {
         title?: string;
         duration?: string;
     };
+    slides?: string[];
     music?: {
         url: string;
         title?: string;
