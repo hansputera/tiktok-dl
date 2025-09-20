@@ -2168,14 +2168,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:8.5.0":
-  version: 8.5.0
-  resolution: "eslint-config-prettier@npm:8.5.0"
+"eslint-config-prettier@npm:10.1.8":
+  version: 10.1.8
+  resolution: "eslint-config-prettier@npm:10.1.8"
   peerDependencies:
     eslint: ">=7.0.0"
   bin:
     eslint-config-prettier: bin/cli.js
-  checksum: 10/cafd93fb39997969e9e79b3e0b3466d0b8570273d15423986597b8422b7363d4a80f009aec1d1443fa2329972dafde79031b1649590cc35069b0a68d31098e7b
+  checksum: 10/03f8e6ea1a6a9b8f9eeaf7c8c52a96499ec4b275b9ded33331a6cc738ed1d56de734097dbd0091f136f0e84bc197388bd8ec22a52a4658105883f8c8b7d8921a
   languageName: node
   linkType: hard
 
@@ -4883,7 +4883,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:5.33.0"
     eslint: "npm:8.21.0"
     eslint-config-google: "npm:0.14.0"
-    eslint-config-prettier: "npm:8.5.0"
+    eslint-config-prettier: "npm:10.1.8"
     prettier: "npm:2.7.1"
   languageName: unknown
   linkType: soft
