@@ -1,4 +1,4 @@
-import { ZodObject } from 'zod';
+import {ZodObject} from 'zod';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {deObfuscate, matchLink} from './utils';
@@ -28,8 +28,9 @@ export class TikmateProvider extends BaseProvider {
 
         const response = await this.client('./', {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-            }
+                'User-Agent':
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+            },
         });
 
         const matchs = response.body.match(
@@ -53,7 +54,8 @@ export class TikmateProvider extends BaseProvider {
                 Origin: this.client.defaults.options.prefixUrl.toString(),
                 Referer: this.client.defaults.options.prefixUrl.toString(),
                 Cookie: cookies,
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+                'User-Agent':
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             },
         });
 

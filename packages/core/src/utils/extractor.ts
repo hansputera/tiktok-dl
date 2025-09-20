@@ -18,11 +18,11 @@ export const matchTikTokData = (html: string): string => {
 
 export const runObfuscatedReplaceEvalScript = (jsCode: string): string => {
     return runObfuscatedScript(jsCode.replace('eval', 'module.exports = '));
-}
+};
 
 export const extractMusicalyDownImages = (html: string): string[] => {
-  const regex = /<img[^>]+src="(https[^"]+)"/gi;
-  return [...html.matchAll(regex)].map(m => m[1]);
+    const regex = /<img[^>]+src="(https[^"]+)"/gi;
+    return [...html.matchAll(regex)].map((m) => m[1]);
 };
 
 export const runObfuscatedScript = (jsCode: string): string => {
@@ -92,9 +92,7 @@ export const matchCustomDownload = (
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
     const safeScript =
-        'let result = ' +
-        scriptContent
-            .replace(/\/\*js\-response\*\//gi, '');
+        'let result = ' + scriptContent.replace(/\/\*js\-response\*\//gi, '');
 
     const vm = new NodeVM({
         compiler: 'javascript',

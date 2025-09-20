@@ -99,6 +99,6 @@ export class NativeProvider extends BaseProvider {
     public getParams(): z.ZodObject {
         return z.object({
             'user-agent': z.string().min(5),
-        })
+        });
     }
 }

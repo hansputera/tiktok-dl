@@ -1,6 +1,6 @@
-import { ZodObject } from "zod";
-import { getFetch } from "../fetch";
-import { BaseProvider, ExtractedInfo, MaintenanceProvider } from "./base";
+import {ZodObject} from 'zod';
+import {getFetch} from '../fetch';
+import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
 
 /**
  * @class FasttokSaveProvider
@@ -23,32 +23,34 @@ export class FasttokSaveProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client.post('./en/wp-json/tiktok-downloader/v1/fetch', {
-            json: {
-                url,
-            },
-        }).json<{
-            code: number;
-            msg: string;
-            data?: {
-                author: {
-                    nickname: string;
-                    unique_id: string;
-                };
-                comment_count: number;
-                play_count: number;
-                cover: string;
-                play: string;
-                music_info: {
-                    author: string;
+        const response = await this.client
+            .post('./en/wp-json/tiktok-downloader/v1/fetch', {
+                json: {
+                    url,
+                },
+            })
+            .json<{
+                code: number;
+                msg: string;
+                data?: {
+                    author: {
+                        nickname: string;
+                        unique_id: string;
+                    };
+                    comment_count: number;
+                    play_count: number;
                     cover: string;
+                    play: string;
+                    music_info: {
+                        author: string;
+                        cover: string;
+                        title: string;
+                    };
+                    wmplay: string;
                     title: string;
+                    duration: number;
                 };
-                wmplay: string;
-                title: string;
-                duration: number;
-            };
-        }>();
+            }>();
 
         if (response.code === -1 || !response.data) {
             return {
@@ -71,7 +73,7 @@ export class FasttokSaveProvider extends BaseProvider {
             commentsCount: response.data.comment_count,
             playsCount: response.data.play_count,
             caption: response.data.title,
-        }
+        };
     }
 
     /**

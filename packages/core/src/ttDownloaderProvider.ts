@@ -1,4 +1,4 @@
-import { ZodObject } from 'zod';
+import {ZodObject} from 'zod';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {matchLink} from './utils';
@@ -54,14 +54,16 @@ export class TTDownloader extends BaseProvider {
         const urls = matchLink(html);
         urls?.pop(); // remove 'https://snaptik.fans'
 
-        const musicUrl = urls?.find(u => /mp3/gi.test(u));
+        const musicUrl = urls?.find((u) => /mp3/gi.test(u));
         return {
             video: {
-                urls: urls?.filter(u => u !== musicUrl) ?? [],
+                urls: urls?.filter((u) => u !== musicUrl) ?? [],
             },
-            music: musicUrl ? {
-                url: musicUrl,
-            } : undefined,
+            music: musicUrl
+                ? {
+                      url: musicUrl,
+                  }
+                : undefined,
         };
     }
 

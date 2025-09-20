@@ -1,7 +1,7 @@
 import got from 'got';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
-import { extractMusicalyDownImages, matchLink } from './utils';
+import {extractMusicalyDownImages, matchLink} from './utils';
 
 /**
  * @class MusicalyDown
@@ -29,7 +29,8 @@ export class MusicalyDown extends BaseProvider {
                 Accept: '*/*',
                 Referer: this.client.defaults.options.prefixUrl.toString(),
                 Origin: this.client.defaults.options.prefixUrl.toString(),
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
+                'User-Agent':
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             },
         });
 
@@ -48,20 +49,24 @@ export class MusicalyDown extends BaseProvider {
                 Accept: '*/*',
                 Referer: this.client.defaults.options.prefixUrl.toString(),
                 Origin: this.client.defaults.options.prefixUrl.toString(),
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+                'User-Agent':
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             },
         });
 
-        return this.extract(JSON.stringify({
-            html: response.body,
-            headers: {
-                Cookie: res.headers['set-cookie']?.toString(),
-                Accept: '*/*',
-                Referer: this.client.defaults.options.prefixUrl.toString(),
-                Origin: this.client.defaults.options.prefixUrl.toString(),
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-            },
-        }));
+        return this.extract(
+            JSON.stringify({
+                html: response.body,
+                headers: {
+                    Cookie: res.headers['set-cookie']?.toString(),
+                    Accept: '*/*',
+                    Referer: this.client.defaults.options.prefixUrl.toString(),
+                    Origin: this.client.defaults.options.prefixUrl.toString(),
+                    'User-Agent':
+                        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+                },
+            }),
+        );
     }
 
     /**
@@ -70,15 +75,15 @@ export class MusicalyDown extends BaseProvider {
      * @return {ExtractedInfo}
      */
     public async extract(body: string): Promise<ExtractedInfo> {
-        const { html, headers } = JSON.parse(body);
+        const {html, headers} = JSON.parse(body);
 
         const urls = matchLink(html);
-        const matchedUrls = urls?.filter(url => /muscdn/gi.test(url)) ?? [];
+        const matchedUrls = urls?.filter((url) => /muscdn/gi.test(url)) ?? [];
         const musicalyDownUrls = extractMusicalyDownImages(html);
 
         const isSlide = musicalyDownUrls.length > 2;
-        const nonImages = matchedUrls.filter(u => u.includes('images'));
-        const image = matchedUrls.find(u => u.includes('images'));
+        const nonImages = matchedUrls.filter((u) => u.includes('images'));
+        const image = matchedUrls.find((u) => u.includes('images'));
 
         const info: ExtractedInfo = {
             video: {
@@ -86,27 +91,33 @@ export class MusicalyDown extends BaseProvider {
                 thumb: image,
             },
             slides: isSlide ? musicalyDownUrls.slice(1) : undefined,
-            author: !isSlide ? {
-                thumb: musicalyDownUrls[0],
-            } : undefined,
-            music: !isSlide ? {
-                url: nonImages[0],
-            } : undefined,
+            author: !isSlide
+                ? {
+                      thumb: musicalyDownUrls[0],
+                  }
+                : undefined,
+            music: !isSlide
+                ? {
+                      url: nonImages[0],
+                  }
+                : undefined,
         };
 
         if (isSlide) {
             const tokenRenderRegex = /data:\s*"([^"]+)"/;
             const token = tokenRenderRegex.exec(html)?.[1];
 
-            const response = await got.post('https://render.muscdn.app/slider', {
-                form: {
-                    data: token,
-                },
-                headers,
-            }).json<{
-                success: boolean;
-                url?: string;
-            }>();
+            const response = await got
+                .post('https://render.muscdn.app/slider', {
+                    form: {
+                        data: token,
+                    },
+                    headers,
+                })
+                .json<{
+                    success: boolean;
+                    url?: string;
+                }>();
 
             if (response.success && response.url?.length) {
                 info.video = {

@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import { ZodObject } from 'zod';
+import {ZodObject} from 'zod';
 // import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
 
 /**
@@ -32,8 +32,7 @@ export class SaveTikProvider extends BaseProvider {
             throwHttpErrors: false,
         });
 
-        if (response.statusCode === 400)
-        {
+        if (response.statusCode === 400) {
             return {
                 error: 'Video not found',
             };
@@ -72,10 +71,7 @@ export class SaveTikProvider extends BaseProvider {
 
             return {
                 video: {
-                    urls: [
-                        json.downloadUrl,
-                        json.hdDownloadUrl,
-                    ],
+                    urls: [json.downloadUrl, json.hdDownloadUrl],
                     title: json.postinfo.media_title,
                     duration: json.duration.toString(),
                 },
@@ -89,11 +85,11 @@ export class SaveTikProvider extends BaseProvider {
                 sharesCount: json.stats.shareCount,
                 playsCount: json.stats.playCount,
                 commentsCount: json.stats.commentCount,
-            }
+            };
         } catch {
             return {
                 error: 'Video not found',
-            }
+            };
         }
     }
 
