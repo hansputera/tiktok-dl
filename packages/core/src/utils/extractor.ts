@@ -20,6 +20,11 @@ export const runObfuscatedReplaceEvalScript = (jsCode: string): string => {
     return runObfuscatedScript(jsCode.replace('eval', 'module.exports = '));
 }
 
+export const extractMusicalyDownImages = (html: string): string[] => {
+  const regex = /<img[^>]+src="(https[^"]+)"/gi;
+  return [...html.matchAll(regex)].map(m => m[1]);
+};
+
 export const runObfuscatedScript = (jsCode: string): string => {
     const transformed = jsCode
         .trim()

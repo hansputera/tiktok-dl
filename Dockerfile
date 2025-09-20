@@ -1,4 +1,4 @@
-FROM node:current-alpine3.15
+FROM node:22-alpine3.22
 
 RUN apk update
 

@@ -51,5 +51,5 @@ export abstract class BaseProvider {
         url: string,
         params?: Record<string, string>,
     ): Promise<ExtractedInfo>;
-    abstract extract(html: string): ExtractedInfo;
+    abstract extract(html: string): ExtractedInfo | Promise<ExtractedInfo>;
 }

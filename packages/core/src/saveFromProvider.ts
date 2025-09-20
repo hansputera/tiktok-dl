@@ -74,7 +74,11 @@ export class SaveFromProvider extends BaseProvider {
         };
     }
 
-    public getParams() {
+    /**
+     * Get params
+     * @return {undefined}
+     */
+    public getParams(): undefined {
         return undefined;
     }
 }

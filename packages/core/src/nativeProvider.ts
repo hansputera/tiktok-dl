@@ -92,7 +92,11 @@ export class NativeProvider extends BaseProvider {
         }
     }
 
-    public getParams() {
+    /**
+     * Return zod object for validation
+     * @return {z.ZodObject}
+     */
+    public getParams(): z.ZodObject {
         return z.object({
             'user-agent': z.string().min(5),
         })
