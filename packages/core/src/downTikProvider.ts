@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchCustomDownload, matchLink, runObfuscatedScript} from './utils';
-import { ZodObject } from 'zod';
+import {ZodObject} from 'zod';
 
 /**
  * @class DownTikProvider

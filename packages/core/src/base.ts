@@ -1,5 +1,5 @@
 import {Got} from 'got';
-import { ZodObject } from 'zod';
+import {ZodObject} from 'zod';
 
 export interface ExtractedInfo {
     error?: string;

@@ -47,7 +47,8 @@ export class SaveFromProvider extends BaseProvider {
             headers: {
                 Origin: 'https://en1.savefrom.net',
                 Referer: 'https://en1.savefrom.net',
-                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+                'User-Agent':
+                    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
                 Cookies: responseFirst.headers['set-cookie']?.toString(),
             },
         });

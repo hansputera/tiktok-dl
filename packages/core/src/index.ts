@@ -12,6 +12,7 @@ import {DownTikProvider} from './downTikProvider';
 // import {DDDTikProvider} from './dddTikProvider';
 // import {DownloadOne} from './downloaderOneProvider';
 import {NativeProvider} from './nativeProvider';
+import {FasttokSaveProvider} from './fasttokSaveProvider';
 // import {GetVidTikProvider} from './getVidTikProvider';
 
 export const Providers: BaseProvider[] = [
@@ -28,12 +29,12 @@ export const Providers: BaseProvider[] = [
     // new DownloadOne(),
     new NativeProvider(),
     // new GetVidTikProvider(),
+    new FasttokSaveProvider(),
 ];
 
 export const getRandomProvider = (): BaseProvider => {
-    const provider = Providers[Math.floor(Math.random() * Providers.length)]
-    while(provider.resourceName() === 'native')
-    {
+    const provider = Providers[Math.floor(Math.random() * Providers.length)];
+    while (provider.resourceName() === 'native') {
         return getRandomProvider();
     }
 

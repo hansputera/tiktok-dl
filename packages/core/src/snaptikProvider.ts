@@ -1,4 +1,4 @@
-import { ZodObject } from 'zod';
+import {ZodObject} from 'zod';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
 import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
@@ -16,7 +16,7 @@ export class SnaptikProvider extends BaseProvider {
         return 'snaptik';
     }
 
-    public maintenance?: MaintenanceProvider | undefined = undefined
+    public maintenance?: MaintenanceProvider | undefined = undefined;
 
     /**
      *
