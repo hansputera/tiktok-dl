@@ -79,6 +79,7 @@ export class SaveTikProvider extends BaseProvider {
                     title: json.postinfo.media_title,
                     duration: json.duration.toString(),
                 },
+                slides: json.items ?? undefined,
                 author: {
                     username: json.postinfo.unique_id,
                     id: json.postinfo.uid,

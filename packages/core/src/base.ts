@@ -10,6 +10,7 @@ export interface ExtractedInfo {
         title?: string;
         duration?: string;
     };
+    slides?: string[];
     music?: {
         url: string;
         title?: string;
@@ -50,5 +51,5 @@ export abstract class BaseProvider {
         url: string,
         params?: Record<string, string>,
     ): Promise<ExtractedInfo>;
-    abstract extract(html: string): ExtractedInfo;
+    abstract extract(html: string): ExtractedInfo | Promise<ExtractedInfo>;
 }

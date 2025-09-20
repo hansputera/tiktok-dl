@@ -53,10 +53,15 @@ export class TTDownloader extends BaseProvider {
     extract(html: string): ExtractedInfo {
         const urls = matchLink(html);
         urls?.pop(); // remove 'https://snaptik.fans'
+
+        const musicUrl = urls?.find(u => /mp3/gi.test(u));
         return {
             video: {
-                urls: (urls as string[]) ?? [],
+                urls: urls?.filter(u => u !== musicUrl) ?? [],
             },
+            music: musicUrl ? {
+                url: musicUrl,
+            } : undefined,
         };
     }
 
