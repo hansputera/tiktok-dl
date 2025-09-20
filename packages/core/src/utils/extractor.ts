@@ -92,9 +92,10 @@ export const matchCustomDownload = (
 
 export const deObfuscateSaveFromScript = (scriptContent: string): string => {
     const safeScript =
-        'let result;' +
+        'let result = ' +
         scriptContent
             .replace(/\/\*js\-response\*\//gi, '');
+
     const vm = new NodeVM({
         compiler: 'javascript',
         console: 'inherit',
