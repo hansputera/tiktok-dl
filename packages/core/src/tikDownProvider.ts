@@ -32,7 +32,6 @@ export class TikDownProvider extends BaseProvider {
         });
 
         const body = response.body;
-        console.log(body);
         if (/please double/gi.test(body))
         {
             return {
