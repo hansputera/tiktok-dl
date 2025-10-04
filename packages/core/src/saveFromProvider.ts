@@ -1,7 +1,7 @@
+import got from 'got';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo, MaintenanceProvider} from './base';
 import {deObfuscateSaveFromScript} from './utils';
-import type {Shape} from 'ow';
 
 /**
  * @class saveFromProvider
@@ -18,8 +18,8 @@ export class SaveFromProvider extends BaseProvider {
     public client = getFetch('https://worker.savefrom.net');
 
     public maintenance: MaintenanceProvider = {
-        reason: 'Need advance investigate to Reverse Engineering the response scripts.'
-    }
+        reason: 'Need further investigation.',
+    };
 
     /**
      *
@@ -27,26 +27,33 @@ export class SaveFromProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     public async fetch(url: string): Promise<ExtractedInfo> {
+        const responseFirst = await got.get('https://en1.savefrom.net');
         const response = await this.client.post('./savefrom.php', {
             form: {
                 sf_url: url,
                 sf_submit: '',
                 new: '2',
-                lang: 'id',
+                lang: 'en',
                 country: 'id',
-                os: 'Ubuntu',
-                browser: 'Firefox',
-                channel: 'Downloader',
+                os: 'Linux',
+                browser: 'Brave',
+                channel: 'main',
                 'sf-nomad': '1',
                 url,
                 ts: Date.now(),
+                _ts: Date.now(),
+                _tsc: 0,
             },
             headers: {
-                Origin: 'https://id.savefrom.net',
-                Referer: 'https://id.savefrom.net',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+                Origin: 'https://en1.savefrom.net',
+                Referer: 'https://en1.savefrom.net',
+                'User-Agent':
+                    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+                Cookies: responseFirst.headers['set-cookie']?.toString(),
             },
         });
+
+        console.log(response.body);
 
         return this.extract(response.body);
     }
@@ -76,10 +83,10 @@ export class SaveFromProvider extends BaseProvider {
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get params
+     * @return {undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): undefined {
         return undefined;
     }
 }

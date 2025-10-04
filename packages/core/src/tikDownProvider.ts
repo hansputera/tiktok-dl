@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
-import type {Shape} from 'ow';
+import {ZodObject} from 'zod';
 
 /**
  * @class TikDownProvider
@@ -32,8 +32,7 @@ export class TikDownProvider extends BaseProvider {
         });
 
         const body = response.body;
-        if (/please double/gi.test(body))
-        {
+        if (/please double/gi.test(body)) {
             return {
                 error: 'Video not found',
             };
@@ -50,9 +49,9 @@ export class TikDownProvider extends BaseProvider {
         if (!responseVideo.body.length) {
             return {
                 error: 'Couldnt find downloaded URL',
-            }
+            };
         }
-        
+
         return this.extract(responseVideo.body);
     }
 
@@ -63,16 +62,21 @@ export class TikDownProvider extends BaseProvider {
     extract(html: string): ExtractedInfo {
         return {
             video: {
-                urls: [new URL(`./${html}`, this.client.defaults.options.prefixUrl.toString()).href],
-            }
-        }
+                urls: [
+                    new URL(
+                        `./${html}`,
+                        this.client.defaults.options.prefixUrl.toString(),
+                    ).href,
+                ],
+            },
+        };
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }

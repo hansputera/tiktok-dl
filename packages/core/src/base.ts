@@ -1,5 +1,5 @@
 import {Got} from 'got';
-import type {Shape} from 'ow';
+import {ZodObject} from 'zod';
 
 export interface ExtractedInfo {
     error?: string;
@@ -10,6 +10,7 @@ export interface ExtractedInfo {
         title?: string;
         duration?: string;
     };
+    slides?: string[];
     music?: {
         url: string;
         title?: string;
@@ -43,12 +44,12 @@ export interface MaintenanceProvider {
  */
 export abstract class BaseProvider {
     abstract client?: Got;
-    abstract getParams(): Shape | undefined;
+    abstract getParams(): ZodObject | undefined;
     abstract maintenance?: MaintenanceProvider;
     abstract resourceName(): string;
     abstract fetch(
         url: string,
         params?: Record<string, string>,
     ): Promise<ExtractedInfo>;
-    abstract extract(html: string): ExtractedInfo;
+    abstract extract(html: string): ExtractedInfo | Promise<ExtractedInfo>;
 }

@@ -9,11 +9,12 @@ services:
       - app-network
     depends_on:
       - redis_db
-    image: "hansputera/tiktok-dl:latest"
   redis_db:
     image: "redis:alpine"
     networks:
       - app-network
+    ports:
+      - 6379:6379
 
 networks:
   app-network:

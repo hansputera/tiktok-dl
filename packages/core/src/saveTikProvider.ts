@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
+import {ZodObject} from 'zod';
 // import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
-import type {Shape} from 'ow';
 
 /**
  * @class SaveTikProvider
@@ -32,8 +32,7 @@ export class SaveTikProvider extends BaseProvider {
             throwHttpErrors: false,
         });
 
-        if (response.statusCode === 400)
-        {
+        if (response.statusCode === 400) {
             return {
                 error: 'Video not found',
             };
@@ -72,13 +71,11 @@ export class SaveTikProvider extends BaseProvider {
 
             return {
                 video: {
-                    urls: [
-                        json.downloadUrl,
-                        json.hdDownloadUrl,
-                    ],
+                    urls: [json.downloadUrl, json.hdDownloadUrl],
                     title: json.postinfo.media_title,
                     duration: json.duration.toString(),
                 },
+                slides: json.items ?? undefined,
                 author: {
                     username: json.postinfo.unique_id,
                     id: json.postinfo.uid,
@@ -88,19 +85,19 @@ export class SaveTikProvider extends BaseProvider {
                 sharesCount: json.stats.shareCount,
                 playsCount: json.stats.playCount,
                 commentsCount: json.stats.commentCount,
-            }
+            };
         } catch {
             return {
                 error: 'Video not found',
-            }
+            };
         }
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }

@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchCustomDownload, matchLink, runObfuscatedScript} from './utils';
-import type {Shape} from 'ow';
+import {ZodObject} from 'zod';
 
 /**
  * @class DownTikProvider
@@ -99,10 +99,10 @@ export class DownTikProvider extends BaseProvider {
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params.
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }

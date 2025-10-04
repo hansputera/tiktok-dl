@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
 import {getFetch} from '../fetch';
 import {matchTikTokData} from './utils';
-import ow, {Shape} from 'ow';
+import z from 'zod';
 
 /**
  * @class NativeProvider
@@ -93,14 +93,12 @@ export class NativeProvider extends BaseProvider {
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Return zod object for validation
+     * @return {z.ZodObject}
      */
-    public getParams(): Shape | undefined {
-        return {
-            'user-agent': ow.string.not.empty
-                .minLength(5)
-                .message('Invalid user-agent'),
-        };
+    public getParams(): z.ZodObject {
+        return z.object({
+            'user-agent': z.string().min(5),
+        });
     }
 }

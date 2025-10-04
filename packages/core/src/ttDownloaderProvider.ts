@@ -1,7 +1,7 @@
+import {ZodObject} from 'zod';
 import {getFetch} from '../fetch';
 import {BaseProvider, ExtractedInfo} from './base';
 import {matchLink} from './utils';
-import type {Shape} from 'ow';
 
 /**
  * @class TTDownloader
@@ -53,18 +53,25 @@ export class TTDownloader extends BaseProvider {
     extract(html: string): ExtractedInfo {
         const urls = matchLink(html);
         urls?.pop(); // remove 'https://snaptik.fans'
+
+        const musicUrl = urls?.find((u) => /mp3/gi.test(u));
         return {
             video: {
-                urls: (urls as string[]) ?? [],
+                urls: urls?.filter((u) => u !== musicUrl) ?? [],
             },
+            music: musicUrl
+                ? {
+                      url: musicUrl,
+                  }
+                : undefined,
         };
     }
 
     /**
-     * Get ow.Shape params.
-     * @return {Shape | undefined}
+     * Get zod params
+     * @return {ZodObject | undefined}
      */
-    public getParams(): Shape | undefined {
+    public getParams(): ZodObject | undefined {
         return undefined;
     }
 }
