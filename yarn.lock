@@ -910,12 +910,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20":
-  version: 20.19.11
-  resolution: "@types/node@npm:20.19.11"
+"@types/node@npm:^22.0.0":
+  version: 22.18.11
+  resolution: "@types/node@npm:22.18.11"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/7179ed464a781cad20117362df58c12839b40922b53356e1a74f86c99d9d1ef9a27edce360901608f896c247c9c4131ba9c7222331e92cde17b723c75d5c8f2e
+  checksum: 10/787049231bf4655d57e6deb7e7be46da6b476f29f8184b470e49ce7db45acfd0ad106b67c4f4b09b77f205c83b6b0a0b3d6a69ba17c28a155d3ec4a608eb332d
   languageName: node
   linkType: hard
 
@@ -5173,7 +5173,7 @@ __metadata:
     "@radix-ui/react-label": "npm:^2.1.7"
     "@radix-ui/react-slot": "npm:^1.2.3"
     "@tailwindcss/postcss": "npm:^4"
-    "@types/node": "npm:^20"
+    "@types/node": "npm:^22.0.0"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
     class-variance-authority: "npm:^0.7.1"
