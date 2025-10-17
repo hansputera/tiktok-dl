@@ -17,7 +17,7 @@
     "ioredis": "^5.7.0",
     "ky": "^1.9.1",
     "lucide-react": "^0.542.0",
-    "next": "15.5.2",
+    "next": "15.5.6",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-hook-form": "^7.62.0",
@@ -31,7 +31,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.5.2",
+    "eslint-config-next": "15.5.6",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.7",
     "typescript": "^5"
