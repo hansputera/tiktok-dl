@@ -911,11 +911,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:^20":
-  version: 20.19.11
-  resolution: "@types/node@npm:20.19.11"
+  version: 20.19.22
+  resolution: "@types/node@npm:20.19.22"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/7179ed464a781cad20117362df58c12839b40922b53356e1a74f86c99d9d1ef9a27edce360901608f896c247c9c4131ba9c7222331e92cde17b723c75d5c8f2e
+  checksum: 10/4a356321c7759dfafb5c1bce4a9731044c7c447c32f02fda1b0798438bef77dea47673b3e71f0ac028206b741754a1f19b3acd89d517d18bd56064352cf67741
   languageName: node
   linkType: hard
 
