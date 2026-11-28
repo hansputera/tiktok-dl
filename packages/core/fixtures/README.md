@@ -14,5 +14,5 @@ Synthetic (fallbacks when a provider body is unavailable): musicalydown extract,
 `deObfuscate` error paths, `matchLink` traps, savefrom script evaluation.
 
 The Rust port replays these files through `TIKTOK_DL_HTTP_FIXTURES`. Recapturing needs the
-removed TypeScript oracle: check out `0ffba838ec`, run the `gen-cases.mjs` and `record` commands
-from `rust/DECISIONS.md`, then re-port and delete again.
+removed TypeScript oracle: check out `0ffba838ec`, capture the responses with its HTTP layer,
+record the outputs, then re-port and delete again.

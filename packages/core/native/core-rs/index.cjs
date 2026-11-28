@@ -1,4 +1,4 @@
-// Loads the native module built by `rust-anything build`.
+// Loads the native module built by scripts/build-native.mjs.
 const native = require('./core_rs.node')
 
 // Structured values cross as JSON text. JSON has no `undefined`, NaN, -0, bigint, Date, Map, Set
@@ -96,15 +96,15 @@ for (const [name, [ctor, methods]] of Object.entries(classes)) {
   module.exports[name] = Wrapped
 }
 
-// The binary wire (see rust-anything's `wire.rs`): arguments are written into `wIn`, results read
+// The binary wire (see `wire.rs`): arguments are written into `wIn`, results read
 // from `wOut`; both are registered with the native module once.
 let wIn = new Uint8Array(1 << 16), wOut = new Uint8Array(1 << 16)
 // Its own ArrayBuffer: Bun (JavaScriptCore) may relocate a small typed array whose `.buffer`
 // nobody read, and Rust then reads a length of 0 and reports `wire data ended early`.
 const wLen = new Uint32Array(new ArrayBuffer(4))
 let iv = new DataView(wIn.buffer), ov = new DataView(wOut.buffer), at = 0, p = 0
-native.rustAnythingWireInit(wIn, wOut, wLen)
-const regrow = () => native.rustAnythingWireInit(wIn, wOut, wLen)
+native.wireInit(wIn, wOut, wLen)
+const regrow = () => native.wireInit(wIn, wOut, wLen)
 // Runs a wire function; a result larger than `wOut` is fetched once `wOut` has grown.
 const wireCall = fn => {
   wLen[0] = at
@@ -117,8 +117,8 @@ const wireCall = fn => {
   if (n < 0) {
     wOut = new Uint8Array(Math.max(wOut.length * 2, -n))
     ov = new DataView(wOut.buffer)
-    native.rustAnythingWireInit(wIn, wOut, wLen)
-    native.rustAnythingWireFlush()
+    native.wireInit(wIn, wOut, wLen)
+    native.wireFlush()
   }
   p = 0
   return true

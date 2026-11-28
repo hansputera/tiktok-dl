@@ -9,7 +9,7 @@ SaveFrom evaluation are Rust. There is no TypeScript fallback: a missing or brok
 require time.
 
 The TypeScript oracle lived in the working tree only until commit `0ffba838ec`; it was recorded,
-porting was checked with `rust-anything diff` (63/63) and `gate`, and then removed. `index.d.ts`
+porting was checked against 63 recorded cases and the full gate, and then removed. `index.d.ts`
 is the hand-written public contract, including `ExtractedInfo`, `BaseProvider` and the utility
 types.
 
@@ -71,7 +71,7 @@ consumers.
 
 ## 8. Verification
 
-At `0ffba838ec`: `rust-anything diff` 63/63, `gate` all checks pass. After the cutover, the
+At `0ffba838ec`: 63/63 recorded cases matched and the full gate passed. After the cutover, the
 public entry replays all 63 cases: `Providers` fetch/extract through the provider objects and the
 utility exports all match (`63/63`), `/api/providers` lists all ten providers, and a live
 `tikmate` fetch without fixtures returns two URLs from reqwest.
