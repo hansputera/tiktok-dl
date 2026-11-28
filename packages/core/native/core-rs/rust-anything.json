@@ -1,0 +1,541 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/Users/mac/Documents/Hanif/tiktok-dl",
+  "unit": "packages/core/src/units/",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "core-rs",
+  "exports": [
+    {
+      "name": "runObfuscatedScript",
+      "file": "packages/core/src/units/deobfuscate.ts",
+      "line": 3,
+      "params": [
+        {
+          "name": "jsCode",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "runObfuscatedReplaceEvalScript",
+      "file": "packages/core/src/units/deobfuscate.ts",
+      "line": 20,
+      "params": [
+        {
+          "name": "jsCode",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "deObfuscate",
+      "file": "packages/core/src/units/deobfuscate.ts",
+      "line": 24,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "downtikFetch",
+      "file": "packages/core/src/units/downtikFetch.ts",
+      "line": 7,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "downtikExtract",
+      "file": "packages/core/src/units/downtikParse.ts",
+      "line": 5,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "baseUrl",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "fasttoksaveFetch",
+      "file": "packages/core/src/units/fasttoksaveFetch.ts",
+      "line": 6,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "fasttoksaveExtract",
+      "file": "packages/core/src/units/fasttoksaveParse.ts",
+      "line": 3,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "matchTikTokData",
+      "file": "packages/core/src/units/links.ts",
+      "line": 1,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "matchLink",
+      "file": "packages/core/src/units/links.ts",
+      "line": 14,
+      "params": [
+        {
+          "name": "raw",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string[] | null",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "extractMusicalyDownImages",
+      "file": "packages/core/src/units/links.ts",
+      "line": 21,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string[]",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "matchCustomDownload",
+      "file": "packages/core/src/units/links.ts",
+      "line": 26,
+      "params": [
+        {
+          "name": "baseUrl",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "raw",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string[]",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "musicalydownFetch",
+      "file": "packages/core/src/units/musicalydownFetch.ts",
+      "line": 9,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "musicalydownExtract",
+      "file": "packages/core/src/units/musicalydownParse.ts",
+      "line": 5,
+      "params": [
+        {
+          "name": "body",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "nativeFetch",
+      "file": "packages/core/src/units/nativeFetch.ts",
+      "line": 5,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "params",
+          "ts_type": "Record<string, string>",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "nativeExtract",
+      "file": "packages/core/src/units/nativeParse.ts",
+      "line": 35,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "savetikFetch",
+      "file": "packages/core/src/units/savetikFetch.ts",
+      "line": 7,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "savetikExtract",
+      "file": "packages/core/src/units/savetikParse.ts",
+      "line": 3,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "snaptikFetch",
+      "file": "packages/core/src/units/snaptikFetch.ts",
+      "line": 7,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "snaptikExtract",
+      "file": "packages/core/src/units/snaptikParse.ts",
+      "line": 5,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "tikdownFetch",
+      "file": "packages/core/src/units/tikdownFetch.ts",
+      "line": 7,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "tikdownExtract",
+      "file": "packages/core/src/units/tikdownParse.ts",
+      "line": 4,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "baseUrl",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "tikmateFetch",
+      "file": "packages/core/src/units/tikmateFetch.ts",
+      "line": 9,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "tikmateExtract",
+      "file": "packages/core/src/units/tikmateParse.ts",
+      "line": 5,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "ttdownloaderFetch",
+      "file": "packages/core/src/units/ttdownloaderFetch.ts",
+      "line": 7,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "ttdownloaderExtract",
+      "file": "packages/core/src/units/ttdownloaderParse.ts",
+      "line": 4,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "savefromExtract",
+      "file": "packages/core/src/units/savefromParse.ts",
+      "line": 4,
+      "params": [
+        {
+          "name": "html",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "ExtractedInfo",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "deObfuscateSaveFromScript",
+      "file": "packages/core/src/units/deobfuscate.ts",
+      "line": 46,
+      "params": [
+        {
+          "name": "scriptContent",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "savefromFetch",
+      "file": "packages/core/src/units/savefromFetch.ts",
+      "line": 9,
+      "params": [
+        {
+          "name": "url",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "Promise<ExtractedInfo>",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [],
+  "ignore_key_order": true
+}

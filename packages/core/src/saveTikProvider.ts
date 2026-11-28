@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
-import {getFetch} from '../fetch';
 import {ZodObject} from 'zod';
-// import {matchLink, runObfuscatedReplaceEvalScript} from './utils';
+import {savetikFetch} from './units/savetikFetch';
+import {savetikExtract} from './units/savetikParse';
 
 /**
  * @class SaveTikProvider
@@ -16,7 +16,7 @@ export class SaveTikProvider extends BaseProvider {
         return 'savetik';
     }
 
-    public client = getFetch('https://savetik.net');
+    public baseUrl = 'https://savetik.net';
 
     public maintenance = undefined;
 
@@ -25,20 +25,7 @@ export class SaveTikProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client.get('./api/action', {
-            searchParams: new URLSearchParams({
-                url,
-            }),
-            throwHttpErrors: false,
-        });
-
-        if (response.statusCode === 400) {
-            return {
-                error: 'Video not found',
-            };
-        }
-
-        return this.extract(response.body);
+        return savetikFetch(url);
     }
 
     /**
@@ -46,51 +33,7 @@ export class SaveTikProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        // const results = runObfuscatedReplaceEvalScript(html);
-        // const matchUrls = matchLink(results) ?? [];
-
-        // const urls = matchUrls.filter(url => /(tiktokcdn|rapidcdn)/gi.test(url));
-
-        // return {
-        //     music: {
-        //         url: urls?.pop() as string,
-        //     },
-        //     video: {
-        //         thumb: urls?.shift(),
-        //         urls: urls as string[],
-        //     },
-        // };
-
-        try {
-            const json = JSON.parse(html);
-            if (json.error) {
-                return {
-                    error: json.error,
-                };
-            }
-
-            return {
-                video: {
-                    urls: [json.downloadUrl, json.hdDownloadUrl],
-                    title: json.postinfo.media_title,
-                    duration: json.duration.toString(),
-                },
-                slides: json.items ?? undefined,
-                author: {
-                    username: json.postinfo.unique_id,
-                    id: json.postinfo.uid,
-                    nick: json.postinfo.username,
-                    thumb: json.postinfo.avatar_url,
-                },
-                sharesCount: json.stats.shareCount,
-                playsCount: json.stats.playCount,
-                commentsCount: json.stats.commentCount,
-            };
-        } catch {
-            return {
-                error: 'Video not found',
-            };
-        }
+        return savetikExtract(html);
     }
 
     /**

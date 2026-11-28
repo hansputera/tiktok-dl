@@ -1,6 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
-import {getFetch} from '../fetch';
 import {ZodObject} from 'zod';
+import {tikdownFetch} from './units/tikdownFetch';
+import {tikdownExtract} from './units/tikdownParse';
 
 /**
  * @class TikDownProvider
@@ -15,7 +16,7 @@ export class TikDownProvider extends BaseProvider {
         return 'tikdown';
     }
 
-    public client = getFetch('https://tikdown.org');
+    public baseUrl = 'https://tikdown.org';
 
     public maintenance = undefined;
 
@@ -25,34 +26,7 @@ export class TikDownProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client.post('./', {
-            form: {
-                'tiktok-url': url,
-            },
-        });
-
-        const body = response.body;
-        if (/please double/gi.test(body)) {
-            return {
-                error: 'Video not found',
-            };
-        }
-
-        const indexLink = body.match(/\.\/index\.php\?url=[^'"]+/gi)?.at(0);
-        if (!indexLink) {
-            return {
-                error: 'Couldnt find URL',
-            };
-        }
-
-        const responseVideo = await this.client.get(indexLink);
-        if (!responseVideo.body.length) {
-            return {
-                error: 'Couldnt find downloaded URL',
-            };
-        }
-
-        return this.extract(responseVideo.body);
+        return tikdownFetch(url);
     }
 
     /**
@@ -60,16 +34,7 @@ export class TikDownProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        return {
-            video: {
-                urls: [
-                    new URL(
-                        `./${html}`,
-                        this.client.defaults.options.prefixUrl.toString(),
-                    ).href,
-                ],
-            },
-        };
+        return tikdownExtract(html, this.baseUrl);
     }
 
     /**

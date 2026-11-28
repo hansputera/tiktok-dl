@@ -1,4 +1,3 @@
-import {Got} from 'got';
 import {ZodObject} from 'zod';
 
 export interface ExtractedInfo {
@@ -43,7 +42,7 @@ export interface MaintenanceProvider {
  * @class BaseProvider
  */
 export abstract class BaseProvider {
-    abstract client?: Got;
+    abstract baseUrl?: string;
     abstract getParams(): ZodObject | undefined;
     abstract maintenance?: MaintenanceProvider;
     abstract resourceName(): string;

@@ -1,6 +1,6 @@
 import {BaseProvider, ExtractedInfo} from './base';
-import {getFetch} from '../fetch';
-import {matchTikTokData} from './utils';
+import {nativeFetch} from './units/nativeFetch';
+import {nativeExtract} from './units/nativeParse';
 import z from 'zod';
 
 /**
@@ -16,7 +16,7 @@ export class NativeProvider extends BaseProvider {
     }
 
     public maintenance = undefined;
-    public client = undefined;
+    public baseUrl = undefined;
 
     /**
      * @param {string} url Tiktok video url
@@ -27,22 +27,7 @@ export class NativeProvider extends BaseProvider {
         url: string,
         params: Record<string, string>,
     ): Promise<ExtractedInfo> {
-        const urlInstance = new URL(url);
-        const response = await getFetch(urlInstance.origin).get(
-            `.${urlInstance.pathname}`,
-            {
-                headers: {
-                    Referer: urlInstance.href,
-                    Origin: urlInstance.origin,
-                    'User-Agent': params['user-agent'],
-                },
-                timeout: {
-                    socket: 10000,
-                },
-            },
-        );
-
-        return this.extract(response.body);
+        return nativeFetch(url, params);
     }
 
     /**
@@ -50,46 +35,7 @@ export class NativeProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        const matches = matchTikTokData(html);
-        if (matches.length) {
-            const json = Object.values(
-                JSON.parse(matches).ItemModule,
-            )[0] as any;
-
-            return {
-                video: {
-                    id: json.id,
-                    urls: [json.video.playAddr, json.video.downloadAddr],
-                    thumb: json.video.cover,
-                    duration: json.video.duration,
-                },
-                music: {
-                    url: json.music.playUrl,
-                    title: json.music.title,
-                    author: json.music.authorName,
-                    id: json.music.id,
-                    cover: json.music.coverLarge,
-                    album: json.music.album,
-                    duration: json.music.duration,
-                },
-                author: {
-                    username: json.author,
-                    id: json.authorId,
-                    thumb: json.avatarThumb,
-                    nick: json.nickname,
-                },
-                caption: json.desc,
-                playsCount: json.stats.playCount,
-                sharesCount: json.stats.shareCount,
-                commentsCount: json.stats.commentCount,
-                likesCount: json.stats.diggCount,
-                uploadedAt: json.createTime,
-            };
-        } else {
-            return {
-                error: 'Something was wrong!',
-            };
-        }
+        return nativeExtract(html);
     }
 
     /**

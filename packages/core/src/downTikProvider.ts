@@ -1,7 +1,7 @@
 import {BaseProvider, ExtractedInfo} from './base';
-import {getFetch} from '../fetch';
-import {matchCustomDownload, matchLink, runObfuscatedScript} from './utils';
 import {ZodObject} from 'zod';
+import {downtikFetch} from './units/downtikFetch';
+import {downtikExtract} from './units/downtikParse';
 
 /**
  * @class DownTikProvider
@@ -16,7 +16,7 @@ export class DownTikProvider extends BaseProvider {
         return 'downtik';
     }
 
-    public client = getFetch('https://downtik.io');
+    public baseUrl = 'https://downtik.io';
 
     public maintenance = undefined;
 
@@ -26,43 +26,7 @@ export class DownTikProvider extends BaseProvider {
      * @return {Promise<ExtractedInfo>}
      */
     async fetch(url: string): Promise<ExtractedInfo> {
-        const response = await this.client('./', {
-            searchParams: new URLSearchParams({
-                lang: 'en',
-            }),
-        });
-
-        const token = (
-            response.body.match(/id="token" value="([^""]+)"/) as string[]
-        )[1];
-
-        const responseAction = await this.client.post('./action.php', {
-            form: {
-                url: url,
-                token: token,
-            },
-            searchParams: new URLSearchParams({
-                lang: 'en',
-            }),
-            headers: {
-                cookie: response.headers['set-cookie']?.toString(),
-                Referer: 'https://downtik.io/',
-                Origin: 'https://downtik.io',
-            },
-        });
-
-        try {
-            if (JSON.parse(responseAction.body).error) {
-                return {
-                    error: JSON.parse(responseAction.body).message,
-                };
-            }
-        } catch {
-            // if JSON.parse fail
-            return this.extract(responseAction.body);
-        }
-
-        return this.extract(responseAction.body);
+        return downtikFetch(url);
     }
 
     /**
@@ -70,32 +34,7 @@ export class DownTikProvider extends BaseProvider {
      * @return {ExtractedInfo}
      */
     extract(html: string): ExtractedInfo {
-        let urls = matchCustomDownload('downtik', html);
-
-        if (!urls?.length) {
-            urls = matchLink(runObfuscatedScript(html)) as string[];
-            if (!urls?.length)
-                return {
-                    error: "Couldn't match any links!",
-                };
-
-            return {
-                video: {
-                    thumb: urls?.shift(),
-                    urls: urls as string[],
-                },
-            };
-        } else {
-            return {
-                music: {
-                    url: urls.pop() as string,
-                },
-                video: {
-                    thumb: urls?.shift(),
-                    urls: urls as string[],
-                },
-            };
-        }
+        return downtikExtract(html, this.baseUrl);
     }
 
     /**

@@ -1,0 +1,79 @@
+{
+  "status": 200,
+  "statusMessage": "OK",
+  "headers": [
+    [
+      "date",
+      "Sat, 28 Nov 2026 03:18:40 GMT"
+    ],
+    [
+      "content-type",
+      "text/html; charset=UTF-8"
+    ],
+    [
+      "transfer-encoding",
+      "chunked"
+    ],
+    [
+      "connection",
+      "keep-alive"
+    ],
+    [
+      "x-powered-by",
+      "PHP/8.2.36"
+    ],
+    [
+      "nel",
+      "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+    ],
+    [
+      "vary",
+      "Accept-Encoding"
+    ],
+    [
+      "server",
+      "cloudflare"
+    ],
+    [
+      "platform",
+      "hostinger"
+    ],
+    [
+      "panel",
+      "hpanel"
+    ],
+    [
+      "content-security-policy",
+      "upgrade-insecure-requests"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ],
+    [
+      "x-turbo-charged-by",
+      "LiteSpeed"
+    ],
+    [
+      "cf-cache-status",
+      "DYNAMIC"
+    ],
+    [
+      "server-timing",
+      "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=39,cfOrigin;dur=8439"
+    ],
+    [
+      "report-to",
+      "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Vf6IPVIoxlEG4gaJUekI9ikpLfKbIm1ccv07OOiZqXSV4iG76eNSUUFcmS0%2B8D9tZhbAZbYigGUH8KcWOH1wjscI16JfWMKSs%2BXafG3AlWE72FYCnrgSK8b%2F7ll87g%3D%3D\"}]}"
+    ],
+    [
+      "content-encoding",
+      "br"
+    ],
+    [
+      "cf-ray",
+      "a61639d3ee263e17-SIN"
+    ]
+  ],
+  "body": "<!DOCTYPE html>\n<html>\n<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>TikTok Downloader</title>\n<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:sans-serif;background:#f5f5f5;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:40px 20px}h1{font-size:28px;margin-bottom:8px;color:#111}h2{color:#666;font-weight:400;font-size:16px;margin-bottom:30px}.box{background:#fff;border-radius:12px;padding:30px;width:100%;max-width:500px;box-shadow:0 2px 12px rgba(0,0,0,.08)}input[type=text]{width:100%;padding:12px 16px;border:2px solid #ddd;border-radius:8px;font-size:15px;transition:border .2s}input:focus{outline:none;border-color:#fe2c55}button{width:100%;margin-top:12px;padding:12px;background:#fe2c55;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer}button:hover{background:#d92145}.result{margin-top:20px;text-align:center}.result img{border-radius:8px;max-width:240px;margin-bottom:12px}.result a{display:inline-block;padding:10px 24px;background:#25f4ee;color:#000;text-decoration:none;border-radius:8px;font-weight:600;margin:8px 4px 0}.result a.nowm{background:#fe2c55;color:#fff}.result a.nowm:hover{background:#d92145}.error{background:#fff0f0;color:#c00;padding:12px 16px;border-radius:8px;margin-top:20px}footer{margin-top:40px;color:#888;font-size:13px}</style>\n</head>\n<body>\n<h1>TikTok Downloader</h1>\n<h2>Paste a video URL and download</h2>\n<div class=\"box\">\n<form method=\"post\">\n<input type=\"text\" name=\"tiktok-url\" placeholder=\"https://www.tiktok.com/@user/video/1234567890\" value=\"https://www.tiktok.com/@raphaeltangg/video/7027045794377190658\" required>\n<button type=\"submit\">Download</button>\n</form>\n<div class=\"result\">\n<img src=\"https://p19-common-sign.tiktokcdn-us.com/tos-alisg-p-0037/d7d9643b61d24b319445821aef31de21~tplv-tiktokx-cropcenter-q:300:400:q70.jpeg?dr=8596&amp;refresh_token=f8e5295b&amp;x-expires=1795921200&amp;x-signature=uerkRvdmRB2hwcPIJYzY3Xe%2BOjo%3D&amp;t=bacd0480&amp;ps=933b5bde&amp;shp=d05b14bd&amp;shcp=1d1a97fc&amp;idc=useast5&amp;biz_tag=tt_video&amp;s=AWEME_DETAIL&amp;sc=cover\"><p>@raphaeltangg</p><a href=\"?stream=1&url=https%3A%2F%2Fwww.tiktok.com%2F%40raphaeltangg%2Fvideo%2F7027045794377190658\" class=\"btn\">Download (with watermark)</a>\n<a href=\"?stream=1&nowm=1&url=https%3A%2F%2Fwww.tiktok.com%2F%40raphaeltangg%2Fvideo%2F7027045794377190658\" class=\"btn nowm\">Download (no watermark)</a>\n<p style=\"margin-top:8px;font-size:13px;color:#888\">Streamed directly — no files stored on server</p>\n</div>\n</div>\n<footer>Single-file TikTok downloader</footer>\n<script type=\"module\" src=\"https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092\" integrity=\"sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==\" data-cf-beacon='{\"version\":\"2024.11.0\",\"token\":\"9ab13762d98842c8aa094e8b728696c2\",\"r\":1,\"spa\":2}' crossorigin=\"anonymous\"></script>\n</body>\n</html>"
+}

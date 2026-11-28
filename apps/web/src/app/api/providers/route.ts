@@ -5,7 +5,7 @@ const transformProvider = (provider: BaseProvider) => {
 
     return {
         name: provider.resourceName(),
-        url: provider.client?.defaults.options.prefixUrl,
+        url: provider.baseUrl,
         maintenance: provider.maintenance,
         params: params ? Object.keys(params._zod.def.shape).map(k => ({
             name: k,

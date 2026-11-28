@@ -1,8 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['tiktok-dl-core'],
-  serverExternalPackages: ['vm2'],
+  serverExternalPackages: ['tiktok-dl-core'],
 };
 
 export default nextConfig;

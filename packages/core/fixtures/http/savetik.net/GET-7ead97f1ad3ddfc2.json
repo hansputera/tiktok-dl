@@ -1,0 +1,67 @@
+{
+  "status": 200,
+  "statusMessage": "OK",
+  "headers": [
+    [
+      "date",
+      "Sat, 28 Nov 2026 03:19:01 GMT"
+    ],
+    [
+      "content-type",
+      "application/json; charset=utf-8"
+    ],
+    [
+      "transfer-encoding",
+      "chunked"
+    ],
+    [
+      "connection",
+      "keep-alive"
+    ],
+    [
+      "server",
+      "cloudflare"
+    ],
+    [
+      "nel",
+      "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+    ],
+    [
+      "set-cookie",
+      "ab_test=2; Path=/; Expires=Sun, 28 Mar 2027 03:19:01 GMT; Max-Age=10368000"
+    ],
+    [
+      "etag",
+      "\"gsdl9linrh1mt\""
+    ],
+    [
+      "vary",
+      "Accept-Encoding"
+    ],
+    [
+      "content-encoding",
+      "gzip"
+    ],
+    [
+      "cf-cache-status",
+      "DYNAMIC"
+    ],
+    [
+      "server-timing",
+      "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=11,cfOrigin;dur=178"
+    ],
+    [
+      "report-to",
+      "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=wSrfL93ifn%2F6GIOt0o%2Fng5a3zamJV2V4I5XnNuyZi2d5q5iGaBgi3O8MjClHY%2F8gaZTgXmCMGcLgku1y6ow%2BqWUqgx78QPw2VnldsPeY0jGBsBGzxlRbDVuQ6zOZ0A%3D%3D\"}]}"
+    ],
+    [
+      "cf-ray",
+      "a6163a897c27fde3-SIN"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "body": "{\"postinfo\":{\"uid\":\"6796950497929954305\",\"unique_id\":\"raphaeltangg\",\"username\":\"Raphael Tang\",\"avatar_url\":\"https://p19-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/63f5e49d459d60139c557c232a19f67c~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=9640&refresh_token=c04694d7&x-expires=1796007600&x-signature=4k855Ztc0On4JrncAxJAfwHZZnQ%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5\",\"media_title\":\"Suuuiiiiiiii | Follow my insta: @raphaeltangg\"},\"video_link\":\"https://v39e-as.tiktokcdn.com/c9dde4e409d53bd1e9eb11f4a6a4d58a/6b0b99b0/video/tos/alisg/tos-alisg-pve-0037/27af4e31f3e74e85b8d1432bbaad7425/?a=1340&bti=bGRuZHxvMXIxcm53Zm1cYF9ebWFzaHFmOg%3D%3D&&bt=1135&ft=4bEg5MZj8Zmo0vcl1C4jVLDhFOFrKsd.&mime_type=video_mp4&rc=Zjc7NDY3aGk8NDM3OzQ8NUBpMzh1ZDc6ZnRrOTMzODgzNEA0YS4vYl8xXy0xY2JfMjBfYSNhXjQxcjRvNi9gLS1kLy1zcw%3D%3D&vvpl=1&l=20261128111901C752847B36DE18FC0437&btag=e000b5000\",\"status_code\":0,\"stats\":{\"playCount\":3600000,\"commentCount\":3817,\"shareCount\":15900},\"duration\":11,\"downloadUrl\":\"https://d.rapidcdn.app/v2?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL3YzOWUtYXMudGlrdG9rY2RuLmNvbS9jOWRkZTRlNDA5ZDUzYmQxZTllYjExZjRhNmE0ZDU4YS82YjBiOTliMC92aWRlby90b3MvYWxpc2cvdG9zLWFsaXNnLXB2ZS0wMDM3LzI3YWY0ZTMxZjNlNzRlODViOGQxNDMyYmJhYWQ3NDI1Lz9hPTEzNDAmYnRpPWJHUnVaSHh2TVhJeGNtNTNabTFjWUY5ZWJXRnphSEZtT2clM0QlM0QmJmJ0PTExMzUmZnQ9NGJFZzVNWmo4Wm1vMHZjbDFDNGpWTERoRk9GcktzZC4mbWltZV90eXBlPXZpZGVvX21wNCZyYz1aamM3TkRZM2FHazhORE0zT3pROE5VQnBNemgxWkRjNlpuUnJPVE16T0Rnek5FQTBZUzR2WWw4eFh5MHhZMkpmTWpCZllTTmhYalF4Y2pSdk5pOWdMUzFrTHkxemN3JTNEJTNEJnZ2cGw9MSZsPTIwMjYxMTI4MTExOTAxQzc1Mjg0N0IzNkRFMThGQzA0MzcmYnRhZz1lMDAwYjUwMDAiLCJmaWxlbmFtZSI6IlNhdmV0aWstTmV0XzcwMjcwNDU3OTQzNzcxOTA2NThfdjMubXA0IiwiaGVhZGVycyI6eyJ1c2VyLWFnZW50IjoiVGVsZWdyYW1Cb3QgKGxpa2UgVHdpdHRlckJvdCkifSwiaWF0IjoxNzk1ODM1OTQxfQ.HndgK0ae7suBai8eNSFEFCgrVVXz6SDU-AdZXtfo4JY&dl=1\",\"hdDownloadUrl\":\"https://api.snaptik.app/v2/tiktok/hd_download_url?client_id=tikmate-io/250317&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjcwMjcwNDU3OTQzNzcxOTA2NTgiLCJpYXQiOjE3OTU4MzU5NDF9.DHICkVOU1wsueD9U6E_MFdz5tnq-5lf-Vw-8H9NQTMw\"}"
+}

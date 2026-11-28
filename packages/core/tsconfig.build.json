@@ -1,0 +1,18 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "noEmit": false,
+        "allowJs": false,
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "target": "ES2022",
+        "outDir": "dist",
+        "rootDir": ".",
+        "declaration": true,
+        "strict": false,
+        "strictNullChecks": false,
+        "strictBindCallApply": false,
+        "strictFunctionTypes": false
+    },
+    "exclude": ["node_modules", "dist", "native"]
+}
