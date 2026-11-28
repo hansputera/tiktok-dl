@@ -1,0 +1,6 @@
+target/
+*.node
+pkg/
+*.so
+*.pyd
+__pycache__/

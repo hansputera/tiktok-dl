@@ -12,3 +12,6 @@ package-lock.json
 
 # Local Netlify folder
 .netlify
+
+packages/core/native/core-rs/target/
+packages/core/native/core-rs/*.node

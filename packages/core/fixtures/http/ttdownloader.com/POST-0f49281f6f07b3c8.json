@@ -1,0 +1,71 @@
+{
+  "status": 200,
+  "statusMessage": "OK",
+  "headers": [
+    [
+      "date",
+      "Sat, 28 Nov 2026 03:18:10 GMT"
+    ],
+    [
+      "content-type",
+      "text/html; charset=UTF-8"
+    ],
+    [
+      "transfer-encoding",
+      "chunked"
+    ],
+    [
+      "connection",
+      "keep-alive"
+    ],
+    [
+      "server",
+      "cloudflare"
+    ],
+    [
+      "nel",
+      "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+    ],
+    [
+      "expires",
+      "Thu, 19 Nov 1981 08:52:00 GMT"
+    ],
+    [
+      "cache-control",
+      "no-store, no-cache, must-revalidate"
+    ],
+    [
+      "pragma",
+      "no-cache"
+    ],
+    [
+      "report-to",
+      "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=K%2BCttz0LzXC%2FpCWbO1YQnNZ9kuVC%2BG5wyiSY6vlFSC79ZT%2Bhn0J7hkhRX0o%2Bx0AAQ2D2JQ8AnhgEYCz2rp1QnuFqZpu37a04DRhUkFEiLn3farBnIlrUus7%2FpzNdc%2BqWIms%2B\"}]}"
+    ],
+    [
+      "cf-cache-status",
+      "DYNAMIC"
+    ],
+    [
+      "vary",
+      "accept-encoding"
+    ],
+    [
+      "server-timing",
+      "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=30,cfOrigin;dur=11821"
+    ],
+    [
+      "content-encoding",
+      "br"
+    ],
+    [
+      "cf-ray",
+      "a61639001ab45cdd-SIN"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "body": "<div id=\"results-list\" class=\"results-list\"><p class=\"result-info\">Please click on the \"Download video\" link to start the download.</p><div class=\"result\"><div class=\"size\">No watermark (HD)</div><div class=\"download\"><a data-name=\"\" class=\"download-link\" rel=\"nofollow noreferrer\" target=\"_blank\" href=\"https://ttdownloader.com/dl.php?v=YTo0OntzOjk6IndhdGVybWFyayI7aTowO3M6NzoidmlkZW9JZCI7czozMjoiMDZmZDQ0YjQ1ZjUwNDNhNzkxNmE5NTc5ZWEyMzM1ZjgiO3M6MzoidWlkIjtzOjMyOiJiNjJlOGYzMDJhYzMxNTk5Y2YyZGYxNjk4M2MwNWM2MSI7czo0OiJ0aW1lIjtpOjE3OTU4MzU5MDM7fQ==\">Download video</a></div></div><div class=\"result\"><div class=\"size\">Watermark</div><div class=\"download\"><a data-name=\"\" class=\"download-link\" rel=\"nofollow noreferrer\" target=\"_blank\" href=\"https://ttdownloader.com/dl.php?v=YTo0OntzOjk6IndhdGVybWFyayI7aToxO3M6NzoidmlkZW9JZCI7czozMjoiMDZmZDQ0YjQ1ZjUwNDNhNzkxNmE5NTc5ZWEyMzM1ZjgiO3M6MzoidWlkIjtzOjMyOiJiNjJlOGYzMDJhYzMxNTk5Y2YyZGYxNjk4M2MwNWM2MSI7czo0OiJ0aW1lIjtpOjE3OTU4MzU5MDM7fQ==\">Download video</a></div></div><div class=\"result\"><div class=\"size\">Audio only</div><div class=\"download\"><a data-name=\"\" class=\"download-link\" rel=\"nofollow noreferrer\" target=\"_blank\" href=\"https://ttdownloader.com/mp3.php?v=YTozOntzOjc6InZpZGVvSWQiO3M6MzI6IjA2ZmQ0NGI0NWY1MDQzYTc5MTZhOTU3OWVhMjMzNWY4IjtzOjM6InVpZCI7czozMjoiYjYyZThmMzAyYWMzMTU5OWNmMmRmMTY5ODNjMDVjNjEiO3M6NDoidGltZSI7aToxNzk1ODM1OTAzO30=\">Download audio</a></div></div><div class=\"result hide-630\"><div class=\"size\">Buy Cheap TikTok Followers</div><div class=\"download\"><a class=\"download-link\" target=\"_blank\" href=\"https://tikster.app\">Learn More</a></div></div></div>"
+}

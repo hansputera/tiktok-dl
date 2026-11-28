@@ -1,0 +1,71 @@
+{
+  "status": 200,
+  "statusMessage": "OK",
+  "headers": [
+    [
+      "date",
+      "Sat, 28 Nov 2026 03:18:32 GMT"
+    ],
+    [
+      "content-type",
+      "text/html; charset=UTF-8"
+    ],
+    [
+      "transfer-encoding",
+      "chunked"
+    ],
+    [
+      "connection",
+      "keep-alive"
+    ],
+    [
+      "server",
+      "cloudflare"
+    ],
+    [
+      "nel",
+      "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+    ],
+    [
+      "expires",
+      "Thu, 19 Nov 1981 08:52:00 GMT"
+    ],
+    [
+      "cache-control",
+      "no-store, no-cache, must-revalidate"
+    ],
+    [
+      "pragma",
+      "no-cache"
+    ],
+    [
+      "report-to",
+      "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Vsblx4AGWz8%2B13la%2FuMBBYxE8BnXNZbDdHnbtbq0OZ5Ipf6iVa69w3LsvxKkUatm7g2vQ4i5qxwKr2CKk5jBxQOQgoOXmSHF%2FNiFJiNrlVE2hfFuIsuf0jyrzcxW3JPUwo4R\"}]}"
+    ],
+    [
+      "cf-cache-status",
+      "DYNAMIC"
+    ],
+    [
+      "vary",
+      "accept-encoding"
+    ],
+    [
+      "server-timing",
+      "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=28,cfOrigin;dur=21863"
+    ],
+    [
+      "content-encoding",
+      "br"
+    ],
+    [
+      "cf-ray",
+      "a616394a6d805cdd-SIN"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "body": "error"
+}

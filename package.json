@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run build --filter=tiktok-dl-core && turbo run dev --parallel",
     "lint": "turbo run lint --parallel",
     "format": "turbo run format --parallel",
     "prepare": "husky install",

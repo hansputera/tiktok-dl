@@ -1,0 +1,63 @@
+{
+  "status": 400,
+  "statusMessage": "Bad Request",
+  "headers": [
+    [
+      "date",
+      "Sat, 28 Nov 2026 03:19:04 GMT"
+    ],
+    [
+      "content-type",
+      "application/json; charset=utf-8"
+    ],
+    [
+      "content-length",
+      "67"
+    ],
+    [
+      "connection",
+      "keep-alive"
+    ],
+    [
+      "server",
+      "cloudflare"
+    ],
+    [
+      "nel",
+      "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+    ],
+    [
+      "set-cookie",
+      "ab_test=1; Path=/; Expires=Sun, 28 Mar 2027 03:19:01 GMT; Max-Age=10368000"
+    ],
+    [
+      "etag",
+      "\"1la1davwgb1v\""
+    ],
+    [
+      "vary",
+      "Accept-Encoding"
+    ],
+    [
+      "cf-cache-status",
+      "DYNAMIC"
+    ],
+    [
+      "server-timing",
+      "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=14,cfOrigin;dur=3162"
+    ],
+    [
+      "report-to",
+      "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=TGFHjlURIYL75lNJw4ik%2FNGlUThNk%2Fb9AZHyXod%2BC%2BYezBgW0bpgOkoZIidUYFvS2PrKbgDXwkCOlynDolyWM4QCN2Ql99ajJrQuF095kQ%2BxahX20GKQyWQEpvRRIQ%3D%3D\"}]}"
+    ],
+    [
+      "cf-ray",
+      "a6163a8adecdfde3-SIN"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "body": "{\"error\":\"Failed to fetch data from API\",\"details\":\"Unknown error\"}"
+}

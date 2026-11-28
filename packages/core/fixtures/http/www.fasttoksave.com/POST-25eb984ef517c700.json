@@ -1,0 +1,55 @@
+{
+  "status": 525,
+  "statusMessage": "<none>",
+  "headers": [
+    [
+      "date",
+      "Sat, 28 Nov 2026 03:19:07 GMT"
+    ],
+    [
+      "content-type",
+      "text/plain; charset=UTF-8"
+    ],
+    [
+      "content-length",
+      "16"
+    ],
+    [
+      "connection",
+      "keep-alive"
+    ],
+    [
+      "cache-control",
+      "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+    ],
+    [
+      "expires",
+      "Thu, 01 Jan 1970 00:00:01 GMT"
+    ],
+    [
+      "referrer-policy",
+      "same-origin"
+    ],
+    [
+      "server-timing",
+      "cfEdge;dur=240,cfOrigin;dur=0"
+    ],
+    [
+      "x-frame-options",
+      "SAMEORIGIN"
+    ],
+    [
+      "server",
+      "cloudflare"
+    ],
+    [
+      "cf-ray",
+      "a6163aabad398bc5-SIN"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "body": "error code: 525\n"
+}

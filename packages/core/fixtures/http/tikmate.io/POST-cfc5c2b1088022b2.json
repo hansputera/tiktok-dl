@@ -1,0 +1,79 @@
+{
+  "status": 200,
+  "statusMessage": "OK",
+  "headers": [
+    [
+      "date",
+      "Sat, 28 Nov 2026 03:16:56 GMT"
+    ],
+    [
+      "content-type",
+      "text/html; charset=UTF-8"
+    ],
+    [
+      "transfer-encoding",
+      "chunked"
+    ],
+    [
+      "connection",
+      "keep-alive"
+    ],
+    [
+      "server",
+      "cloudflare"
+    ],
+    [
+      "nel",
+      "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+    ],
+    [
+      "vary",
+      "Accept-Encoding"
+    ],
+    [
+      "set-cookie",
+      "PHPSESSID=hsirelmogj0ik7n9cslfv9uqvg; path=/"
+    ],
+    [
+      "expires",
+      "Thu, 19 Nov 1981 08:52:00 GMT"
+    ],
+    [
+      "cache-control",
+      "no-store, no-cache, must-revalidate"
+    ],
+    [
+      "pragma",
+      "no-cache"
+    ],
+    [
+      "x-frame-options",
+      "SAMEORIGIN"
+    ],
+    [
+      "x-xss-protection",
+      "1; mode=block"
+    ],
+    [
+      "x-content-type-options",
+      "nosniff"
+    ],
+    [
+      "report-to",
+      "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=WVYR8gfIJGuv6kViZuW2qUtsLuEgdNpP9BzI1HUiCIoRRBD%2BTJX8JvdwemvwFItzfFECAQVYEVY4Zbz03hpnfQrcgAsFGVO36Z7TgTj2Ml9TJs2wofuOPgFRFOM%3D\"}]}"
+    ],
+    [
+      "cf-cache-status",
+      "DYNAMIC"
+    ],
+    [
+      "content-encoding",
+      "br"
+    ],
+    [
+      "cf-ray",
+      "a61637642d205fb3-SIN"
+    ]
+  ],
+  "body": "    <script type=\"text/javascript\">\n        parent.document.getElementById(\"alert\").innerHTML = 'Error due to system overload, please try again.';\n        parent.document.querySelector(\".progress-dl\").classList.remove(\"active\");\n        parent.document.getElementById(\"alert\").classList.add(\"active\");\n        parent.document.getElementById(\"get_video\").reset();\n        parent.gtag('event', 'get_video_status', {\n            'status': 'error_api_get'\n        });\n    </script>\n"
+}

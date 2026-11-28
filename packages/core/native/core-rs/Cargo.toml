@@ -1,0 +1,36 @@
+[package]
+name = "core-rs"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+publish = false
+description = "napi addon for tiktok-dl-core"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+napi = { version = "3", features = ["async"] }
+napi-derive = "3"
+futures = "0.3"
+serde = "1"
+serde_json = { version = "1", features = ["preserve_order", "float_roundtrip", "unbounded_depth"] }
+reqwest = { version = "0.13", features = ["gzip", "brotli", "deflate", "form", "json", "charset"] }
+rquickjs = "0.15"
+regex = "1"
+sha1 = "0.10"
+hex = "0.4"
+url = "2"
+
+[build-dependencies]
+napi-build = "2"
+
+[profile.release]
+lto = true
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+
+[lints.rust]
+unused_lifetimes = "warn"
+trivial_numeric_casts = "warn"
