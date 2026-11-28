@@ -78,3 +78,18 @@ utility exports all match (`63/63`), `/api/providers` lists all ten providers, a
 
 Docker was not running and no local Redis exists, so the download route (rotator needs Redis) and
 the Alpine image were not executed.
+
+## 9. Vercel
+
+The Next.js app deploys as before. Two things make the native addon work there:
+
+- `apps/web`'s build script runs `packages/core/scripts/build-native.mjs` before `next build`, so
+  cargo compiles the addon for Vercel's Amazon Linux 2023 build image (which supports Rust). The
+  build takes roughly 1–3 extra minutes.
+- `next.config.ts` sets `outputFileTracingRoot` to the repo root and lists
+  `native/core-rs/index.cjs` and `native/core-rs/core_rs.node` under `outputFileTracingIncludes`
+  for `/api/*`. Verified locally: both paths appear in `route.js.nft.json`.
+
+If a future build image cannot compile Rust, build for `linux-x64-gnu` elsewhere, commit
+`core_rs.node`, and set `CORE_RS_PREBUILT=1`; the script then skips cargo. The addon is about
+11 MB, well below the function bundle limit.
