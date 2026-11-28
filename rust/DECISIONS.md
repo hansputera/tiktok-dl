@@ -93,3 +93,8 @@ The Next.js app deploys as before. Two things make the native addon work there:
 If a future build image cannot compile Rust, build for `linux-x64-gnu` elsewhere, commit
 `core_rs.node`, and set `CORE_RS_PREBUILT=1`; the script then skips cargo. The addon is about
 11 MB, well below the function bundle limit.
+
+Vercel's image currently ships rustc 1.92.0, so the crate declares `rust-version = "1.88"`, the
+highest MSRV in the locked dependency graph (`napi` 3.16 and `icu_*` 2.4). A `rust-version`
+above the image's toolchain fails before compiling anything (`core-rs@0.1.0 requires rustc
+1.97`). Verified with `cargo +1.92.0 build --release` and a fixture-backed `tikmate` fetch.

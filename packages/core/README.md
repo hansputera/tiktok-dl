@@ -68,6 +68,7 @@ node scripts/build-native.mjs     # cargo build --release, copy the library to c
 ```
 
 `CORE_RS_PREBUILT=1` skips cargo when the addon was built elsewhere (the Docker image uses this).
+The crate's `rust-version` is 1.88, the highest MSRV among its locked dependencies.
 
 The script is also run by `apps/web`'s build, so Vercel and Docker compile the addon for their
 own platform.

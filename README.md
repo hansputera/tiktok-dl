@@ -24,7 +24,8 @@ Prerequisites:
 
 - Node.js 22 (`node -v`)
 - Yarn 4 through Corepack (`corepack enable`, the repo pins `yarn@4.9.3`)
-- Rust stable with `cargo` on `PATH` (`rustup show`), plus a C compiler for QuickJS
+- Rust with `cargo` on `PATH` (`rustup show`), plus a C compiler for QuickJS. The crate's MSRV is
+  1.88; any current stable works.
 
 ```sh
 yarn install
