@@ -6,7 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "husky": "9.1.7",
-    "turbo": "1.13.4"
+    "turbo": "2.11.13"
   },
   "workspaces": [
     "packages/*",
@@ -14,9 +14,9 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run build --filter=tiktok-dl-core && turbo run dev --parallel",
-    "lint": "turbo run lint --parallel",
-    "format": "turbo run format --parallel",
+    "dev": "turbo run build --filter=tiktok-dl-core && turbo run dev",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
     "prepare": "husky install",
     "start": "turbo run start"
   },

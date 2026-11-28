@@ -1,19 +1,23 @@
 {
-	"pipeline": {
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
 			"outputs": [
 				"dist/**/*",
-				".next/**"
+				".next/**",
+				"native/core-rs/core_rs.node"
 			]
 		},
 		"lint": {},
 		"dev": {
-			"cache": false
+			"cache": false,
+			"persistent": true
 		},
 		"format": {},
 		"start": {
-			"cache": false
+			"cache": false,
+			"persistent": true
 		}
 	}
 }
