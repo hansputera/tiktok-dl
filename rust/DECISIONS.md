@@ -1,42 +1,80 @@
 # Port decisions
 
-## 1. Enable, not cutover
+## 1. Whole package in Rust
 
-The unit stays in TypeScript and `rust-anything enable` rebinds its functions to the napi addon. The TS bodies remain the recording oracle and the `RUST_ANYTHING_UNIT_CORE_RS=original` fallback. A clean cutover would delete the only reference implementation before the web app has run against Rust.
+`packages/core` is the napi addon plus a 90-line CommonJS entry, `index.cjs`. The entry only loads
+the addon, builds the ten provider objects with their `baseUrl`/`maintenance`/`getParams` and
+re-exports the utility functions; every scraper, the HTTP transport, the deobfuscation and the
+SaveFrom evaluation are Rust. There is no TypeScript fallback: a missing or broken addon fails at
+require time.
+
+The TypeScript oracle lived in the working tree only until commit `0ffba838ec`; it was recorded,
+porting was checked with `rust-anything diff` (63/63) and `gate`, and then removed. `index.d.ts`
+is the hand-written public contract, including `ExtractedInfo`, `BaseProvider` and the utility
+types.
+
+`getFetch` is gone: it was an accidental `fetch.ts` export of the `got` instance, unused by the
+web app and meaningless next to the Rust transport.
 
 ## 2. QuickJS in-process
 
-`rquickjs` bundles QuickJS and needs no libclang or external JS runtime. `boa_engine` is the fallback if rquickjs fails to build on darwin arm64 or Alpine musl; both sit behind `jsengine::eval_module_export`.
+`rquickjs` bundles QuickJS and needs no libclang or external JS runtime. Each call gets a fresh
+runtime with a 64 MiB heap, a 1 MiB stack and a 2 s interrupt handler. `deObfuscate` and the
+`runObfuscated*` helpers read `module.exports`; `deObfuscateSaveFromScript` reads the assignment
+value (`let result = <script>`), which is what NodeVM returned.
 
 ## 3. File-replay HTTP
 
-`record` and `gate` must not depend on provider uptime. `http.ts` writes every live response to `fixtures/http/<host>/<method>-<key>.json` during capture and replays it afterwards; the key covers method, URL without query, sorted query/form values and canonical JSON. Transport failures are fixtures too (`{"error": ...}`). Rust only reads; `TIKTOK_DL_HTTP_FIXTURES_RECORD` is ignored there.
+`record` and `diff` never depend on provider uptime. `http.rs` reads
+`TIKTOK_DL_HTTP_FIXTURES/<host>/<method>-<key>.json` when the variable is set, and otherwise
+performs the request with reqwest. The key covers method, URL without query, sorted query/form
+values and canonical JSON. Capture happened in the TypeScript transport before the cutover; the
+Rust side is read-only.
 
 ## 4. Faithful broken providers
 
-`snaptik`'s token regex, `tikdown`'s missing result link and `fasttoksave`'s HTTP 525 are recorded as they are. The port reproduces today's behavior; site fixes are a separate change.
+`snaptik` answers 404 (its token regex no longer matches), `tikdown` returns `Couldnt find URL`,
+`fasttoksave` answers HTTP 525 (`Response code 525 (<none>)`), and SaveFrom fails. These are
+recorded as they are; site fixes are a separate change.
 
-## 5. got vs reqwest
+## 5. SaveFrom
 
-- The fixture carries `statusMessage`, because got's `HTTPError` text is `Response code <code> (<statusMessage>)` and unknown statuses (525) have no canonical reason. The plan's status-only fixture could not reproduce it.
-- No retries. got retries idempotent requests twice; recorded fixtures never exercise that, and the port does not either.
+`deObfuscateSaveFromScript` wraps the input in `let result = ...` and evaluates it. A real
+SaveFrom payload is an object expression, so the function returns an object and `savefromExtract`
+fails at `deobfuscated.match is not a function` — that is the recorded behavior. The first
+SaveFrom request (`https://en1.savefrom.net/`) currently fails at the transport level with an
+empty message, recorded as `{"error": ""}`.
+
+## 6. got vs reqwest
+
+- The fixture carries `statusMessage`, because got's `HTTPError` text is
+  `Response code <code> (<statusMessage>)` and unknown statuses (525) have no canonical reason.
+- No retries. got retries idempotent requests twice; recorded fixtures never exercise that.
 - Redirects: up to 10, like got.
-- `nativeFetch` uses got's `timeout.socket`; reqwest maps it to a total request timeout (`DECISIONS` accepted approximation, recorded cases do not hit it).
+- `nativeFetch` uses got's `timeout.socket`; reqwest maps it to a total request timeout, an
+  accepted approximation no recorded case hits.
+- Invalid URLs return `Invalid URL`; non-http(s) schemes return
+  `Unsupported protocol: <scheme>:`.
 
-## 6. `deObfuscateSaveFromScript` stays TypeScript
+## 7. CommonJS entry and zod
 
-`NodeVM.run` returns `undefined` for `let result = ...`, so the function throws on every input. It is kept with `--keep`; the SaveFrom provider class keeps its body in TS and is not bridged.
+The napi addon is loaded by a CommonJS entry (`index.cjs`, `"type": "commonjs"`); Next
+externalizes the package and `require`s it. `getParams()` for the `native` provider returns a zod
+schema built in the entry (`z.object({'user-agent': z.string().min(5)})`), because a Rust function
+cannot construct a zod object and the web route introspects `_zod.def.shape`.
 
-## 7. CommonJS output, patched enable glue
+Turbopack bundles workspace packages even when they are listed in `serverExternalPackages` and
+rewrites `__dirname` inside them, so the addon cannot be found. The web app therefore builds and
+dev-serves with webpack (`next dev`/`next build` without `--turbopack`) and lists
+`tiktok-dl-core` in the server `externals`; `serverExternalPackages` stays for non-workspace
+consumers.
 
-`packages/core` compiles to CommonJS (`tsconfig.build.json`, `"type": "commonjs"`) because every relative import is extensionless; ESM would need `.js` on all of them and Next only `require`s this external package. Three edits inside each of the 20 `rust-anything` marker blocks, all removed by `rust-anything disable`:
+## 8. Verification
 
-- `import.meta.dirname` → `__dirname`: tsc emits CJS, where `import.meta` is a syntax error.
-- `exports.x = x` after each `x = native.x`: tsc emits `exports.x = x` before the block, so reassigning the local alone leaves the package exporting the TS function.
-- `throw e` → `node:assert`'s `fail(e)`: the gate's error-case scan counts the glue's `throw` as an unreached error path; `assert.fail(e)` rethrows the same error loudly.
+At `0ffba838ec`: `rust-anything diff` 63/63, `gate` all checks pass. After the cutover, the
+public entry replays all 63 cases: `Providers` fetch/extract through the provider objects and the
+utility exports all match (`63/63`), `/api/providers` lists all ten providers, and a live
+`tikmate` fetch without fixtures returns two URLs from reqwest.
 
-Re-running `rust-anything enable` overwrites these three edits; reapply them (the `enable` output is otherwise correct).
-
-## 8. Verification limits
-
-Docker was not running and no local Redis exists, so the plan's step 8 download route (`rotateProvider` needs Redis) and step 10 Alpine image were not executed. Verified instead: the whole workspace builds, `/api/providers` answers with all 10 providers from the built package, the addon dispatches (`runObfuscatedScript` returns the Rust-only error for a non-string export), the kill switch returns the TS value, and `RUST_ANYTHING_MODE=new` fails loudly when the `.node` is missing.
+Docker was not running and no local Redis exists, so the download route (rotator needs Redis) and
+the Alpine image were not executed.

@@ -1,7 +1,12 @@
 'use strict';
 
-const native = require('./native/core-rs/index.cjs');
+const {createRequire} = require('node:module');
+const {join} = require('node:path');
 const zod = require('zod');
+
+const native = createRequire(__filename)(
+    join(__dirname, 'native', 'core-rs', 'index.cjs'),
+);
 
 const z = zod.z ?? zod;
 
@@ -50,7 +55,9 @@ class BaseProvider {
     }
 
     extract(html) {
-        return native[`${this.#name}Extract`](html);
+        return this.#name === 'tikdown' || this.#name === 'downtik'
+            ? native[`${this.#name}Extract`](html, this.baseUrl)
+            : native[`${this.#name}Extract`](html);
     }
 }
 
