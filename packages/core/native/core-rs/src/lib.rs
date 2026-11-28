@@ -1,10 +1,16 @@
-//! JS bindings for `packages/core/src/units/`: generated from the signatures in `port.rs` by rust-anything.
-//! Regenerate with `rust-anything refresh` after changing them.
+//! JS bindings for the Rust port: the wrappers below are generated, the module list is
+//! hand-maintained since the TypeScript oracle was removed.
 
 use napi_derive::napi;
 
+pub mod deobfuscate;
+pub mod http;
 pub mod js;
+pub mod jsengine;
+pub mod links;
 pub mod port;
+pub mod providers;
+pub mod util;
 pub mod wire;
 
 #[allow(unused_imports)]
