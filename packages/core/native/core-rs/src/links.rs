@@ -6,7 +6,7 @@ use crate::util::regex;
 const MATCH_LINK: &str = r#"(?i-u)https?://(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&/=]*"#;
 
 /// Port of `matchTikTokData` (`packages/core/src/units/links.ts:1`).
-pub fn match_tik_tok_data(html: String) -> Result<String, String> {
+pub fn match_tiktok_data(html: String) -> Result<String, String> {
     let pattern = regex(
         r#"window\['SIGI_STATE'\]=(.*)</script><script id="__LOADABLE_REQUIRED_CHUNKS__" type="application/json">"#,
     )?;

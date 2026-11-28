@@ -7,7 +7,7 @@ pub use crate::deobfuscate::{
     run_obfuscated_script,
 };
 pub use crate::links::{
-    extract_musicaly_down_images, match_custom_download, match_link, match_tik_tok_data,
+    extract_musicaly_down_images, match_custom_download, match_link, match_tiktok_data,
 };
 pub use crate::providers::{
     downtik_extract, downtik_fetch, fasttoksave_extract, fasttoksave_fetch, musicalydown_extract,

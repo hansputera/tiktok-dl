@@ -1,7 +1,7 @@
 //! Port of `nativeFetch.ts` and `nativeParse.ts`.
 
 use crate::http;
-use crate::links::match_tik_tok_data;
+use crate::links::match_tiktok_data;
 use crate::util::{error_object, get, object};
 use serde_json::Value;
 
@@ -28,7 +28,7 @@ pub async fn native_fetch(url: String, params: Value) -> Result<Value, String> {
 
 /// Port of `nativeExtract` (`packages/core/src/units/nativeParse.ts:35`).
 pub fn native_extract(html: String) -> Result<Value, String> {
-    let matches = match_tik_tok_data(html)?;
+    let matches = match_tiktok_data(html)?;
     if matches.is_empty() {
         return Ok(error_object("Something was wrong!"));
     }

@@ -77,9 +77,9 @@ pub fn de_obfuscate(html: String) -> napi::Result<String> {
 
 /// `matchTikTokData`.
 #[napi(js_name = "matchTikTokData")]
-pub fn match_tik_tok_data(html: String) -> napi::Result<String> {
+pub fn match_tiktok_data(html: String) -> napi::Result<String> {
     run(move || {
-        let out = port::match_tik_tok_data(html)?;
+        let out = port::match_tiktok_data(html)?;
         Ok(out)
     })
 }
@@ -438,10 +438,10 @@ pub fn de_obfuscate_wire() -> napi::Result<f64> {
 
 /// `matchTikTokData` over the binary wire.
 #[napi(js_name = "matchTikTokDataWire")]
-pub fn match_tik_tok_data_wire() -> napi::Result<f64> {
+pub fn match_tiktok_data_wire() -> napi::Result<f64> {
     wire_io(|r, w| {
         let html: String = r.string16()?;
-        let out = &port::match_tik_tok_data(html)?;
+        let out = &port::match_tiktok_data(html)?;
         w.string16(out);
         Ok(())
     })
